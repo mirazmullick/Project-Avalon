@@ -3,485 +3,393 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Project Avalon</title>
+<title>Project Avalon , Go-to-market & Budget Projection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { font-family: 'Inter', system-ui, sans-serif; }
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0.6; }
+  body { font-family: 'Inter', system-ui, sans-serif; background:#F6FAFD; color:#0A1931; }
+  h1, h2, .display { font-family: 'Fraunces', Georgia, serif; }
+  .route-line { position:absolute; inset:0; opacity:0.14; }
 </style>
 </head>
-<body class="bg-[#F6FAFD] text-[#0A1931]">
-<div id="app"></div>
+<body>
 
-<script>
-/* ---------- Config: GitHub-as-storage ---------- */
-const CFG_KEY = "avalon-gh-config";
-const DATA_PATH = "data.json";
+  <!-- Hero -->
+  <div class="relative overflow-hidden" style="background:#0A1931">
+    <svg class="route-line" viewBox="0 0 1200 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-50 420 C 200 300, 350 480, 550 340 S 900 120, 1250 200" stroke="#B3CFE5" stroke-width="2" fill="none" stroke-dasharray="6 10"/>
+      <circle cx="550" cy="340" r="4" fill="#B3CFE5"/>
+      <circle cx="900" cy="130" r="4" fill="#B3CFE5"/>
+    </svg>
+    <div class="relative px-6 sm:px-12 py-20 max-w-4xl mx-auto sm:mx-0">
+      <div class="text-xs mb-5 tracking-wide" style="color:#B3CFE5">Go-to-market & budget projection</div>
+      <h1 class="display text-4xl sm:text-5xl font-semibold text-white mb-5 leading-tight">Project Avalon</h1>
+      <p class="text-sm sm:text-base leading-relaxed max-w-2xl mb-10" style="color:#C9D9E8">
+        A seven-month rollout across B2B, B2C, and B2E, built to turn a 35-year agency's trust into digital market share.
+        B2B carries the first six to seven months of revenue and proof. B2C builds anticipation in parallel without paid
+        acquisition. B2E follows once B2B has real results to show.
+      </p>
+      <div class="flex flex-wrap gap-10">
+        <div>
+          <div class="text-xs mb-1" style="color:#8FA9C2">Total budget</div>
+          <div class="text-white text-2xl font-semibold display">BDT 1,750,000</div>
+        </div>
+        <div>
+          <div class="text-xs mb-1" style="color:#8FA9C2">Timeline</div>
+          <div class="text-white text-2xl font-semibold display">Nov 2026 to May 2027</div>
+        </div>
+        <div>
+          <div class="text-xs mb-1" style="color:#8FA9C2">Sequence</div>
+          <div class="text-white text-2xl font-semibold display">B2B → B2C → B2E</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-function getConfig() {
-  try { return JSON.parse(localStorage.getItem(CFG_KEY) || "null"); } catch (e) { return null; }
-}
-function setConfig(cfg) { localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); }
+  <div class="max-w-4xl mx-auto px-6 sm:px-12 py-16 space-y-20">
 
-function ghHeaders(token) {
-  return { "Authorization": "token " + token, "Accept": "application/vnd.github+json" };
-}
+    <!-- Why this order -->
+    <section>
+      <div class="text-xs mb-2 text-[#4A7FA7]">Why this order</div>
+      <h2 class="display text-2xl font-semibold mb-4">B2B first, B2C in waiting, B2E once proven</h2>
+      <p class="text-sm leading-relaxed max-w-2xl text-[#33465A]">
+        B2B produces fewer, larger wins faster, using a warm agent network that already trusts the parent brand.
+        B2C needs a mature product and real word of mouth before it deserves paid spend, so months one through seven
+        build anticipation rather than chase strangers. B2E waits until month four, when B2B case studies exist to
+        make the pitch credible.
+      </p>
+    </section>
 
-async function ghGetFile(cfg) {
-  const url = "https://api.github.com/repos/" + cfg.owner + "/" + cfg.repo + "/contents/" + DATA_PATH;
-  const res = await fetch(url, { headers: ghHeaders(cfg.token) });
-  if (res.status === 404) return { content: null, sha: null };
-  if (!res.ok) throw new Error("GitHub read failed (" + res.status + ")");
-  const json = await res.json();
-  const content = JSON.parse(decodeURIComponent(escape(atob(json.content.replace(/
-/g, "")))));
-  return { content, sha: json.sha };
-}
+    <!-- Budget allocation -->
+    <section>
+      <div class="text-xs mb-2 text-[#4A7FA7]">Where the budget goes</div>
+      <h2 class="display text-2xl font-semibold mb-8">BDT 1,750,000, allocated across four phases</h2>
+      <div class="flex justify-center mb-10">
+        <div class="relative flex items-center justify-center" style="width:240px;height:240px">
+          <div class="rounded-full" style="width:240px;height:240px;background:conic-gradient(#0A1931 0.00% 15.00%, #1A3D63 15.00% 65.00%, #4A7FA7 65.00% 90.00%, #B3CFE5 90.00% 100.00%)"></div>
+          <div class="absolute rounded-full bg-[#F6FAFD] flex flex-col items-center justify-center" style="width:150px;height:150px">
+            <div class="text-xs text-[#4A7FA7]">Total budget</div>
+            <div class="text-base font-semibold display">BDT 1,750,000</div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
+        <div class="flex items-center gap-3 mb-1">
+          <span class="inline-block rounded-sm" style="background:#0A1931;width:12px;height:12px"></span>
+          <span class="text-base font-semibold">Foundation</span>
+          <span class="text-xs text-[#4A7FA7] ml-auto">15% of budget</span>
+        </div>
+        <p class="text-xs text-[#4A7FA7] leading-relaxed mb-3">Brand identity, tracking infrastructure, and a PR retainer. The one-time setup everything else runs on.</p>
+        <div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Brand identity & guidelines</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 100,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Tracking infra (CAPI, GA4, CRM)</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 87,500</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">PR retainer setup</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 75,000</span>
+        </div>
+          <div class="flex items-center justify-between text-sm py-2 border-t font-semibold" style="border-color:#0A1931">
+            <span>Subtotal</span>
+            <span>BDT 262,500</span>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
+        <div class="flex items-center gap-3 mb-1">
+          <span class="inline-block rounded-sm" style="background:#1A3D63;width:12px;height:12px"></span>
+          <span class="text-base font-semibold">B2B growth</span>
+          <span class="text-xs text-[#4A7FA7] ml-auto">50% of budget</span>
+        </div>
+        <p class="text-xs text-[#4A7FA7] leading-relaxed mb-3">The revenue engine for all seven months: agent activation, LinkedIn, webinars, and referral commissions.</p>
+        <div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Agent portal & relationship activation</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">LinkedIn ads (corporate targeting)</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 400,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Agent webinars & roadshow</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 200,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Agent referral commissions</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 150,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">B2B case studies & content</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 75,000</span>
+        </div>
+          <div class="flex items-center justify-between text-sm py-2 border-t font-semibold" style="border-color:#0A1931">
+            <span>Subtotal</span>
+            <span>BDT 875,000</span>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
+        <div class="flex items-center gap-3 mb-1">
+          <span class="inline-block rounded-sm" style="background:#4A7FA7;width:12px;height:12px"></span>
+          <span class="text-base font-semibold">B2C hype</span>
+          <span class="text-xs text-[#4A7FA7] ml-auto">25% of budget</span>
+        </div>
+        <p class="text-xs text-[#4A7FA7] leading-relaxed mb-3">Awareness and anticipation ahead of a public launch. Not paid acquisition yet, that comes later.</p>
+        <div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Teaser landing page & waitlist</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Influencer & creator seeding</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 150,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Referral-gated waitlist incentives</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 87,500</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">PR pushes (announcement + launch)</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 100,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Always-on content cadence</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
+        </div>
+          <div class="flex items-center justify-between text-sm py-2 border-t font-semibold" style="border-color:#0A1931">
+            <span>Subtotal</span>
+            <span>BDT 437,500</span>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
+        <div class="flex items-center gap-3 mb-1">
+          <span class="inline-block rounded-sm" style="background:#B3CFE5;width:12px;height:12px"></span>
+          <span class="text-base font-semibold">B2E pilot</span>
+          <span class="text-xs text-[#4A7FA7] ml-auto">10% of budget</span>
+        </div>
+        <p class="text-xs text-[#4A7FA7] leading-relaxed mb-3">Direct outreach to 15 to 20 target companies once B2B has real wins to point to.</p>
+        <div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Case study & sales collateral</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Outreach sequence & targeted content</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
+        </div>
+        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
+          <span class="text-[#2A3844]">Direct outreach & meetings</span>
+          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 75,000</span>
+        </div>
+          <div class="flex items-center justify-between text-sm py-2 border-t font-semibold" style="border-color:#0A1931">
+            <span>Subtotal</span>
+            <span>BDT 175,000</span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
 
-async function ghPutFile(cfg, dataObj, sha) {
-  const url = "https://api.github.com/repos/" + cfg.owner + "/" + cfg.repo + "/contents/" + DATA_PATH;
-  const body = {
-    message: "Update Avalon budget data",
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(dataObj, null, 2)))),
-  };
-  if (sha) body.sha = sha;
-  const res = await fetch(url, { method: "PUT", headers: Object.assign({ "Content-Type": "application/json" }, ghHeaders(cfg.token)), body: JSON.stringify(body) });
-  if (!res.ok) {
-    const t = await res.text();
-    throw new Error("GitHub write failed (" + res.status + "): " + t);
-  }
-  const json = await res.json();
-  return json.content.sha;
-}
+    <!-- Brand communication & management -->
+    <section>
+      <div class="text-xs mb-2 text-[#4A7FA7]">Brand communication & management</div>
+      <h2 class="display text-2xl font-semibold mb-4">One brand, three audiences, one system</h2>
+      <p class="text-sm leading-relaxed max-w-2xl text-[#33465A] mb-8">
+        Avalon is carrying a 35-year agency's reputation online for the first time. That reputation is the asset,
+        and the brand system exists to protect it while it stretches across three very different audiences.
+      </p>
+      <div class="space-y-7">
+        <div>
+          <div class="text-sm font-semibold mb-1">One identity, applied everywhere</div>
+          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
+            The same visual identity, palette, and wordmark appear on every B2B deck, every B2C social post, and every
+            B2E pitch document. No touchpoint should ever look like it belongs to a different company than the one an
+            agent or a customer already trusts.
+          </p>
+        </div>
+        <div>
+          <div class="text-sm font-semibold mb-1">Same voice, calibrated by audience</div>
+          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
+            B2B communication is direct and data-led, since travel managers and agency owners want proof, not
+            persuasion. B2C is warm and story-led, built around the narrative of a legacy agency going digital.
+            B2E is credible and outcome-focused, built around one signed pilot rather than broad claims. The words
+            change, the brand underneath does not.
+          </p>
+        </div>
+        <div>
+          <div class="text-sm font-semibold mb-1">A single point of ownership</div>
+          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
+            Brand and digital sign-off sits with one owner rather than being split across teams. Every piece of
+            public-facing content is checked against a single style guide before it ships, weekly for fast-moving
+            channels like paid social, monthly for slower ones like case studies and PR placements.
+          </p>
+        </div>
+        <div>
+          <div class="text-sm font-semibold mb-1">Protecting inherited trust</div>
+          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
+            Every public message is measured against a simple test: does this match how the legacy agency would show
+            up in person. Complaints and negative reviews get a same-day response protocol, because early trust
+            online compounds or breaks fast in Bangladesh's OTA market.
+          </p>
+        </div>
+        <div>
+          <div class="text-sm font-semibold mb-1">Marketing coordinated with the agency floor</div>
+          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
+            B2B messaging is coordinated directly with the agency's existing relationship managers, not sent blind.
+            What a sub-agent hears from marketing matches what they hear from the contact they already know, so the
+            digital push reinforces the relationship instead of competing with it.
+          </p>
+        </div>
+      </div>
+    </section>
 
-/* ---------- Domain data ---------- */
-function uid() { return Math.random().toString(36).slice(2, 10); }
+    <!-- Funnel -->
+    <section>
+      <div class="text-xs mb-2 text-[#4A7FA7]">The process</div>
+      <h2 class="display text-2xl font-semibold mb-3">Brand visibility, awareness, and word-of-mouth conversion</h2>
+      <p class="text-sm leading-relaxed max-w-2xl mb-6 text-[#33465A]">
+        Each segment moves through the same three stages, but the tactic underneath is different every time, because
+        a corporate travel manager, a retail traveler, and an HR head don't discover trust the same way.
+      </p>
+      <div class="space-y-8">
+        
+      <div class="pt-6 border-t" style="border-color:#D7E4F0">
+        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2B</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div><div class="text-xs font-medium mb-1">Brand visibility</div><p class="text-xs leading-relaxed text-[#4A7FA7]">Agent portal presence inside the parent agency's existing network. One consistent brand identity across every deck, portal screen, and one-pager agents see.</p></div>
+          <div><div class="text-xs font-medium mb-1">Awareness</div><p class="text-xs leading-relaxed text-[#4A7FA7]">LinkedIn targeting corporate travel managers and agency owners. Monthly webinars plus a two-city roadshow, Dhaka then Chattogram.</p></div>
+          <div><div class="text-xs font-medium mb-1">Word-of-mouth conversion</div><p class="text-xs leading-relaxed text-[#4A7FA7]">A referral commission for agents who bring in other agents. Agents already talk to agents daily, this turns that conversation into acquisition.</p></div>
+        </div>
+      </div>
+      <div class="pt-6 border-t" style="border-color:#D7E4F0">
+        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2C</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div><div class="text-xs font-medium mb-1">Brand visibility</div><p class="text-xs leading-relaxed text-[#4A7FA7]">A teaser landing page live from month one, waitlist only. Light, consistent content so the brand feels familiar by the time it launches.</p></div>
+          <div><div class="text-xs font-medium mb-1">Awareness</div><p class="text-xs leading-relaxed text-[#4A7FA7]">Influencer seeding built on story, a legacy agency going digital, not product features. Two PR pushes: platform announcement, then launch.</p></div>
+          <div><div class="text-xs font-medium mb-1">Word-of-mouth conversion</div><p class="text-xs leading-relaxed text-[#4A7FA7]">A referral-gated waitlist, refer three friends to move up the list. Curiosity becomes unpaid distribution instead of paid reach.</p></div>
+        </div>
+      </div>
+      <div class="pt-6 border-t" style="border-color:#D7E4F0">
+        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2E</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div><div class="text-xs font-medium mb-1">Brand visibility</div><p class="text-xs leading-relaxed text-[#4A7FA7]">The same brand identity, translated into a corporate one-pager and a case study document once B2B has real wins to show.</p></div>
+          <div><div class="text-xs font-medium mb-1">Awareness</div><p class="text-xs leading-relaxed text-[#4A7FA7]">Direct outreach to 15 to 20 target companies, HR and admin heads, not marketing. Sales-led, minimal media spend.</p></div>
+          <div><div class="text-xs font-medium mb-1">Word-of-mouth conversion</div><p class="text-xs leading-relaxed text-[#4A7FA7]">One signed pilot becomes the reference case for the next prospect. Peer companies refer once there is a result to point to.</p></div>
+        </div>
+      </div>
+      </div>
+    </section>
 
-function defaultData() {
-  return {
-    totalBudget: 1750000,
-    phases: [
-      { id: "foundation", label: "Foundation", pct: 15, color: "#0A1931",
-        desc: "Brand identity, tracking infrastructure, and a PR retainer. The one-time setup everything else runs on.",
-        categories: [
-          { id: uid(), name: "Brand identity & guidelines", planned: 100000, entries: [] },
-          { id: uid(), name: "Tracking infra (CAPI, GA4, CRM)", planned: 87500, entries: [] },
-          { id: uid(), name: "PR retainer setup", planned: 75000, entries: [] },
-        ] },
-      { id: "b2b", label: "B2B growth", pct: 50, color: "#1A3D63",
-        desc: "The revenue engine for all seven months: agent activation, LinkedIn, webinars, and referral commissions.",
-        categories: [
-          { id: uid(), name: "Agent portal & relationship activation", planned: 50000, entries: [] },
-          { id: uid(), name: "LinkedIn ads (corporate targeting)", planned: 400000, entries: [] },
-          { id: uid(), name: "Agent webinars & roadshow", planned: 200000, entries: [] },
-          { id: uid(), name: "Agent referral commissions", planned: 150000, entries: [] },
-          { id: uid(), name: "B2B case studies & content", planned: 75000, entries: [] },
-        ] },
-      { id: "b2c", label: "B2C hype", pct: 25, color: "#4A7FA7",
-        desc: "Awareness and anticipation ahead of a public launch. Not paid acquisition yet, that comes later.",
-        categories: [
-          { id: uid(), name: "Teaser landing page & waitlist", planned: 50000, entries: [] },
-          { id: uid(), name: "Influencer & creator seeding", planned: 150000, entries: [] },
-          { id: uid(), name: "Referral-gated waitlist incentives", planned: 87500, entries: [] },
-          { id: uid(), name: "PR pushes (announcement + launch)", planned: 100000, entries: [] },
-          { id: uid(), name: "Always-on content cadence", planned: 50000, entries: [] },
-        ] },
-      { id: "b2e", label: "B2E pilot", pct: 10, color: "#B3CFE5",
-        desc: "Direct outreach to 15 to 20 target companies once B2B has real wins to point to.",
-        categories: [
-          { id: uid(), name: "Case study & sales collateral", planned: 50000, entries: [] },
-          { id: uid(), name: "Outreach sequence & targeted content", planned: 50000, entries: [] },
-          { id: uid(), name: "Direct outreach & meetings", planned: 75000, entries: [] },
-        ] },
-    ],
-  };
-}
+    <!-- Rollout -->
+    <section>
+      <div class="text-xs mb-2 text-[#4A7FA7]">Rollout</div>
+      <h2 class="display text-2xl font-semibold mb-1">Seven months, Nov 2026 to May 2027</h2>
+      <p class="text-sm mb-6 text-[#4A7FA7]">Planned spend by phase, month by month.</p>
+      <div class="mb-10"><svg viewBox="0 0 700 220" class="w-full" style="height:220px"><rect x="41.5" y="110.0" width="52.6" height="84.0" fill="#0A1931" rx="2"/><rect x="41.5" y="78.0" width="52.6" height="32.0" fill="#1A3D63" rx="2"/><rect x="41.5" y="62.0" width="52.6" height="16.0" fill="#4A7FA7" rx="2"/><text x="67.9" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Nov</text><rect x="137.2" y="110.0" width="52.6" height="84.0" fill="#0A1931" rx="2"/><rect x="137.2" y="46.0" width="52.6" height="64.0" fill="#1A3D63" rx="2"/><rect x="137.2" y="18.0" width="52.6" height="28.0" fill="#4A7FA7" rx="2"/><text x="163.6" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Dec</text><rect x="233.0" y="98.0" width="52.6" height="96.0" fill="#1A3D63" rx="2"/><rect x="233.0" y="42.0" width="52.6" height="56.0" fill="#4A7FA7" rx="2"/><text x="259.3" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Jan</text><rect x="328.7" y="98.0" width="52.6" height="96.0" fill="#1A3D63" rx="2"/><rect x="328.7" y="66.0" width="52.6" height="32.0" fill="#4A7FA7" rx="2"/><rect x="328.7" y="38.0" width="52.6" height="28.0" fill="#B3CFE5" rx="2"/><text x="355.0" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Feb</text><rect x="424.4" y="98.0" width="52.6" height="96.0" fill="#1A3D63" rx="2"/><rect x="424.4" y="66.0" width="52.6" height="32.0" fill="#4A7FA7" rx="2"/><rect x="424.4" y="38.0" width="52.6" height="28.0" fill="#B3CFE5" rx="2"/><text x="450.7" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Mar</text><rect x="520.1" y="98.0" width="52.6" height="96.0" fill="#1A3D63" rx="2"/><rect x="520.1" y="58.0" width="52.6" height="40.0" fill="#4A7FA7" rx="2"/><rect x="520.1" y="30.0" width="52.6" height="28.0" fill="#B3CFE5" rx="2"/><text x="546.4" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Apr</text><rect x="615.8" y="114.0" width="52.6" height="80.0" fill="#1A3D63" rx="2"/><rect x="615.8" y="38.0" width="52.6" height="76.0" fill="#4A7FA7" rx="2"/><rect x="615.8" y="10.0" width="52.6" height="28.0" fill="#B3CFE5" rx="2"/><text x="642.1" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">May</text></svg></div>
+      <div class="relative pl-6">
+        <div class="absolute left-1.5 top-1 bottom-1" style="width:1px;background:#D7E4F0"></div>
+        <div class="space-y-6">
+          
+        <div class="relative">
+          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
+          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span class="text-sm font-medium">Nov 2026</span>
+            <span class="text-xs text-[#4A7FA7]">BDT 206,250</span>
+          </div>
+          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">Brand identity finalized, tracking infrastructure live, agent portal soft-launched to the existing network, B2C waitlist opens.</p>
+        </div>
+        <div class="relative">
+          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
+          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span class="text-sm font-medium">Dec 2026</span>
+            <span class="text-xs text-[#4A7FA7]">BDT 275,000</span>
+          </div>
+          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">LinkedIn campaigns launch to corporate travel managers, first agent webinar, influencer seeding begins.</p>
+        </div>
+        <div class="relative">
+          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
+          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span class="text-sm font-medium">Jan 2027</span>
+            <span class="text-xs text-[#4A7FA7]">BDT 237,500</span>
+          </div>
+          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">First B2C PR push announcing the platform, agent referral commissions go live, Dhaka roadshow.</p>
+        </div>
+        <div class="relative">
+          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
+          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span class="text-sm font-medium">Feb 2027</span>
+            <span class="text-xs text-[#4A7FA7]">BDT 243,750</span>
+          </div>
+          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">B2E outreach begins using early B2B case studies, Chattogram roadshow.</p>
+        </div>
+        <div class="relative">
+          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
+          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span class="text-sm font-medium">Mar 2027</span>
+            <span class="text-xs text-[#4A7FA7]">BDT 243,750</span>
+          </div>
+          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">B2B holds at full pace, case study content compounds, B2E conversations progress.</p>
+        </div>
+        <div class="relative">
+          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
+          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span class="text-sm font-medium">Apr 2027</span>
+            <span class="text-xs text-[#4A7FA7]">BDT 256,250</span>
+          </div>
+          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">B2E moves toward pilot agreements, B2C content cadence ramps ahead of launch.</p>
+        </div>
+        <div class="relative">
+          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
+          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span class="text-sm font-medium">May 2027</span>
+            <span class="text-xs text-[#4A7FA7]">BDT 287,500</span>
+          </div>
+          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">B2C launch PR push, referral waitlist converts to active users, first B2E pilot targeted.</p>
+        </div>
+        </div>
+      </div>
+    </section>
 
-const FUNNEL = [
-  { segment: "B2B",
-    visibility: "Agent portal presence inside the parent agency's existing network. One consistent brand identity across every deck, portal screen, and one-pager agents see.",
-    awareness: "LinkedIn targeting corporate travel managers and agency owners. Monthly webinars plus a two-city roadshow, Dhaka then Chattogram.",
-    wom: "A referral commission for agents who bring in other agents. Agents already talk to agents daily, this turns that conversation into acquisition." },
-  { segment: "B2C",
-    visibility: "A teaser landing page live from month one, waitlist only. Light, consistent content so the brand feels familiar by the time it launches.",
-    awareness: "Influencer seeding built on story, a legacy agency going digital, not product features. Two PR pushes: platform announcement, then launch.",
-    wom: "A referral-gated waitlist, refer three friends to move up the list. Curiosity becomes unpaid distribution instead of paid reach." },
-  { segment: "B2E",
-    visibility: "The same brand identity, translated into a corporate one-pager and a case study document once B2B has real wins to show.",
-    awareness: "Direct outreach to 15 to 20 target companies, HR and admin heads, not marketing. Sales-led, minimal media spend.",
-    wom: "One signed pilot becomes the reference case for the next prospect. Peer companies refer once there is a result to point to." },
-];
+    <!-- KPIs -->
+    <section>
+      <div class="text-xs mb-2 text-[#4A7FA7]">What we're measuring</div>
+      <h2 class="display text-2xl font-semibold mb-8">Success metrics by segment</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        
+      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
+        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2B</div>
+        <ul class="space-y-2"><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Agents onboarded</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Cost per onboarded agent</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Revenue from the B2B channel</span></li></ul>
+      </div>
+      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
+        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2C</div>
+        <ul class="space-y-2"><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Waitlist size</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Referral rate, signups from existing signups</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>PR mentions</span></li></ul>
+      </div>
+      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
+        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2E</div>
+        <ul class="space-y-2"><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Qualified conversations booked</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Pilots signed</span></li></ul>
+      </div>
+      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
+        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">Brand</div>
+        <ul class="space-y-2"><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Press mentions</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Share of voice against GoZayaan and ShareTrip</span></li></ul>
+      </div>
+      </div>
+    </section>
 
-const KPIS = [
-  { segment: "B2B", metrics: ["Agents onboarded", "Cost per onboarded agent", "Revenue from the B2B channel"] },
-  { segment: "B2C", metrics: ["Waitlist size", "Referral rate, signups from existing signups", "PR mentions"] },
-  { segment: "B2E", metrics: ["Qualified conversations booked", "Pilots signed"] },
-  { segment: "Brand", metrics: ["Press mentions", "Share of voice against GoZayaan and ShareTrip"] },
-];
+    <div class="pt-8 text-xs leading-relaxed text-[#4A7FA7] border-t" style="border-color:#D7E4F0">
+      This is a projection, administered with a 10 percent monthly tolerance and a hard cap at the total budget in
+      the final month. Allocations may shift between phases as early results come in, always within the approved total.
+    </div>
 
-const ROLLOUT_PLAN = [
-  { year: 2026, month: 10, label: "Nov 2026", foundation: 131250, b2b: 50000, b2c: 25000, b2e: 0, highlight: "Brand identity finalized, tracking infrastructure live, agent portal soft-launched to the existing network, B2C waitlist opens." },
-  { year: 2026, month: 11, label: "Dec 2026", foundation: 131250, b2b: 100000, b2c: 43750, b2e: 0, highlight: "LinkedIn campaigns launch to corporate travel managers, first agent webinar, influencer seeding begins." },
-  { year: 2027, month: 0, label: "Jan 2027", foundation: 0, b2b: 150000, b2c: 87500, b2e: 0, highlight: "First B2C PR push announcing the platform, agent referral commissions go live, Dhaka roadshow." },
-  { year: 2027, month: 1, label: "Feb 2027", foundation: 0, b2b: 150000, b2c: 50000, b2e: 43750, highlight: "B2E outreach begins using early B2B case studies, Chattogram roadshow." },
-  { year: 2027, month: 2, label: "Mar 2027", foundation: 0, b2b: 150000, b2c: 50000, b2e: 43750, highlight: "B2B holds at full pace, case study content compounds, B2E conversations progress." },
-  { year: 2027, month: 3, label: "Apr 2027", foundation: 0, b2b: 150000, b2c: 62500, b2e: 43750, highlight: "B2E moves toward pilot agreements, B2C content cadence ramps ahead of launch." },
-  { year: 2027, month: 4, label: "May 2027", foundation: 0, b2b: 125000, b2c: 118750, b2e: 43750, highlight: "B2C launch PR push, referral waitlist converts to active users, first B2E pilot targeted." },
-];
+  </div>
 
-/* ---------- Helpers ---------- */
-function money(n) { const v = Number(n) || 0; return "BDT " + v.toLocaleString("en-IN", { maximumFractionDigits: 0 }); }
-function pctStr(n) { return (n * 100).toFixed(1) + "%"; }
-function sumEntries(entries) { return entries.reduce((s, e) => s + (Number(e.amount) || 0), 0); }
-function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
-
-const ICON = {
-  chevronRight: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>',
-  chevronDown: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>',
-  trash: '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>',
-  plus: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>',
-  pencil: '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
-};
-
-/* ---------- App state ---------- */
-let state = { data: null, loading: true, saveError: null, sha: null, openRow: null, drafts: {}, editingBudget: false, cfg: getConfig(), needsSetup: false };
-
-function flatCategories(data) {
-  const out = [];
-  data.phases.forEach((p) => p.categories.forEach((c) => out.push(Object.assign({}, c, { phaseId: p.id }))));
-  return out;
-}
-function phaseSpent(data, phaseId) { return flatCategories(data).filter((c) => c.phaseId === phaseId).reduce((s, c) => s + sumEntries(c.entries), 0); }
-function phasePlanned(data, phaseId) { return flatCategories(data).filter((c) => c.phaseId === phaseId).reduce((s, c) => s + (Number(c.planned) || 0), 0); }
-
-async function persist(next) {
-  state.data = next;
-  render();
-  const cfg = state.cfg;
-  if (!cfg) return;
-  try {
-    const sha = await ghPutFile(cfg, next, state.sha);
-    state.sha = sha;
-    state.saveError = null;
-  } catch (e) {
-    state.saveError = "Couldn't save to GitHub: " + e.message;
-  }
-  render();
-}
-
-async function loadFromGitHub() {
-  const cfg = state.cfg;
-  if (!cfg) { state.needsSetup = true; state.loading = false; render(); return; }
-  try {
-    const res = await ghGetFile(cfg);
-    if (res.content) {
-      state.data = res.content;
-      state.sha = res.sha;
-    } else {
-      state.data = defaultData();
-      state.sha = await ghPutFile(cfg, state.data, null);
-    }
-  } catch (e) {
-    state.saveError = "Couldn't reach GitHub: " + e.message;
-    state.data = defaultData();
-  }
-  state.loading = false;
-  render();
-}
-
-/* ---------- Event delegation ---------- */
-document.addEventListener("click", (e) => {
-  const el = e.target.closest("[data-action]");
-  if (!el) return;
-  const action = el.getAttribute("data-action");
-  const phaseId = el.getAttribute("data-phase");
-  const catId = el.getAttribute("data-cat");
-  const entryId = el.getAttribute("data-entry");
-
-  if (action === "toggle-row") {
-    const key = phaseId + ":" + catId;
-    state.openRow = state.openRow === key ? null : key;
-    render();
-  } else if (action === "add-category") {
-    const next = JSON.parse(JSON.stringify(state.data));
-    const p = next.phases.find((p) => p.id === phaseId);
-    p.categories.push({ id: uid(), name: "New line item", planned: 0, entries: [] });
-    persist(next);
-  } else if (action === "delete-entry") {
-    const next = JSON.parse(JSON.stringify(state.data));
-    const p = next.phases.find((p) => p.id === phaseId);
-    const c = p.categories.find((c) => c.id === catId);
-    c.entries = c.entries.filter((en) => en.id !== entryId);
-    persist(next);
-  } else if (action === "add-entry") {
-    const key = phaseId + ":" + catId;
-    const draft = state.drafts[key] || {};
-    const amount = Number(draft.amount) || 0;
-    if (amount <= 0) return;
-    const next = JSON.parse(JSON.stringify(state.data));
-    const p = next.phases.find((p) => p.id === phaseId);
-    const c = p.categories.find((c) => c.id === catId);
-    c.entries.push({ id: uid(), date: draft.date || new Date().toISOString().slice(0, 10), amount, note: draft.note || "" });
-    state.drafts[key] = { date: "", amount: "", note: "" };
-    persist(next);
-  } else if (action === "edit-budget") {
-    state.editingBudget = true;
-    render();
-    const input = document.querySelector('[data-role="budget-input"]');
-    if (input) input.focus();
-  } else if (action === "save-setup") {
-    const owner = document.querySelector('[data-role="cfg-owner"]').value.trim();
-    const repo = document.querySelector('[data-role="cfg-repo"]').value.trim() || "Project-Avalon";
-    const token = document.querySelector('[data-role="cfg-token"]').value.trim();
-    if (!owner || !token) return;
-    state.cfg = { owner, repo, token };
-    setConfig(state.cfg);
-    state.needsSetup = false;
-    state.loading = true;
-    render();
-    loadFromGitHub();
-  }
-});
-
-document.addEventListener("input", (e) => {
-  const el = e.target;
-  const field = el.getAttribute("data-field");
-  if (!field) return;
-  const phaseId = el.getAttribute("data-phase");
-  const catId = el.getAttribute("data-cat");
-  const key = phaseId + ":" + catId;
-
-  if (field === "category-name") {
-    state.data.phases.find((p) => p.id === phaseId).categories.find((c) => c.id === catId).name = el.value;
-  } else if (field === "category-planned") {
-    state.data.phases.find((p) => p.id === phaseId).categories.find((c) => c.id === catId).planned = el.value;
-  } else if (field === "draft-date") {
-    state.drafts[key] = Object.assign({}, state.drafts[key], { date: el.value });
-    return;
-  } else if (field === "draft-amount") {
-    state.drafts[key] = Object.assign({}, state.drafts[key], { amount: el.value });
-    return;
-  } else if (field === "draft-note") {
-    state.drafts[key] = Object.assign({}, state.drafts[key], { note: el.value });
-    return;
-  }
-});
-
-document.addEventListener("blur", (e) => {
-  const el = e.target;
-  if (el.getAttribute && el.getAttribute("data-field") === "category-name") persist(state.data);
-  if (el.getAttribute && el.getAttribute("data-field") === "category-planned") persist(state.data);
-  if (el.getAttribute && el.getAttribute("data-role") === "budget-input") {
-    state.data.totalBudget = Number(el.value) || 0;
-    state.editingBudget = false;
-    persist(state.data);
-  }
-}, true);
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && e.target.getAttribute && e.target.getAttribute("data-role") === "budget-input") e.target.blur();
-});
-
-/* ---------- Render pieces ---------- */
-function renderSetup() {
-  return '<div class="max-w-md mx-auto px-6 py-20">' +
-    '<h1 class="text-xl font-semibold mb-2">Connect this page to your GitHub repo</h1>' +
-    '<p class="text-sm text-[#4A7FA7] mb-6 leading-relaxed">Data is stored as data.json inside your repo. Paste a fine-grained personal access token scoped only to this one repository, with Contents read and write permission. It is saved only in this browser\'s local storage, never sent anywhere except directly to GitHub\'s API.</p>' +
-    '<label class="block text-xs text-[#4A7FA7] mb-1">GitHub username</label>' +
-    '<input data-role="cfg-owner" class="w-full border border-[#D7E4F0] rounded-lg px-3 py-2 text-sm mb-3" placeholder="your-username" />' +
-    '<label class="block text-xs text-[#4A7FA7] mb-1">Repository name</label>' +
-    '<input data-role="cfg-repo" class="w-full border border-[#D7E4F0] rounded-lg px-3 py-2 text-sm mb-3" placeholder="Project-Avalon" value="Project-Avalon" />' +
-    '<label class="block text-xs text-[#4A7FA7] mb-1">Personal access token</label>' +
-    '<input data-role="cfg-token" type="password" class="w-full border border-[#D7E4F0] rounded-lg px-3 py-2 text-sm mb-5" placeholder="github_pat_..." />' +
-    '<button data-action="save-setup" class="bg-[#1A3D63] text-white text-sm rounded-lg px-4 py-2">Connect</button>' +
-    '</div>';
-}
-
-function renderDonut(data) {
-  const total = data.phases.reduce((s, p) => s + phasePlanned(data, p.id), 0) || 1;
-  let acc = 0;
-  const stops = data.phases.map((p) => {
-    const v = phasePlanned(data, p.id);
-    const start = (acc / total) * 100;
-    acc += v;
-    const end = (acc / total) * 100;
-    return p.color + " " + start.toFixed(2) + "% " + end.toFixed(2) + "%";
-  }).join(", ");
-  return '<div class="relative w-full flex items-center justify-center" style="height:260px">' +
-    '<div class="rounded-full" style="width:220px;height:220px;background:conic-gradient(' + stops + ')"></div>' +
-    '<div class="absolute rounded-full bg-[#F6FAFD] flex items-center justify-center flex-col" style="width:130px;height:130px">' +
-    '<div class="text-xs text-[#4A7FA7]">Total budget</div>' +
-    '<div class="text-sm font-semibold">' + money(data.totalBudget) + '</div>' +
-    '</div></div>';
-}
-
-function renderRolloutChart(rollout) {
-  const w = 700, h = 220, padL = 30, padB = 24, padT = 10;
-  const innerW = w - padL - 10, innerH = h - padB - padT;
-  const bandW = innerW / rollout.length;
-  const barW = bandW * 0.55;
-  const maxVal = Math.max(1, ...rollout.map((m) => Math.max(m.foundation + m.b2b + m.b2c + m.b2e, m.actualTotal)));
-  let bars = "";
-  let linePoints = [];
-  rollout.forEach((m, i) => {
-    const x = padL + i * bandW + (bandW - barW) / 2;
-    let y = h - padB;
-    const segs = [["foundation", "#0A1931"], ["b2b", "#1A3D63"], ["b2c", "#4A7FA7"], ["b2e", "#B3CFE5"]];
-    segs.forEach(([key, color]) => {
-      const val = m[key];
-      const segH = (val / maxVal) * innerH;
-      y -= segH;
-      if (segH > 0.3) bars += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + barW.toFixed(1) + '" height="' + segH.toFixed(1) + '" fill="' + color + '" />';
-    });
-    const actualY = h - padB - (m.actualTotal / maxVal) * innerH;
-    linePoints.push((x + barW / 2).toFixed(1) + "," + actualY.toFixed(1));
-    bars += '<text x="' + (x + barW / 2).toFixed(1) + '" y="' + (h - 6) + '" font-size="10" fill="#4A7FA7" text-anchor="middle">' + m.label.split(" ")[0] + "</text>";
-  });
-  const line = '<polyline points="' + linePoints.join(" ") + '" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4 3" />' +
-    linePoints.map((p) => { const [px, py] = p.split(","); return '<circle cx="' + px + '" cy="' + py + '" r="2.5" fill="#C0392B" />'; }).join("");
-  return '<svg viewBox="0 0 ' + w + ' ' + h + '" class="w-full" style="height:220px">' + bars + line + '</svg>';
-}
-
-function renderApp() {
-  if (state.needsSetup) return renderSetup();
-  if (state.loading || !state.data) {
-    return '<div class="w-full min-h-[420px] flex items-center justify-center py-24 text-sm">Loading dashboard…</div>';
-  }
-  const data = state.data;
-  const flat = flatCategories(data);
-  const overallPlanned = flat.reduce((s, c) => s + (Number(c.planned) || 0), 0);
-  const overallSpent = flat.reduce((s, c) => s + sumEntries(c.entries), 0);
-  const totalBudget = Number(data.totalBudget) || 0;
-  const remaining = totalBudget - overallSpent;
-  const committedRatio = totalBudget > 0 ? overallPlanned / totalBudget : 0;
-
-  let cum = 0;
-  const rollout = ROLLOUT_PLAN.map((m, i) => {
-    const target = m.foundation + m.b2b + m.b2c + m.b2e;
-    cum += target;
-    const lower = Math.round(cum * 0.9);
-    const rawUpper = Math.round(cum * 1.1);
-    const upper = i === ROLLOUT_PLAN.length - 1 ? Math.min(rawUpper, totalBudget || rawUpper) : rawUpper;
-    const actual = flat.reduce((s, c) => s + c.entries.filter((e) => { const d = new Date(e.date); return !isNaN(d) && d.getFullYear() === m.year && d.getMonth() === m.month; }).reduce((s2, e) => s2 + (Number(e.amount) || 0), 0), 0);
-    return Object.assign({}, m, { target, actualTotal: actual, cumTarget: cum, cumLower: lower, cumUpper: upper });
-  });
-
-  let html = "";
-  html += '<div class="bg-[#0A1931] px-6 sm:px-12 py-14"><div class="max-w-4xl">';
-  html += '<div class="text-xs mb-4 text-[#B3CFE5]">Go-to-market and budget projection</div>';
-  html += '<h1 class="text-3xl sm:text-4xl font-semibold text-white mb-4 leading-tight">Project Avalon</h1>';
-  html += '<p class="text-sm sm:text-base leading-relaxed max-w-2xl mb-2" style="color:#C9D9E8">A seven-month rollout across B2B, B2C, and B2E, built to turn a 35-year agency\'s trust into digital market share. B2B carries the first six to seven months of revenue and proof. B2C builds anticipation in parallel without paid acquisition. B2E follows once B2B has real results to show.</p>';
-  html += '<p class="text-xs mb-8" style="color:#8FA9C2">Nov 2026 to May 2027 &middot; B2B, then B2C, then B2E</p>';
-  if (state.saveError) html += '<div class="text-xs mb-4" style="color:#F0A99C">' + esc(state.saveError) + '</div>';
-  html += '<div class="flex flex-wrap gap-8">';
-  html += '<div><div class="text-xs mb-1" style="color:#8FA9C2">Total budget</div>' +
-    (state.editingBudget
-      ? '<input data-role="budget-input" type="number" value="' + totalBudget + '" class="text-white text-lg font-semibold outline-none bg-transparent border-b" style="border-color:#8FA9C2" />'
-      : '<button data-action="edit-budget" class="text-white text-lg font-semibold flex items-center gap-1.5">' + money(totalBudget) + ' <span style="color:#8FA9C2">' + ICON.pencil + '</span></button>') +
-    '</div>';
-  html += '<div><div class="text-xs mb-1" style="color:#8FA9C2">Committed</div><div class="text-white text-lg font-semibold">' + money(overallPlanned) + '</div><div class="text-xs mt-0.5" style="color:#8FA9C2">' + pctStr(committedRatio) + ' of budget</div></div>';
-  html += '<div><div class="text-xs mb-1" style="color:#8FA9C2">Spent so far</div><div class="text-white text-lg font-semibold">' + money(overallSpent) + '</div>' + (totalBudget > 0 ? '<div class="text-xs mt-0.5" style="color:#8FA9C2">' + pctStr(overallSpent / totalBudget) + ' of budget</div>' : '') + '</div>';
-  html += '<div><div class="text-xs mb-1" style="color:#8FA9C2">Remaining</div><div class="text-lg font-semibold" style="color:' + (remaining < 0 ? '#F0A99C' : '#fff') + '">' + money(remaining) + '</div></div>';
-  html += '</div></div></div>';
-
-  html += '<div class="max-w-4xl mx-auto px-6 sm:px-12 py-12 space-y-16">';
-
-  html += '<section><div class="text-xs mb-2 text-[#4A7FA7]">Why this order</div><h2 class="text-xl font-semibold mb-3">B2B first, B2C in waiting, B2E once proven</h2><p class="text-sm leading-relaxed max-w-2xl text-[#4A7FA7]">B2B produces fewer, larger wins faster, using a warm agent network that already trusts the parent brand. B2C needs a mature product and real word of mouth before it deserves paid spend, so months one through seven build anticipation rather than chase strangers. B2E waits until month four, when B2B case studies exist to make the pitch credible.</p></section>';
-
-  html += '<section><div class="text-xs mb-2 text-[#4A7FA7]">Where the budget goes</div><h2 class="text-xl font-semibold mb-6">' + money(totalBudget) + ', split four ways</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">';
-  html += renderDonut(data);
-  html += '<div class="space-y-4">';
-  data.phases.forEach((p) => {
-    html += '<div class="flex gap-3"><div class="shrink-0" style="background:' + p.color + ';width:10px;height:10px;border-radius:2px;margin-top:5px"></div><div class="flex-1">' +
-      '<div class="flex items-baseline gap-2 text-sm font-medium flex-wrap"><span>' + p.label + '</span><span class="text-[#4A7FA7]">' + p.pct + '%, ' + money(phasePlanned(data, p.id)) + ' planned</span></div>' +
-      '<p class="text-xs leading-relaxed mt-0.5 text-[#4A7FA7]">' + p.desc + '</p>' +
-      '<p class="text-xs mt-1 text-[#1A3D63]">' + money(phaseSpent(data, p.id)) + ' spent so far</p></div></div>';
-  });
-  html += '</div></div></section>';
-
-  html += '<section><div class="text-xs mb-2 text-[#4A7FA7]">Track actual spend</div><h2 class="text-xl font-semibold mb-6">Log spend against each line item</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
-  data.phases.forEach((p) => {
-    html += '<div class="rounded-2xl p-5 bg-white border border-[#D7E4F0]"><div class="text-sm font-medium mb-3">' + p.label + '</div>';
-    p.categories.forEach((c) => {
-      const spent = sumEntries(c.entries);
-      const rowKey = p.id + ":" + c.id;
-      const draft = state.drafts[rowKey] || { date: "", amount: "", note: "" };
-      const isOpen = state.openRow === rowKey;
-      html += '<div class="py-2.5 border-t border-[#EAF3FA]"><div class="flex items-center gap-2 flex-wrap">' +
-        '<input data-field="category-name" data-phase="' + p.id + '" data-cat="' + c.id + '" value="' + esc(c.name) + '" class="text-xs font-medium outline-none bg-transparent flex-1 min-w-0" />' +
-        '<div class="flex items-center gap-1 text-xs text-[#4A7FA7]">planned <input data-field="category-planned" data-phase="' + p.id + '" data-cat="' + c.id + '" type="number" value="' + (c.planned || "") + '" style="width:70px" class="outline-none bg-transparent border-b text-right" /></div>' +
-        '<span class="text-xs whitespace-nowrap text-[#4A7FA7]">spent ' + money(spent) + '</span>' +
-        '<button data-action="toggle-row" data-phase="' + p.id + '" data-cat="' + c.id + '" class="text-[#1A3D63]">' + (isOpen ? ICON.chevronDown : ICON.chevronRight) + '</button>' +
-        '</div>';
-      if (isOpen) {
-        html += '<div class="mt-2">';
-        if (c.entries.length > 0) {
-          html += '<div class="mb-2 space-y-1">';
-          c.entries.slice().sort((a, b) => new Date(b.date) - new Date(a.date)).forEach((e) => {
-            html += '<div class="flex items-center gap-2 text-xs text-[#4A7FA7]"><span style="width:78px">' + esc(e.date) + '</span><span style="width:80px" class="font-medium">' + money(e.amount) + '</span><span class="flex-1 truncate">' + esc(e.note) + '</span><button data-action="delete-entry" data-phase="' + p.id + '" data-cat="' + c.id + '" data-entry="' + e.id + '" class="text-[#4A7FA7]">' + ICON.trash + '</button></div>';
-          });
-          html += '</div>';
-        }
-        html += '<div class="flex flex-wrap gap-2">' +
-          '<input data-field="draft-date" data-phase="' + p.id + '" data-cat="' + c.id + '" type="date" value="' + esc(draft.date) + '" class="text-xs border rounded px-1.5 py-1 outline-none bg-transparent border-[#D7E4F0]" />' +
-          '<input data-field="draft-amount" data-phase="' + p.id + '" data-cat="' + c.id + '" type="number" placeholder="amount" value="' + esc(draft.amount) + '" style="width:80px" class="text-xs border rounded px-1.5 py-1 outline-none bg-transparent border-[#D7E4F0]" />' +
-          '<input data-field="draft-note" data-phase="' + p.id + '" data-cat="' + c.id + '" type="text" placeholder="note" value="' + esc(draft.note) + '" class="text-xs border rounded px-1.5 py-1 outline-none bg-transparent border-[#D7E4F0] flex-1 min-w-[6rem]" />' +
-          '<button data-action="add-entry" data-phase="' + p.id + '" data-cat="' + c.id + '" class="text-xs rounded px-2 py-1 text-white bg-[#1A3D63]">Log</button></div></div>';
-      }
-      html += '</div>';
-    });
-    html += '<button data-action="add-category" data-phase="' + p.id + '" class="text-xs mt-2 flex items-center gap-1 text-[#1A3D63]">' + ICON.plus + ' add line item</button></div>';
-  });
-  html += '</div></section>';
-
-  html += '<section><div class="text-xs mb-2 text-[#4A7FA7]">The process</div><h2 class="text-xl font-semibold mb-2">Brand visibility, awareness, and word-of-mouth conversion</h2><p class="text-sm leading-relaxed max-w-2xl mb-6 text-[#4A7FA7]">Each segment moves through the same three stages, but the tactic underneath is different every time, because a corporate travel manager, a retail traveler, and an HR head do not discover trust the same way.</p><div class="space-y-8">';
-  FUNNEL.forEach((f) => {
-    html += '<div class="pt-5 border-t border-[#D7E4F0]"><div class="text-sm font-semibold mb-3 text-[#1A3D63]">' + f.segment + '</div><div class="grid grid-cols-1 sm:grid-cols-3 gap-5">' +
-      '<div><div class="text-xs font-medium mb-1">Brand visibility</div><p class="text-xs leading-relaxed text-[#4A7FA7]">' + f.visibility + '</p></div>' +
-      '<div><div class="text-xs font-medium mb-1">Awareness</div><p class="text-xs leading-relaxed text-[#4A7FA7]">' + f.awareness + '</p></div>' +
-      '<div><div class="text-xs font-medium mb-1">Word-of-mouth conversion</div><p class="text-xs leading-relaxed text-[#4A7FA7]">' + f.wom + '</p></div>' +
-      '</div></div>';
-  });
-  html += '</div></section>';
-
-  html += '<section><div class="text-xs mb-2 text-[#4A7FA7]">Rollout</div><h2 class="text-xl font-semibold mb-1">Seven months, Nov 2026 to May 2027</h2><p class="text-sm mb-6 text-[#4A7FA7]">Target spend by phase, month by month, with actual logged spend overlaid as a dashed line.</p>';
-  html += '<div class="mb-8">' + renderRolloutChart(rollout) + '</div>';
-  html += '<div class="relative pl-6"><div class="absolute left-1.5 top-1 bottom-1" style="width:1px;background:#D7E4F0"></div><div class="space-y-6">';
-  rollout.forEach((m, i) => {
-    let cumActual = 0;
-    for (let j = 0; j <= i; j++) cumActual += rollout[j].actualTotal;
-    const started = new Date() >= new Date(m.year, m.month, 1);
-    const inBand = cumActual >= m.cumLower && cumActual <= m.cumUpper;
-    html += '<div class="relative"><div class="absolute top-1" style="background:#1A3D63;width:9px;height:9px;border-radius:999px;left:-25px"></div>' +
-      '<div class="flex items-baseline gap-2 mb-1 flex-wrap"><span class="text-sm font-medium">' + m.label + '</span><span class="text-xs text-[#4A7FA7]">target ' + money(m.target) + '</span>' +
-      (started ? '<span class="text-xs font-medium" style="color:' + (inBand ? '#2E9E5B' : '#C0392B') + '">' + (cumActual > 0 ? money(cumActual) + ' logged, ' + (inBand ? 'in band' : (cumActual < m.cumLower ? 'behind' : 'over')) : 'no spend logged yet') + '</span>' : '') +
-      '</div><p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">' + m.highlight + '</p></div>';
-  });
-  html += '</div></div></section>';
-
-  html += '<section><div class="text-xs mb-2 text-[#4A7FA7]">What we are measuring</div><h2 class="text-xl font-semibold mb-6">Success metrics by segment</h2><div class="grid grid-cols-1 sm:grid-cols-2 gap-6">';
-  KPIS.forEach((k) => {
-    html += '<div class="rounded-2xl p-5 bg-white border border-[#D7E4F0]"><div class="text-sm font-semibold mb-3 text-[#1A3D63]">' + k.segment + '</div><ul class="space-y-1.5">';
-    k.metrics.forEach((m) => {
-      html += '<li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px;margin-top:6px"></span><span>' + m + '</span></li>';
-    });
-    html += '</ul></div>';
-  });
-  html += '</div></section>';
-
-  html += '<div class="pt-6 text-xs leading-relaxed text-[#4A7FA7] border-t border-[#D7E4F0]">This is a projection, tracked live above against a 10 percent tolerance band each month and a hard cap at the total budget in the final month. Allocations may shift between phases as early results come in, always within the approved total. Stored in this repository\'s data.json, so it is the same on any device you sign in from.</div>';
-
-  html += '</div>';
-  return html;
-}
-
-function render() { document.getElementById("app").innerHTML = renderApp(); }
-
-render();
-loadFromGitHub();
-</script>
 </body>
 </html>

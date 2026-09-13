@@ -1,609 +1,325 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Project Avalon , Go-to-market & Budget Projection</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Avalon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300..900&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Inter', system-ui, sans-serif; background:#F6FAFD; color:#0A1931; }
-  h1, h2, .display { font-family: 'Fraunces', Georgia, serif; }
-  .route-line { position:absolute; inset:0; opacity:0.14; }
-</style>
-</head>
-<body>
+:root{--ink:#0A1931;--deep:#12294A;--mid:#1A3D63;--steel:#4A7FA7;--mist:#B3CFE5;--paper:#F6FAFD;--line:#DCE7F2;--body:#33465A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.68 "Fira Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.dp{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;letter-spacing:-.025em}
+.mono{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
 
-  <!-- Hero -->
-  <div class="relative overflow-hidden" style="background:#0A1931">
-    <svg class="route-line" viewBox="0 0 1200 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M-50 420 C 200 300, 350 480, 550 340 S 900 120, 1250 200" stroke="#B3CFE5" stroke-width="2" fill="none" stroke-dasharray="6 10"/>
-      <circle cx="550" cy="340" r="4" fill="#B3CFE5"/>
-      <circle cx="900" cy="130" r="4" fill="#B3CFE5"/>
-    </svg>
-    <div class="relative px-6 sm:px-12 py-20 max-w-4xl mx-auto sm:mx-0">
-      <div class="text-xs mb-5 tracking-wide" style="color:#B3CFE5">Go-to-market &amp; budget projection</div>
-      <h1 class="display text-4xl sm:text-5xl font-semibold text-white mb-5 leading-tight">Project Avalon</h1>
-      <p class="text-sm sm:text-base leading-relaxed max-w-2xl mb-10" style="color:#C9D9E8">
-        A seven-month rollout across B2B, B2C, and B2E, built to turn a 35-year agency&#39;s trust into digital market share.
-        B2B carries the first six to seven months of revenue and proof. B2C builds anticipation in parallel without paid
-        acquisition. B2E follows once B2B has real results to show.
-      </p>
-      <div class="flex flex-wrap gap-10">
-        <div>
-          <div class="text-xs mb-1" style="color:#8FA9C2">Total budget</div>
-          <div class="text-white text-2xl font-semibold display">BDT 1,750,000</div>
-        </div>
-        <div>
-          <div class="text-xs mb-1" style="color:#8FA9C2">Timeline</div>
-          <div class="text-white text-2xl font-semibold display">Nov 2026 to May 2027</div>
-        </div>
-        <div>
-          <div class="text-xs mb-1" style="color:#8FA9C2">Sequence</div>
-          <div class="text-white text-2xl font-semibold display">B2B → B2C → B2E</div>
-        </div>
-      </div>
-    </div>
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(246,250,253,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:24px}
+nav strong{font:500 13px/1 "Fira Sans";letter-spacing:.02em}
+nav div{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none}
+nav div::-webkit-scrollbar{display:none}
+nav a{color:var(--steel);text-decoration:none;font-size:12.5px;white-space:nowrap}
+nav a:hover{color:var(--ink)}
+
+/* hero */
+header.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden}
+header.hero svg.arc{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.hin{position:relative;padding:110px 0 0}
+.hin h1{font-size:clamp(46px,7.4vw,104px);line-height:.96;margin:0 0 26px;color:#fff}
+.hin p.lede{max-width:620px;color:#C9D9E8;font-size:17px;line-height:1.7;margin:0 0 56px}
+.pass{display:flex;flex-wrap:wrap;border-top:1px dashed rgba(179,207,229,.45);margin-bottom:0}
+.pass div{flex:1 1 200px;padding:26px 26px 40px 0;position:relative}
+.pass div+div{padding-left:26px;border-left:1px dashed rgba(179,207,229,.45)}
+.pass span{display:block;font-size:11.5px;color:#7F9BB8;margin-bottom:8px;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.pass b{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:30px;line-height:1.1;color:#fff}
+
+/* route gutter */
+main{padding:0 0 40px}
+section{position:relative;padding:86px 0;border-top:1px solid var(--line)}
+section:first-child{border-top:none}
+.leg{display:grid;grid-template-columns:78px 1fr;gap:0}
+.legno{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:12px;color:var(--steel);padding-top:6px;position:relative}
+.legno::after{content:"";position:absolute;left:5px;top:34px;bottom:-86px;width:1px;background:var(--line)}
+section:last-of-type .legno::after{display:none}
+h2{font-size:clamp(28px,3.8vw,42px);line-height:1.12;margin:0 0 18px;max-width:15ch}
+.intro{max-width:64ch;color:var(--body);font-size:16.5px;margin:0 0 36px}
+.sub{color:var(--steel);font-size:14px;margin:-8px 0 30px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:36px 32px;margin:8px 0 32px}
+.stat b{display:block;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:clamp(36px,4.8vw,54px);line-height:1.02;color:var(--ink);margin-bottom:10px}
+.stat p{margin:0;font-size:13px;line-height:1.5;color:var(--steel);max-width:24ch}
+.src{font-size:12px;color:var(--steel);font-style:italic;margin:26px 0 0;max-width:70ch}
+
+/* seq */
+.seq{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-bottom:34px}
+.seq .st{flex:1 1 190px;padding:22px 24px;background:#fff;border:1px solid var(--line)}
+.seq .st:nth-child(1){border-left:3px solid var(--ink)}
+.seq .st:nth-child(2){border-left:3px solid var(--steel)}
+.seq .st:nth-child(3){border-left:3px solid var(--mist)}
+.seq h4{margin:0 0 4px;font:600 13px/1 "Fira Sans";letter-spacing:.03em}
+.seq span{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:11px;color:var(--steel);display:block;margin-bottom:12px}
+.seq p{margin:0;font-size:13px;line-height:1.55;color:var(--body)}
+
+/* donut */
+.alloc{display:grid;grid-template-columns:240px 1fr;gap:52px;align-items:center;margin-bottom:44px}
+.dwrap{position:relative;width:220px;height:220px}
+.dwrap .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.dwrap .ctr span{font-size:11px;color:var(--steel);font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.dwrap .ctr b{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:21px;line-height:1.2;margin-top:4px}
+.key{display:grid;gap:14px}
+.key div{display:flex;align-items:baseline;gap:12px;font-size:14px}
+.key i{width:11px;height:11px;flex:none;border-radius:2px;transform:translateY(1px)}
+.key b{margin-left:auto;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-weight:500;font-size:13.5px}
+.key em{font-style:normal;color:var(--steel);font-size:12.5px;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+
+/* phase cards */
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px}
+.phase{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 1px 2px rgba(10,25,49,.04)}
+.phase header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.phase header i{width:11px;height:11px;border-radius:2px;flex:none}
+.phase h3{margin:0;font-size:21px}
+.phase header em{margin-left:auto;font-style:normal;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:12px;color:var(--steel)}
+.phase>p{margin:0 0 16px;font-size:13px;line-height:1.55;color:var(--steel)}
+.led{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}
+.led b{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-weight:500;white-space:nowrap}
+.led.tot{border-top:1.5px solid var(--ink);font-weight:600;margin-top:2px}
+
+/* channels */
+.ribbon{display:flex;height:9px;border-radius:99px;overflow:hidden;margin:4px 0 36px}
+.ribbon i{display:block}
+.chan{display:flex;gap:20px;padding:22px 0;border-top:1px solid var(--line);align-items:flex-start}
+.gl,.ll{flex:none;min-width:56px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:7px}
+.gl svg{width:20px;height:20px}
+.ll{background:#fff;border:1px solid var(--line);padding:0 12px}
+.ll img{display:block}
+.cbody{flex:1;min-width:0}
+.chead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:9px}
+.chead h4{margin:0;font:600 15px/1.3 "Fira Sans"}
+.chead b{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-weight:500;font-size:14px;white-space:nowrap}
+.chead small{color:var(--steel);font-size:11.5px;margin-left:8px}
+.track{height:4px;background:#E8F0F8;border-radius:99px;overflow:hidden;margin-bottom:10px}
+.track span{display:block;height:100%;border-radius:99px}
+.chan p{margin:0;font-size:13px;line-height:1.6;color:var(--steel);max-width:74ch}
+.recon{margin:30px 0 0;padding-top:18px;border-top:1.5px solid var(--ink);font-size:12.5px;color:var(--steel)}
+
+/* principles */
+.prins{display:grid;gap:30px;max-width:78ch}
+.prin h4{margin:0 0 6px;font:600 15px/1.4 "Fira Sans"}
+.prin p{margin:0;font-size:13.5px;line-height:1.65;color:var(--steel)}
+
+/* funnel */
+.fseg{padding-top:26px;border-top:1px solid var(--line);margin-top:26px}
+.fseg:first-child{margin-top:0}
+.fseg>h4{margin:0 0 16px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:24px;color:var(--mid)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px}
+.fgrid h5{margin:0 0 6px;font:600 12.5px/1.4 "Fira Sans"}
+.fgrid p{margin:0;font-size:13px;line-height:1.6;color:var(--steel)}
+
+/* timeline */
+.tl{list-style:none;margin:44px 0 0;padding:0 0 0 26px;border-left:1px solid var(--line)}
+.tl li{position:relative;padding:0 0 30px}
+.tl li::before{content:"";position:absolute;left:-31px;top:7px;width:9px;height:9px;border-radius:99px;background:var(--mid);box-shadow:0 0 0 4px var(--paper)}
+.thead{display:flex;align-items:baseline;gap:14px;margin-bottom:5px}
+.thead h4{margin:0;font:600 14.5px/1 "Fira Sans"}
+.thead b{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-weight:400;font-size:12.5px;color:var(--steel)}
+.tl p{margin:0;font-size:13px;line-height:1.6;color:var(--steel);max-width:62ch}
+.lgnd{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--steel)}
+.lgnd span{display:flex;align-items:center;gap:7px}
+.lgnd i{width:10px;height:10px;border-radius:2px}
+
+/* vision */
+.hzs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px}
+.hz span{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:11.5px;color:var(--steel);display:block;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.hz h4{margin:0 0 8px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:22px;line-height:1.2}
+.hz p{margin:0;font-size:13px;line-height:1.65;color:var(--steel)}
+
+/* lead band */
+.lead{background:var(--ink);color:#fff;border-radius:16px;padding:44px 46px;margin:0}
+.lead h2{color:#fff;margin:0 0 14px;max-width:20ch}
+.lead p{margin:0;max-width:62ch;color:#C9D9E8;font-size:15px;line-height:1.7}
+
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+.kpi h4{margin:0 0 12px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:20px;color:var(--mid)}
+.kpi ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.kpi li{font-size:13px;line-height:1.5;color:var(--steel);padding-left:16px;position:relative}
+.kpi li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:99px;background:var(--mist)}
+
+footer{border-top:1px solid var(--line);padding:34px 0 60px;font-size:12.5px;color:var(--steel);line-height:1.7}
+footer p{max-width:82ch;margin:0}
+
+@media(max-width:760px){
+  .leg{grid-template-columns:1fr}
+  .legno{padding:0 0 10px}
+  .legno::after{display:none}
+  .alloc{grid-template-columns:1fr;justify-items:start;gap:32px}
+  .hin{padding-top:76px}
+  .pass div+div{border-left:none;padding-left:0;border-top:1px dashed rgba(179,207,229,.45)}
+  .lead{padding:32px 26px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:3px}
+</style></head><body>
+
+<nav><div class="wrap"><strong>Project Avalon</strong><div><a href="#order">Order</a><a href="#market">Market</a><a href="#budget">Budget</a><a href="#channels">Channels</a><a href="#brand">Brand</a><a href="#process">Process</a><a href="#rollout">Rollout</a><a href="#vision">Vision</a><a href="#metrics">Metrics</a></div></div></nav>
+
+<header class="hero">
+<svg class="arc" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0" stop-color="#1A3D63" stop-opacity="0"/><stop offset=".45" stop-color="#4A7FA7" stop-opacity=".85"/><stop offset="1" stop-color="#B3CFE5" stop-opacity=".25"/></linearGradient></defs>
+  <path d="M-60 520 C 240 430, 430 470, 640 330 S 1000 90, 1280 150" fill="none" stroke="url(#g)" stroke-width="1.5" stroke-dasharray="7 9"/>
+  <path d="M-60 560 C 300 500, 520 520, 760 390 S 1080 170, 1280 230" fill="none" stroke="#4A7FA7" stroke-width="1" stroke-opacity=".28"/>
+  <circle cx="640" cy="330" r="3.5" fill="#B3CFE5"/><circle cx="640" cy="330" r="11" fill="none" stroke="#B3CFE5" stroke-opacity=".35"/>
+  <circle cx="1000" cy="152" r="3.5" fill="#B3CFE5"/><circle cx="1000" cy="152" r="11" fill="none" stroke="#B3CFE5" stroke-opacity=".35"/>
+</svg>
+<div class="wrap hin">
+  <h1>Turning thirty-five years<br>of trust into market share</h1>
+  <p class="lede">A seven-month go-to-market for Project Avalon across B2B, B2C, and B2E. B2B carries the revenue and the proof. B2C builds anticipation in parallel without paid acquisition. B2E follows once B2B has real results to show.</p>
+  <div class="pass">
+    <div><span>TOTAL BUDGET</span><b>BDT 1,750,000</b></div>
+    <div><span>TIMELINE</span><b>Nov 2026 &ndash; May 2027</b></div>
+    <div><span>SEQUENCE</span><b>B2B, B2C, B2E</b></div>
   </div>
+</div>
+</header>
 
-  <div class="max-w-4xl mx-auto px-6 sm:px-12 py-16 space-y-20">
+<main class="wrap">
 
-    <!-- Why this order -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">Why this order</div>
-      <h2 class="display text-2xl font-semibold mb-4">B2B first, B2C in waiting, B2E once proven</h2>
-      <p class="text-sm leading-relaxed max-w-2xl text-[#33465A]">
-        B2B produces fewer, larger wins faster, using a warm agent network that already trusts the parent brand.
-        B2C needs a mature product and real word of mouth before it deserves paid spend, so months one through seven
-        build anticipation rather than chase strangers. B2E waits until month four, when B2B case studies exist to
-        make the pitch credible.
-      </p>
-    </section>
+<section id="order"><div class="leg"><div class="legno">01</div><div>
+<h2>B2B first, B2C in waiting, B2E once proven</h2>
+<div class="seq">
+  <div class="st"><h4>B2B</h4><span>Months 1&ndash;7</span><p>Fewer, larger wins, fast, using an agent network that already trusts the parent brand.</p></div>
+  <div class="st"><h4>B2C</h4><span>Builds from month 1</span><p>Waitlist and word of mouth compound before a taka of paid acquisition is spent.</p></div>
+  <div class="st"><h4>B2E</h4><span>From month 4</span><p>Waits until B2B case studies exist to make the corporate pitch credible.</p></div>
+</div>
+<p class="intro">The order is the strategy. B2C needs a mature product and real word of mouth before it deserves paid spend, so the first seven months build anticipation rather than chase strangers.</p>
+</div></div></section>
 
-    <!-- Market opportunity -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">Market opportunity</div>
-      <h2 class="display text-2xl font-semibold mb-6">A market growing faster than the players in it</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
-        <div>
-          <div class="display text-3xl font-semibold" style="color:#0A1931">$4.90B</div>
-          <div class="text-xs text-[#4A7FA7] mt-1">Bangladesh travel &amp; tourism market by 2030, up from $2.44B in 2025</div>
-        </div>
-        <div>
-          <div class="display text-3xl font-semibold" style="color:#0A1931">14.94%</div>
-          <div class="text-xs text-[#4A7FA7] mt-1">Compound annual growth rate, 2025 to 2030</div>
-        </div>
-        <div>
-          <div class="display text-3xl font-semibold" style="color:#0A1931">63%</div>
-          <div class="text-xs text-[#4A7FA7] mt-1">Share of that revenue forecast to move online by 2030</div>
-        </div>
-        <div>
-          <div class="display text-3xl font-semibold" style="color:#0A1931">4 to 6%</div>
-          <div class="text-xs text-[#4A7FA7] mt-1">Current OTA share of the total travel market, the gap Avalon is built to close</div>
-        </div>
-      </div>
-      <p class="text-sm leading-relaxed max-w-2xl text-[#33465A] mb-4">
-        The market is expanding at nearly 15 percent a year, and the shift to online is only getting started, most of
-        the total travel spend in Bangladesh still isn&#39;t booked through an OTA at all. That gap is the opportunity:
-        Avalon doesn&#39;t need to win share from GoZayaan or ShareTrip to grow, it needs to convert the much larger
-        pool of travel spend that hasn&#39;t gone digital yet, starting with the 35-year agency&#39;s own existing
-        B2B relationships.
-      </p>
-      <p class="text-sm leading-relaxed max-w-2xl text-[#33465A] mb-4">
-        The digital audience to reach that pool already exists. Bangladesh has over 82 million internet users and 64
-        million social media users, with Facebook reaching roughly 40 percent of the population at a 95 percent daily
-        login rate. LinkedIn, the primary channel for the B2B push, reaches close to 8 percent of the population,
-        concentrated exactly among the working professionals who make corporate travel decisions.
-      </p>
-      <p class="text-xs text-[#4A7FA7] italic">
-        Sources: Statista travel and tourism forecasts via Daily Sun, Bangladesh Upturn industry analysis, DataReportal
-        Digital 2026 Bangladesh, NapoleonCat social media statistics.
-      </p>
-    </section>
+<section id="market"><div class="leg"><div class="legno">02</div><div>
+<h2>A market growing faster than the players in it</h2>
+<div class="stats"><div class="stat"><b>$4.90B</b><p>Bangladesh travel market by 2030, from $2.44B in 2025</p></div><div class="stat"><b>14.94%</b><p>Compound annual growth, 2025 to 2030</p></div><div class="stat"><b>63%</b><p>Of that revenue forecast to be booked online by 2030</p></div><div class="stat"><b>4&ndash;6%</b><p>OTA share of the total travel market today, the gap Avalon is built to close</p></div></div>
+<p class="intro">The market expands at nearly 15 percent a year and the shift online is only starting. Most travel spend in Bangladesh still isn't booked through an OTA at all. Avalon doesn't need to take share from GoZayaan or ShareTrip to grow, it needs to convert the far larger pool that hasn't gone digital, starting with the agency's own B2B relationships.</p>
+<p class="intro">The audience to reach it already exists. Bangladesh has over 82 million internet users and 64 million on social media. TikTok ads reach 47.9 percent of adults and 67.9 percent of the internet user base. LinkedIn reaches under 8 percent, so it is used narrowly rather than as the main B2B channel.</p>
+<p class="src">Sources: Statista travel and tourism forecasts via Daily Sun, Upturn Bangladesh industry analysis, DataReportal Digital 2026 Bangladesh, NapoleonCat social statistics.</p>
+</div></div></section>
 
-    <!-- Budget allocation -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">Where the budget goes</div>
-      <h2 class="display text-2xl font-semibold mb-8">BDT 1,750,000, allocated across four phases</h2>
-      <div class="flex justify-center mb-10">
-        <div class="relative flex items-center justify-center" style="width:240px;height:240px">
-          <div class="rounded-full" style="width:240px;height:240px;background:conic-gradient(#0A1931 0.00% 15.00%, #1A3D63 15.00% 65.00%, #4A7FA7 65.00% 90.00%, #B3CFE5 90.00% 100.00%)"></div>
-          <div class="absolute rounded-full bg-[#F6FAFD] flex flex-col items-center justify-center" style="width:150px;height:150px">
-            <div class="text-xs text-[#4A7FA7]">Total budget</div>
-            <div class="text-base font-semibold display">BDT 1,750,000</div>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        
-      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
-        <div class="flex items-center gap-3 mb-1">
-          <span class="inline-block rounded-sm" style="background:#0A1931;width:12px;height:12px"></span>
-          <span class="text-base font-semibold">Foundation</span>
-          <span class="text-xs text-[#4A7FA7] ml-auto">15% of budget</span>
-        </div>
-        <p class="text-xs text-[#4A7FA7] leading-relaxed mb-3">Brand identity, tracking infrastructure, and a PR retainer. The one-time setup everything else runs on.</p>
-        <div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Brand identity & guidelines</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 100,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Tracking infra (CAPI, GA4, CRM)</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 87,500</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">PR retainer setup</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 75,000</span>
-        </div>
-          <div class="flex items-center justify-between text-sm py-2 border-t font-semibold" style="border-color:#0A1931">
-            <span>Subtotal</span>
-            <span>BDT 262,500</span>
-          </div>
-        </div>
-      </div>
-      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
-        <div class="flex items-center gap-3 mb-1">
-          <span class="inline-block rounded-sm" style="background:#1A3D63;width:12px;height:12px"></span>
-          <span class="text-base font-semibold">B2B growth</span>
-          <span class="text-xs text-[#4A7FA7] ml-auto">50% of budget</span>
-        </div>
-        <p class="text-xs text-[#4A7FA7] leading-relaxed mb-3">The revenue engine for all seven months: agent activation, LinkedIn, webinars, and referral commissions.</p>
-        <div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Agent portal & relationship activation</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">LinkedIn ads (corporate targeting)</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 400,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Agent webinars & roadshow</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 200,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Agent referral commissions</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 150,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">B2B case studies & content</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 75,000</span>
-        </div>
-          <div class="flex items-center justify-between text-sm py-2 border-t font-semibold" style="border-color:#0A1931">
-            <span>Subtotal</span>
-            <span>BDT 875,000</span>
-          </div>
-        </div>
-      </div>
-      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
-        <div class="flex items-center gap-3 mb-1">
-          <span class="inline-block rounded-sm" style="background:#4A7FA7;width:12px;height:12px"></span>
-          <span class="text-base font-semibold">B2C hype</span>
-          <span class="text-xs text-[#4A7FA7] ml-auto">25% of budget</span>
-        </div>
-        <p class="text-xs text-[#4A7FA7] leading-relaxed mb-3">Awareness and anticipation ahead of a public launch. Not paid acquisition yet, that comes later.</p>
-        <div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Teaser landing page & waitlist</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Influencer & creator seeding</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 150,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Referral-gated waitlist incentives</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 87,500</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">PR pushes (announcement + launch)</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 100,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Always-on content cadence</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
-        </div>
-          <div class="flex items-center justify-between text-sm py-2 border-t font-semibold" style="border-color:#0A1931">
-            <span>Subtotal</span>
-            <span>BDT 437,500</span>
-          </div>
-        </div>
-      </div>
-      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
-        <div class="flex items-center gap-3 mb-1">
-          <span class="inline-block rounded-sm" style="background:#B3CFE5;width:12px;height:12px"></span>
-          <span class="text-base font-semibold">B2E pilot</span>
-          <span class="text-xs text-[#4A7FA7] ml-auto">10% of budget</span>
-        </div>
-        <p class="text-xs text-[#4A7FA7] leading-relaxed mb-3">Direct outreach to 15 to 20 target companies once B2B has real wins to point to.</p>
-        <div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Case study & sales collateral</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Outreach sequence & targeted content</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 50,000</span>
-        </div>
-        <div class="flex items-center justify-between text-sm py-2 border-t" style="border-color:#D7E4F0">
-          <span class="text-[#2A3844]">Direct outreach & meetings</span>
-          <span class="font-medium" style="font-variant-numeric: tabular-nums;">BDT 75,000</span>
-        </div>
-          <div class="flex items-center justify-between text-sm py-2 border-t font-semibold" style="border-color:#0A1931">
-            <span>Subtotal</span>
-            <span>BDT 175,000</span>
-          </div>
-        </div>
-      </div>
-      </div>
-    </section>
-
-    <!-- Channel breakdown -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">Channel breakdown</div>
-      <h2 class="display text-2xl font-semibold mb-3">Where the money actually goes, by platform</h2>
-      <p class="text-sm leading-relaxed max-w-2xl text-[#33465A] mb-7">
-        The same BDT 1,750,000, re-cut by the platform or channel it is spent on rather than by segment. Paid media on
-        LinkedIn and Meta is 34 percent of the total. The rest funds owned assets, in-person relationships, earned
-        coverage, and the tracking that makes all of it measurable.
-      </p>
-      <div class="flex rounded-full overflow-hidden mb-8" style="height:10px"><div style="background:#0A66C2;width:22.86%" title="LinkedIn"></div><div style="background:#12294A;width:15.71%" title="Events &amp; field"></div><div style="background:#1A3D63;width:12.86%" title="Content &amp; creative production"></div><div style="background:#0866FF;width:11.43%" title="Facebook &amp; Instagram"></div><div style="background:#4A7FA7;width:10.71%" title="Owned web &amp; product"></div><div style="background:#6A9BC0;width:10.00%" title="PR &amp; earned media"></div><div style="background:#8DB6D4;width:8.57%" title="Partner incentives"></div><div style="background:#B3CFE5;width:7.86%" title="Martech &amp; tracking"></div></div>
-      <div>
-      <div class="flex gap-4 py-5 border-t items-start" style="border-color:#D7E4F0">
-        <div class="shrink-0 rounded-xl flex items-center justify-center gap-1.5 bg-white border" style="border-color:#D7E4F0;min-width:52px;height:48px;padding:0 10px"><img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" width="22" height="22" style="display:block" /></div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1">
-            <span class="text-sm font-semibold">LinkedIn</span>
-            <span class="text-sm font-medium" style="font-variant-numeric:tabular-nums">BDT 400,000 <span class="text-xs text-[#4A7FA7] font-normal">22.9%</span></span>
-          </div>
-          <div class="rounded-full overflow-hidden mb-2" style="background:#EAF3FA;height:4px">
-            <div style="background:#0A66C2;width:100.0%;height:100%"></div>
-          </div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7]">Paid social aimed at corporate travel managers and agency owners. The single largest channel line, because it is the only platform in Bangladesh where the B2B audience can be targeted by job title.</p>
-        </div>
-      </div>
-      <div class="flex gap-4 py-5 border-t items-start" style="border-color:#D7E4F0">
-        <div class="shrink-0 rounded-xl flex items-center justify-center" style="background:#12294A;min-width:52px;height:48px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M7 3v3M17 3v3"/><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M8 14h3M8 17.5h6"/></svg></div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1">
-            <span class="text-sm font-semibold">Events &amp; field</span>
-            <span class="text-sm font-medium" style="font-variant-numeric:tabular-nums">BDT 275,000 <span class="text-xs text-[#4A7FA7] font-normal">15.7%</span></span>
-          </div>
-          <div class="rounded-full overflow-hidden mb-2" style="background:#EAF3FA;height:4px">
-            <div style="background:#12294A;width:68.8%;height:100%"></div>
-          </div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7]">Agent webinars plus a two-city roadshow, Dhaka then Chattogram, and direct B2E meetings. Offline spend, but the highest-trust channel for the agent network.</p>
-        </div>
-      </div>
-      <div class="flex gap-4 py-5 border-t items-start" style="border-color:#D7E4F0">
-        <div class="shrink-0 rounded-xl flex items-center justify-center" style="background:#1A3D63;min-width:52px;height:48px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h9l5 5v13a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg></div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1">
-            <span class="text-sm font-semibold">Content &amp; creative production</span>
-            <span class="text-sm font-medium" style="font-variant-numeric:tabular-nums">BDT 225,000 <span class="text-xs text-[#4A7FA7] font-normal">12.9%</span></span>
-          </div>
-          <div class="rounded-full overflow-hidden mb-2" style="background:#EAF3FA;height:4px">
-            <div style="background:#1A3D63;width:56.2%;height:100%"></div>
-          </div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7]">Brand identity and guidelines, B2B case studies, and B2E sales collateral. Produced once, reused across every channel below.</p>
-        </div>
-      </div>
-      <div class="flex gap-4 py-5 border-t items-start" style="border-color:#D7E4F0">
-        <div class="shrink-0 rounded-xl flex items-center justify-center gap-1.5 bg-white border" style="border-color:#D7E4F0;min-width:52px;height:48px;padding:0 10px"><img src="https://cdn.simpleicons.org/facebook/0866FF" alt="Facebook" width="22" height="22" style="display:block" /><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" width="22" height="22" style="display:block" /></div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1">
-            <span class="text-sm font-semibold">Facebook &amp; Instagram</span>
-            <span class="text-sm font-medium" style="font-variant-numeric:tabular-nums">BDT 200,000 <span class="text-xs text-[#4A7FA7] font-normal">11.4%</span></span>
-          </div>
-          <div class="rounded-full overflow-hidden mb-2" style="background:#EAF3FA;height:4px">
-            <div style="background:#0866FF;width:50.0%;height:100%"></div>
-          </div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7]">Creator seeding and an always-on organic cadence. Facebook reaches roughly 40 percent of the population at a 95 percent daily login rate, so this is where B2C familiarity gets built before launch.</p>
-        </div>
-      </div>
-      <div class="flex gap-4 py-5 border-t items-start" style="border-color:#D7E4F0">
-        <div class="shrink-0 rounded-xl flex items-center justify-center" style="background:#4A7FA7;min-width:52px;height:48px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.8 2.5 15.2 0 18M12 3c-2.5 2.8-2.5 15.2 0 18"/></svg></div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1">
-            <span class="text-sm font-semibold">Owned web &amp; product</span>
-            <span class="text-sm font-medium" style="font-variant-numeric:tabular-nums">BDT 187,500 <span class="text-xs text-[#4A7FA7] font-normal">10.7%</span></span>
-          </div>
-          <div class="rounded-full overflow-hidden mb-2" style="background:#EAF3FA;height:4px">
-            <div style="background:#4A7FA7;width:46.9%;height:100%"></div>
-          </div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7]">Teaser landing page, referral-gated waitlist, and the agent portal. Owned channels, no ongoing media cost, compounding value.</p>
-        </div>
-      </div>
-      <div class="flex gap-4 py-5 border-t items-start" style="border-color:#D7E4F0">
-        <div class="shrink-0 rounded-xl flex items-center justify-center" style="background:#6A9BC0;min-width:52px;height:48px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4a1 1 0 001 1h2l5 4V5L7 9H5a1 1 0 00-1 1z"/><path d="M16.5 9a4 4 0 010 6M19.5 6.5a8 8 0 010 11"/></svg></div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1">
-            <span class="text-sm font-semibold">PR &amp; earned media</span>
-            <span class="text-sm font-medium" style="font-variant-numeric:tabular-nums">BDT 175,000 <span class="text-xs text-[#4A7FA7] font-normal">10.0%</span></span>
-          </div>
-          <div class="rounded-full overflow-hidden mb-2" style="background:#EAF3FA;height:4px">
-            <div style="background:#6A9BC0;width:43.8%;height:100%"></div>
-          </div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7]">A retainer plus two pushes, platform announcement and launch. Earned coverage carries more weight than paid reach for a new OTA asking for trust.</p>
-        </div>
-      </div>
-      <div class="flex gap-4 py-5 border-t items-start" style="border-color:#D7E4F0">
-        <div class="shrink-0 rounded-xl flex items-center justify-center" style="background:#8DB6D4;min-width:52px;height:48px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1">
-            <span class="text-sm font-semibold">Partner incentives</span>
-            <span class="text-sm font-medium" style="font-variant-numeric:tabular-nums">BDT 150,000 <span class="text-xs text-[#4A7FA7] font-normal">8.6%</span></span>
-          </div>
-          <div class="rounded-full overflow-hidden mb-2" style="background:#EAF3FA;height:4px">
-            <div style="background:#8DB6D4;width:37.5%;height:100%"></div>
-          </div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7]">Agent-to-agent referral commissions. Not media spend, this is paying for word of mouth that would otherwise cost far more through ads.</p>
-        </div>
-      </div>
-      <div class="flex gap-4 py-5 border-t items-start" style="border-color:#D7E4F0">
-        <div class="shrink-0 rounded-xl flex items-center justify-center gap-1.5 bg-white border" style="border-color:#D7E4F0;min-width:52px;height:48px;padding:0 10px"><img src="https://cdn.simpleicons.org/meta/0467DF" alt="Meta" width="22" height="22" style="display:block" /><img src="https://cdn.simpleicons.org/googleanalytics/E37400" alt="Google Analytics" width="22" height="22" style="display:block" /><img src="https://cdn.simpleicons.org/hubspot/FF7A59" alt="CRM" width="22" height="22" style="display:block" /></div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap mb-1">
-            <span class="text-sm font-semibold">Martech &amp; tracking</span>
-            <span class="text-sm font-medium" style="font-variant-numeric:tabular-nums">BDT 137,500 <span class="text-xs text-[#4A7FA7] font-normal">7.9%</span></span>
-          </div>
-          <div class="rounded-full overflow-hidden mb-2" style="background:#EAF3FA;height:4px">
-            <div style="background:#B3CFE5;width:34.4%;height:100%"></div>
-          </div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7]">Meta CAPI, Google Analytics 4, CRM, and email sequencing. Without this the other seven channels cannot be measured or optimized.</p>
-        </div>
-      </div>
-      </div>
-      <p class="text-xs text-[#4A7FA7] mt-5 pt-5 border-t" style="border-color:#0A1931">
-        Every line above maps to a line item in the phase breakdown. Totals reconcile to BDT 1,750,000 exactly.
-      </p>
-    </section>
-
-    <!-- Brand communication & management -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">Brand communication &amp; management</div>
-      <h2 class="display text-2xl font-semibold mb-4">One brand, three audiences, one system</h2>
-      <p class="text-sm leading-relaxed max-w-2xl text-[#33465A] mb-8">
-        Avalon is carrying a 35-year agency&#39;s reputation online for the first time. That reputation is the asset,
-        and the brand system exists to protect it while it stretches across three very different audiences.
-      </p>
-      <div class="space-y-7">
-        <div>
-          <div class="text-sm font-semibold mb-1">One identity, applied everywhere</div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
-            The same visual identity, palette, and wordmark appear on every B2B deck, every B2C social post, and every
-            B2E pitch document. No touchpoint should ever look like it belongs to a different company than the one an
-            agent or a customer already trusts.
-          </p>
-        </div>
-        <div>
-          <div class="text-sm font-semibold mb-1">Same voice, calibrated by audience</div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
-            B2B communication is direct and data-led, since travel managers and agency owners want proof, not
-            persuasion. B2C is warm and story-led, built around the narrative of a legacy agency going digital.
-            B2E is credible and outcome-focused, built around one signed pilot rather than broad claims. The words
-            change, the brand underneath does not.
-          </p>
-        </div>
-        <div>
-          <div class="text-sm font-semibold mb-1">A single point of ownership</div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
-            Brand and digital sign-off sits with one owner rather than being split across teams. Every piece of
-            public-facing content is checked against a single style guide before it ships, weekly for fast-moving
-            channels like paid social, monthly for slower ones like case studies and PR placements.
-          </p>
-        </div>
-        <div>
-          <div class="text-sm font-semibold mb-1">Protecting inherited trust</div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
-            Every public message is measured against a simple test: does this match how the legacy agency would show
-            up in person. Complaints and negative reviews get a same-day response protocol, because early trust
-            online compounds or breaks fast in Bangladesh&#39;s OTA market.
-          </p>
-        </div>
-        <div>
-          <div class="text-sm font-semibold mb-1">Marketing coordinated with the agency floor</div>
-          <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
-            B2B messaging is coordinated directly with the agency&#39;s existing relationship managers, not sent blind.
-            What a sub-agent hears from marketing matches what they hear from the contact they already know, so the
-            digital push reinforces the relationship instead of competing with it.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Funnel -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">The process</div>
-      <h2 class="display text-2xl font-semibold mb-3">Brand visibility, awareness, and word-of-mouth conversion</h2>
-      <p class="text-sm leading-relaxed max-w-2xl mb-6 text-[#33465A]">
-        Each segment moves through the same three stages, but the tactic underneath is different every time, because
-        a corporate travel manager, a retail traveler, and an HR head don&#39;t discover trust the same way.
-      </p>
-      <div class="space-y-8">
-        
-      <div class="pt-6 border-t" style="border-color:#D7E4F0">
-        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2B</div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div><div class="text-xs font-medium mb-1">Brand visibility</div><p class="text-xs leading-relaxed text-[#4A7FA7]">Agent portal presence inside the parent agency's existing network. One consistent brand identity across every deck, portal screen, and one-pager agents see.</p></div>
-          <div><div class="text-xs font-medium mb-1">Awareness</div><p class="text-xs leading-relaxed text-[#4A7FA7]">LinkedIn targeting corporate travel managers and agency owners. Monthly webinars plus a two-city roadshow, Dhaka then Chattogram.</p></div>
-          <div><div class="text-xs font-medium mb-1">Word-of-mouth conversion</div><p class="text-xs leading-relaxed text-[#4A7FA7]">A referral commission for agents who bring in other agents. Agents already talk to agents daily, this turns that conversation into acquisition.</p></div>
-        </div>
-      </div>
-      <div class="pt-6 border-t" style="border-color:#D7E4F0">
-        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2C</div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div><div class="text-xs font-medium mb-1">Brand visibility</div><p class="text-xs leading-relaxed text-[#4A7FA7]">A teaser landing page live from month one, waitlist only. Light, consistent content so the brand feels familiar by the time it launches.</p></div>
-          <div><div class="text-xs font-medium mb-1">Awareness</div><p class="text-xs leading-relaxed text-[#4A7FA7]">Influencer seeding built on story, a legacy agency going digital, not product features. Two PR pushes: platform announcement, then launch.</p></div>
-          <div><div class="text-xs font-medium mb-1">Word-of-mouth conversion</div><p class="text-xs leading-relaxed text-[#4A7FA7]">A referral-gated waitlist, refer three friends to move up the list. Curiosity becomes unpaid distribution instead of paid reach.</p></div>
-        </div>
-      </div>
-      <div class="pt-6 border-t" style="border-color:#D7E4F0">
-        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2E</div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div><div class="text-xs font-medium mb-1">Brand visibility</div><p class="text-xs leading-relaxed text-[#4A7FA7]">The same brand identity, translated into a corporate one-pager and a case study document once B2B has real wins to show.</p></div>
-          <div><div class="text-xs font-medium mb-1">Awareness</div><p class="text-xs leading-relaxed text-[#4A7FA7]">Direct outreach to 15 to 20 target companies, HR and admin heads, not marketing. Sales-led, minimal media spend.</p></div>
-          <div><div class="text-xs font-medium mb-1">Word-of-mouth conversion</div><p class="text-xs leading-relaxed text-[#4A7FA7]">One signed pilot becomes the reference case for the next prospect. Peer companies refer once there is a result to point to.</p></div>
-        </div>
-      </div>
-      </div>
-    </section>
-
-    <!-- Rollout -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">Rollout</div>
-      <h2 class="display text-2xl font-semibold mb-1">Seven months, Nov 2026 to May 2027</h2>
-      <p class="text-sm mb-6 text-[#4A7FA7]">Planned spend by phase, month by month.</p>
-      <div class="mb-10"><svg viewBox="0 0 700 220" class="w-full" style="height:220px"><rect x="41.5" y="110.0" width="52.6" height="84.0" fill="#0A1931" rx="2"/><rect x="41.5" y="78.0" width="52.6" height="32.0" fill="#1A3D63" rx="2"/><rect x="41.5" y="62.0" width="52.6" height="16.0" fill="#4A7FA7" rx="2"/><text x="67.9" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Nov</text><rect x="137.2" y="110.0" width="52.6" height="84.0" fill="#0A1931" rx="2"/><rect x="137.2" y="46.0" width="52.6" height="64.0" fill="#1A3D63" rx="2"/><rect x="137.2" y="18.0" width="52.6" height="28.0" fill="#4A7FA7" rx="2"/><text x="163.6" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Dec</text><rect x="233.0" y="98.0" width="52.6" height="96.0" fill="#1A3D63" rx="2"/><rect x="233.0" y="42.0" width="52.6" height="56.0" fill="#4A7FA7" rx="2"/><text x="259.3" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Jan</text><rect x="328.7" y="98.0" width="52.6" height="96.0" fill="#1A3D63" rx="2"/><rect x="328.7" y="66.0" width="52.6" height="32.0" fill="#4A7FA7" rx="2"/><rect x="328.7" y="38.0" width="52.6" height="28.0" fill="#B3CFE5" rx="2"/><text x="355.0" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Feb</text><rect x="424.4" y="98.0" width="52.6" height="96.0" fill="#1A3D63" rx="2"/><rect x="424.4" y="66.0" width="52.6" height="32.0" fill="#4A7FA7" rx="2"/><rect x="424.4" y="38.0" width="52.6" height="28.0" fill="#B3CFE5" rx="2"/><text x="450.7" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Mar</text><rect x="520.1" y="98.0" width="52.6" height="96.0" fill="#1A3D63" rx="2"/><rect x="520.1" y="58.0" width="52.6" height="40.0" fill="#4A7FA7" rx="2"/><rect x="520.1" y="30.0" width="52.6" height="28.0" fill="#B3CFE5" rx="2"/><text x="546.4" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">Apr</text><rect x="615.8" y="114.0" width="52.6" height="80.0" fill="#1A3D63" rx="2"/><rect x="615.8" y="38.0" width="52.6" height="76.0" fill="#4A7FA7" rx="2"/><rect x="615.8" y="10.0" width="52.6" height="28.0" fill="#B3CFE5" rx="2"/><text x="642.1" y="214" font-size="10" fill="#4A7FA7" text-anchor="middle" font-family="Inter, sans-serif">May</text></svg></div>
-      <div class="relative pl-6">
-        <div class="absolute left-1.5 top-1 bottom-1" style="width:1px;background:#D7E4F0"></div>
-        <div class="space-y-6">
-          
-        <div class="relative">
-          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
-          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
-            <span class="text-sm font-medium">Nov 2026</span>
-            <span class="text-xs text-[#4A7FA7]">BDT 206,250</span>
-          </div>
-          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">Brand identity finalized, tracking infrastructure live, agent portal soft-launched to the existing network, B2C waitlist opens.</p>
-        </div>
-        <div class="relative">
-          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
-          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
-            <span class="text-sm font-medium">Dec 2026</span>
-            <span class="text-xs text-[#4A7FA7]">BDT 275,000</span>
-          </div>
-          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">LinkedIn campaigns launch to corporate travel managers, first agent webinar, influencer seeding begins.</p>
-        </div>
-        <div class="relative">
-          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
-          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
-            <span class="text-sm font-medium">Jan 2027</span>
-            <span class="text-xs text-[#4A7FA7]">BDT 237,500</span>
-          </div>
-          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">First B2C PR push announcing the platform, agent referral commissions go live, Dhaka roadshow.</p>
-        </div>
-        <div class="relative">
-          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
-          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
-            <span class="text-sm font-medium">Feb 2027</span>
-            <span class="text-xs text-[#4A7FA7]">BDT 243,750</span>
-          </div>
-          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">B2E outreach begins using early B2B case studies, Chattogram roadshow.</p>
-        </div>
-        <div class="relative">
-          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
-          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
-            <span class="text-sm font-medium">Mar 2027</span>
-            <span class="text-xs text-[#4A7FA7]">BDT 243,750</span>
-          </div>
-          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">B2B holds at full pace, case study content compounds, B2E conversations progress.</p>
-        </div>
-        <div class="relative">
-          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
-          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
-            <span class="text-sm font-medium">Apr 2027</span>
-            <span class="text-xs text-[#4A7FA7]">BDT 256,250</span>
-          </div>
-          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">B2E moves toward pilot agreements, B2C content cadence ramps ahead of launch.</p>
-        </div>
-        <div class="relative">
-          <div class="absolute top-1 rounded-full" style="background:#1A3D63;width:9px;height:9px;left:-25px"></div>
-          <div class="flex items-baseline gap-2 mb-1 flex-wrap">
-            <span class="text-sm font-medium">May 2027</span>
-            <span class="text-xs text-[#4A7FA7]">BDT 287,500</span>
-          </div>
-          <p class="text-xs leading-relaxed max-w-xl text-[#4A7FA7]">B2C launch PR push, referral waitlist converts to active users, first B2E pilot targeted.</p>
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vision -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">Vision</div>
-      <h2 class="display text-2xl font-semibold mb-6">Where this goes past month seven</h2>
-      <div class="space-y-6">
-        <div class="flex gap-5">
-          <div class="display text-lg font-semibold shrink-0" style="color:#B3CFE5; width:2.5rem">01</div>
-          <div>
-            <div class="text-sm font-semibold mb-1">Year one: the digital arm of a trusted name</div>
-            <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
-              B2B revenue funds the operation while B2C waitlist and word of mouth compound quietly in the background.
-              By the time B2C launches, Avalon isn&#39;t a new name asking for trust, it&#39;s the digital front door
-              of an agency people already trust, with a waitlist that grew itself.
-            </p>
-          </div>
-        </div>
-        <div class="flex gap-5">
-          <div class="display text-lg font-semibold shrink-0" style="color:#B3CFE5; width:2.5rem">02</div>
-          <div>
-            <div class="text-sm font-semibold mb-1">Year two: B2C scales on referral, not just reach</div>
-            <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
-              The referral mechanics built in month one carry into a real growth loop. Paid acquisition supplements
-              word of mouth instead of replacing it, keeping customer acquisition cost low relative to OTAs that
-              built their base on ad spend alone.
-            </p>
-          </div>
-        </div>
-        <div class="flex gap-5">
-          <div class="display text-lg font-semibold shrink-0" style="color:#B3CFE5; width:2.5rem">03</div>
-          <div>
-            <div class="text-sm font-semibold mb-1">Year three: B2E becomes a second revenue engine</div>
-            <p class="text-xs leading-relaxed text-[#4A7FA7] max-w-2xl">
-              A portfolio of signed corporate pilots turns B2E from a pilot program into its own sales motion,
-              with the agency&#39;s reputation and Avalon&#39;s platform now indistinguishable from each other in the
-              market, one brand people trust for every kind of travel.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-<!-- Led by -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">Leading brand and digital</div>
-      <h2 class="display text-2xl font-semibold mb-4">Built by someone who runs performance marketing, not just plans it</h2>
-      <p class="text-sm leading-relaxed max-w-2xl text-[#33465A]">
-        Nine years in performance marketing and Meta media buying, a computer science background, and mobile apps
-        built and published independently. This plan isn&#39;t handed off to be executed by someone else, it&#39;s
-        run by someone who has already built and shipped the digital products it depends on.
-      </p>
-    </section>
-
-    <!-- KPIs -->
-    <section>
-      <div class="text-xs mb-2 text-[#4A7FA7]">What we&#39;re measuring</div>
-      <h2 class="display text-2xl font-semibold mb-8">Success metrics by segment</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        
-      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
-        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2B</div>
-        <ul class="space-y-2"><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Agents onboarded</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Cost per onboarded agent</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Revenue from the B2B channel</span></li></ul>
-      </div>
-      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
-        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2C</div>
-        <ul class="space-y-2"><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Waitlist size</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Referral rate, signups from existing signups</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>PR mentions</span></li></ul>
-      </div>
-      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
-        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">B2E</div>
-        <ul class="space-y-2"><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Qualified conversations booked</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Pilots signed</span></li></ul>
-      </div>
-      <div class="rounded-2xl p-6 bg-white border" style="border-color:#D7E4F0">
-        <div class="text-sm font-semibold mb-3" style="color:#1A3D63">Brand</div>
-        <ul class="space-y-2"><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Press mentions</span></li><li class="text-xs flex gap-2 text-[#4A7FA7]"><span class="shrink-0 mt-1.5" style="background:#B3CFE5;width:5px;height:5px;border-radius:999px"></span><span>Share of voice against GoZayaan and ShareTrip</span></li></ul>
-      </div>
-      </div>
-    </section>
-
-    <div class="pt-8 text-xs leading-relaxed text-[#4A7FA7] border-t" style="border-color:#D7E4F0">
-      This is a projection, administered with a 10 percent monthly tolerance and a hard cap at the total budget in
-      the final month. Allocations may shift between phases as early results come in, always within the approved total.
-    </div>
-
+<section id="budget"><div class="leg"><div class="legno">03</div><div>
+<h2>BDT 1,750,000, across four phases</h2>
+<div class="alloc">
+  <div class="dwrap"><svg viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="Budget split by phase"><circle cx="110" cy="110" r="84" fill="none" stroke="#0A1931" stroke-width="30" stroke-dasharray="76.17 451.62" stroke-dashoffset="-0.00" transform="rotate(-90 110 110)"/><circle cx="110" cy="110" r="84" fill="none" stroke="#1A3D63" stroke-width="30" stroke-dasharray="260.89 266.89" stroke-dashoffset="-79.17" transform="rotate(-90 110 110)"/><circle cx="110" cy="110" r="84" fill="none" stroke="#4A7FA7" stroke-width="30" stroke-dasharray="128.95 398.84" stroke-dashoffset="-343.06" transform="rotate(-90 110 110)"/><circle cx="110" cy="110" r="84" fill="none" stroke="#B3CFE5" stroke-width="30" stroke-dasharray="49.78 478.01" stroke-dashoffset="-475.01" transform="rotate(-90 110 110)"/></svg>
+    <div class="ctr"><span>TOTAL</span><b>BDT 17.5L</b></div></div>
+  <div class="key">
+    <div><i style="background:#0A1931"></i>Foundation <em>15%</em><b>BDT 262,500</b></div>
+    <div><i style="background:#1A3D63"></i>B2B growth <em>50%</em><b>BDT 875,000</b></div>
+    <div><i style="background:#4A7FA7"></i>B2C hype <em>25%</em><b>BDT 437,500</b></div>
+    <div><i style="background:#B3CFE5"></i>B2E pilot <em>10%</em><b>BDT 175,000</b></div>
   </div>
+</div>
+<div class="phases"><article class="phase">
+  <header><i style="background:#0A1931"></i><h3>Foundation</h3><em>15%</em></header>
+  <p>Brand identity, tracking infrastructure, and a PR retainer. The one-time setup everything else runs on.</p>
+  <div class="ledger"><div class="led"><span>Brand identity &amp; guidelines</span><b>BDT 100,000</b></div><div class="led"><span>Tracking infra (CAPI, GA4, CRM)</span><b>BDT 87,500</b></div><div class="led"><span>PR retainer setup</span><b>BDT 75,000</b></div><div class="led tot"><span>Subtotal</span><b>BDT 262,500</b></div></div>
+</article><article class="phase">
+  <header><i style="background:#1A3D63"></i><h3>B2B growth</h3><em>50%</em></header>
+  <p>The revenue engine for all seven months: agent activation, paid social, webinars, and referral commissions.</p>
+  <div class="ledger"><div class="led"><span>Agent portal &amp; relationship activation</span><b>BDT 50,000</b></div><div class="led"><span>Meta ads (agency owners &amp; SME)</span><b>BDT 200,000</b></div><div class="led"><span>TikTok ads (regional agent owners)</span><b>BDT 100,000</b></div><div class="led"><span>LinkedIn ads (corporate travel managers)</span><b>BDT 100,000</b></div><div class="led"><span>Agent webinars &amp; roadshow</span><b>BDT 200,000</b></div><div class="led"><span>Agent referral commissions</span><b>BDT 150,000</b></div><div class="led"><span>B2B case studies &amp; content</span><b>BDT 75,000</b></div><div class="led tot"><span>Subtotal</span><b>BDT 875,000</b></div></div>
+</article><article class="phase">
+  <header><i style="background:#4A7FA7"></i><h3>B2C hype</h3><em>25%</em></header>
+  <p>Awareness and anticipation ahead of a public launch. Not paid acquisition yet, that comes later.</p>
+  <div class="ledger"><div class="led"><span>Teaser landing page &amp; waitlist</span><b>BDT 50,000</b></div><div class="led"><span>Creator seeding (Meta + TikTok)</span><b>BDT 150,000</b></div><div class="led"><span>Referral-gated waitlist incentives</span><b>BDT 87,500</b></div><div class="led"><span>PR pushes (announcement + launch)</span><b>BDT 100,000</b></div><div class="led"><span>Always-on content cadence</span><b>BDT 50,000</b></div><div class="led tot"><span>Subtotal</span><b>BDT 437,500</b></div></div>
+</article><article class="phase">
+  <header><i style="background:#B3CFE5"></i><h3>B2E pilot</h3><em>10%</em></header>
+  <p>Direct outreach to 15 to 20 target companies once B2B has real wins to point to.</p>
+  <div class="ledger"><div class="led"><span>Case study &amp; sales collateral</span><b>BDT 50,000</b></div><div class="led"><span>Outreach sequence &amp; targeted content</span><b>BDT 50,000</b></div><div class="led"><span>Direct outreach &amp; meetings</span><b>BDT 75,000</b></div><div class="led tot"><span>Subtotal</span><b>BDT 175,000</b></div></div>
+</article></div>
+</div></div></section>
 
-</body>
-</html>
+<section id="channels"><div class="leg"><div class="legno">04</div><div>
+<h2>Where the money goes, by platform</h2>
+<p class="intro">The same budget re-cut by platform rather than segment. Paid media across Meta, TikTok, and LinkedIn is 34 percent of the total. The rest funds owned assets, in-person relationships, earned coverage, and the tracking that makes all of it measurable.</p>
+<div class="ribbon"><i style="background:#0866FF;width:18.57%" title="Meta: Facebook &amp; Instagram"></i><i style="background:#12294A;width:15.71%" title="Events &amp; field"></i><i style="background:#1A3D63;width:12.86%" title="Content &amp; creative production"></i><i style="background:#4A7FA7;width:10.71%" title="Owned web &amp; product"></i><i style="background:#25C9C4;width:10.00%" title="TikTok"></i><i style="background:#6A9BC0;width:10.00%" title="PR &amp; earned media"></i><i style="background:#8DB6D4;width:8.57%" title="Partner incentives"></i><i style="background:#B3CFE5;width:7.86%" title="Martech &amp; tracking"></i><i style="background:#0A66C2;width:5.71%" title="LinkedIn"></i></div>
+<div class="chan"><span class="ll"><img src="https://cdn.simpleicons.org/facebook/0866FF" alt="Facebook" width="22" height="22" loading="lazy"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" width="22" height="22" loading="lazy"></span>
+  <div class="cbody"><div class="chead"><h4>Meta: Facebook &amp; Instagram</h4><b>BDT 325,000<small>18.6%</small></b></div>
+  <div class="track"><span style="background:#0866FF;width:100.0%"></span></div>
+  <p>Now the largest single channel. Facebook reaches roughly 40 percent of the population at a 95 percent daily login rate, the most efficient way to reach both agency owners and retail travellers here.</p></div></div><div class="chan"><span class="gl" style="background:#12294A"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M7 3v3M17 3v3"/><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M8 14h3M8 17.5h6"/></svg></span>
+  <div class="cbody"><div class="chead"><h4>Events &amp; field</h4><b>BDT 275,000<small>15.7%</small></b></div>
+  <div class="track"><span style="background:#12294A;width:84.6%"></span></div>
+  <p>Agent webinars plus a two-city roadshow, Dhaka then Chattogram, and direct B2E meetings. Offline, but the highest-trust channel for the agent network.</p></div></div><div class="chan"><span class="gl" style="background:#1A3D63"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h9l5 5v13a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg></span>
+  <div class="cbody"><div class="chead"><h4>Content &amp; creative production</h4><b>BDT 225,000<small>12.9%</small></b></div>
+  <div class="track"><span style="background:#1A3D63;width:69.2%"></span></div>
+  <p>Brand identity and guidelines, B2B case studies, B2E sales collateral. Produced once, reused across every channel here.</p></div></div><div class="chan"><span class="gl" style="background:#4A7FA7"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.8 2.5 15.2 0 18M12 3c-2.5 2.8-2.5 15.2 0 18"/></svg></span>
+  <div class="cbody"><div class="chead"><h4>Owned web &amp; product</h4><b>BDT 187,500<small>10.7%</small></b></div>
+  <div class="track"><span style="background:#4A7FA7;width:57.7%"></span></div>
+  <p>Teaser landing page, referral-gated waitlist, and the agent portal. No ongoing media cost, compounding value.</p></div></div><div class="chan"><span class="ll"><img src="https://cdn.simpleicons.org/tiktok/010101" alt="TikTok" width="22" height="22" loading="lazy"></span>
+  <div class="cbody"><div class="chead"><h4>TikTok</h4><b>BDT 175,000<small>10.0%</small></b></div>
+  <div class="track"><span style="background:#25C9C4;width:53.8%"></span></div>
+  <p>Reaches 47.9 percent of Bangladeshi adults and 67.9 percent of the internet user base, at materially lower CPMs than Meta. Strong for regional agent owners and the younger B2C audience.</p></div></div><div class="chan"><span class="gl" style="background:#6A9BC0"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4a1 1 0 001 1h2l5 4V5L7 9H5a1 1 0 00-1 1z"/><path d="M16.5 9a4 4 0 010 6M19.5 6.5a8 8 0 010 11"/></svg></span>
+  <div class="cbody"><div class="chead"><h4>PR &amp; earned media</h4><b>BDT 175,000<small>10.0%</small></b></div>
+  <div class="track"><span style="background:#6A9BC0;width:53.8%"></span></div>
+  <p>A retainer plus two pushes, platform announcement and launch. Earned coverage outweighs paid reach for a new OTA asking for trust.</p></div></div><div class="chan"><span class="gl" style="background:#8DB6D4"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12l2.5 2.5L16 9"/><circle cx="12" cy="12" r="9"/></svg></span>
+  <div class="cbody"><div class="chead"><h4>Partner incentives</h4><b>BDT 150,000<small>8.6%</small></b></div>
+  <div class="track"><span style="background:#8DB6D4;width:46.2%"></span></div>
+  <p>Agent-to-agent referral commissions. Not media spend, this buys word of mouth that would cost far more through ads.</p></div></div><div class="chan"><span class="ll"><img src="https://cdn.simpleicons.org/meta/0467DF" alt="Meta" width="22" height="22" loading="lazy"><img src="https://cdn.simpleicons.org/googleanalytics/E37400" alt="Google Analytics" width="22" height="22" loading="lazy"><img src="https://cdn.simpleicons.org/hubspot/FF7A59" alt="CRM" width="22" height="22" loading="lazy"></span>
+  <div class="cbody"><div class="chead"><h4>Martech &amp; tracking</h4><b>BDT 137,500<small>7.9%</small></b></div>
+  <div class="track"><span style="background:#B3CFE5;width:42.3%"></span></div>
+  <p>Meta CAPI, Google Analytics 4, CRM, and email sequencing. Without this the other channels cannot be measured.</p></div></div><div class="chan"><span class="ll"><img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" width="22" height="22" loading="lazy"></span>
+  <div class="cbody"><div class="chead"><h4>LinkedIn</h4><b>BDT 100,000<small>5.7%</small></b></div>
+  <div class="track"><span style="background:#0A66C2;width:30.8%"></span></div>
+  <p>Held to a focused role: corporate travel managers by job title, the one thing no other platform here can do. Capped deliberately, LinkedIn reaches under 8 percent of the population at premium CPMs.</p></div></div>
+<p class="recon">Every line maps to an item in the phase breakdown. Totals reconcile to BDT 1,750,000 exactly.</p>
+</div></div></section>
+
+<section id="brand"><div class="leg"><div class="legno">05</div><div>
+<h2>One brand, three audiences, one system</h2>
+<p class="intro">Avalon carries a 35-year reputation online for the first time. That reputation is the asset, and the brand system exists to protect it while it stretches across three very different audiences.</p>
+<div class="prins"><div class="prin"><h4>One identity, applied everywhere</h4><p>The same visual identity, palette, and wordmark appear on every B2B deck, every B2C social post, and every B2E pitch document. No touchpoint should look like a different company than the one an agent already trusts.</p></div><div class="prin"><h4>Same voice, calibrated by audience</h4><p>B2B is direct and data-led, travel managers want proof not persuasion. B2C is warm and story-led, a legacy agency going digital. B2E is outcome-focused, built on one signed pilot rather than broad claims. The words change, the brand underneath does not.</p></div><div class="prin"><h4>A single point of ownership</h4><p>Brand and digital sign-off sits with one owner rather than split across teams. Every public-facing piece is checked against one style guide before it ships, weekly for paid social, monthly for case studies and PR.</p></div><div class="prin"><h4>Protecting inherited trust</h4><p>Every message is measured against one test: does this match how the legacy agency would show up in person. Complaints get a same-day response protocol, because early trust online compounds or breaks fast in this market.</p></div><div class="prin"><h4>Coordinated with the agency floor</h4><p>B2B messaging goes through the agency's existing relationship managers, not sent blind. What a sub-agent hears from marketing matches what they hear from the contact they already know.</p></div></div>
+</div></div></section>
+
+<section id="process"><div class="leg"><div class="legno">06</div><div>
+<h2>Visibility, awareness, word of mouth</h2>
+<p class="intro">Each segment moves through the same three stages, but the tactic underneath differs every time, because a corporate travel manager, a retail traveller, and an HR head don't discover trust the same way.</p>
+<div class="fseg"><h4>B2B</h4><div class="fgrid">
+<div><h5>Brand visibility</h5><p>Agent portal presence inside the parent agency's existing network. One identity across every deck, portal screen, and one-pager agents see.</p></div>
+<div><h5>Awareness</h5><p>Meta and TikTok ads to agency owners and SME decision makers, LinkedIn held back for corporate travel managers. Monthly webinars plus a Dhaka then Chattogram roadshow.</p></div>
+<div><h5>Word-of-mouth conversion</h5><p>A referral commission for agents who bring in other agents. Agents talk to agents daily, this turns that conversation into acquisition.</p></div></div></div><div class="fseg"><h4>B2C</h4><div class="fgrid">
+<div><h5>Brand visibility</h5><p>A teaser landing page live from month one, waitlist only. Light, consistent content so the brand feels familiar by the time it launches.</p></div>
+<div><h5>Awareness</h5><p>Creator seeding across Meta and TikTok built on story, a legacy agency going digital, not product features. Two PR pushes: announcement, then launch.</p></div>
+<div><h5>Word-of-mouth conversion</h5><p>A referral-gated waitlist, refer three friends to move up. Curiosity becomes unpaid distribution instead of paid reach.</p></div></div></div><div class="fseg"><h4>B2E</h4><div class="fgrid">
+<div><h5>Brand visibility</h5><p>The same identity, translated into a corporate one-pager and a case study document once B2B has real wins to show.</p></div>
+<div><h5>Awareness</h5><p>Direct outreach to 15 to 20 target companies, HR and admin heads, not marketing. Sales-led, minimal media spend.</p></div>
+<div><h5>Word-of-mouth conversion</h5><p>One signed pilot becomes the reference case for the next prospect. Peer companies refer once there is a result to point to.</p></div></div></div>
+</div></div></section>
+
+<section id="rollout"><div class="leg"><div class="legno">07</div><div>
+<h2>Seven months, Nov 2026 to May 2027</h2>
+<p class="sub">Planned spend by phase, month by month.</p>
+<svg viewBox="0 0 760 260" class="w-full" style="height:260px" role="img" aria-label="Planned monthly spend by phase"><g><line x1="52" y1="230.0" x2="746" y2="230.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="233.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">0k</text><line x1="52" y1="158.0" x2="746" y2="158.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="161.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">100k</text><line x1="52" y1="86.0" x2="746" y2="86.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="89.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">200k</text><line x1="52" y1="14.0" x2="746" y2="14.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="17.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">300k</text></g><g><rect x="75.8" y="135.5" width="51.6" height="94.5" fill="#0A1931"/><rect x="75.8" y="99.5" width="51.6" height="36.0" fill="#1A3D63"/><rect x="75.8" y="81.5" width="51.6" height="18.0" fill="#4A7FA7"/><text x="101.6" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Nov</text><rect x="174.9" y="135.5" width="51.6" height="94.5" fill="#0A1931"/><rect x="174.9" y="63.5" width="51.6" height="72.0" fill="#1A3D63"/><rect x="174.9" y="32.0" width="51.6" height="31.5" fill="#4A7FA7"/><text x="200.7" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Dec</text><rect x="274.1" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="274.1" y="59.0" width="51.6" height="63.0" fill="#4A7FA7"/><text x="299.9" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Jan</text><rect x="373.2" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="373.2" y="86.0" width="51.6" height="36.0" fill="#4A7FA7"/><rect x="373.2" y="54.5" width="51.6" height="31.5" fill="#B3CFE5"/><text x="399.0" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Feb</text><rect x="472.4" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="472.4" y="86.0" width="51.6" height="36.0" fill="#4A7FA7"/><rect x="472.4" y="54.5" width="51.6" height="31.5" fill="#B3CFE5"/><text x="498.1" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Mar</text><rect x="571.5" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="571.5" y="77.0" width="51.6" height="45.0" fill="#4A7FA7"/><rect x="571.5" y="45.5" width="51.6" height="31.5" fill="#B3CFE5"/><text x="597.3" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Apr</text><rect x="670.7" y="140.0" width="51.6" height="90.0" fill="#1A3D63"/><rect x="670.7" y="54.5" width="51.6" height="85.5" fill="#4A7FA7"/><rect x="670.7" y="23.0" width="51.6" height="31.5" fill="#B3CFE5"/><text x="696.4" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">May</text></g></svg>
+<div class="lgnd">
+  <span><i style="background:#0A1931"></i>Foundation</span><span><i style="background:#1A3D63"></i>B2B growth</span>
+  <span><i style="background:#4A7FA7"></i>B2C hype</span><span><i style="background:#B3CFE5"></i>B2E pilot</span>
+</div>
+<ul class="tl"><li><div class="thead"><h4>Nov 2026</h4><b>BDT 206,250</b></div><p>Brand identity finalized, tracking infrastructure live, agent portal soft-launched to the existing network, B2C waitlist opens.</p></li><li><div class="thead"><h4>Dec 2026</h4><b>BDT 275,000</b></div><p>Meta and TikTok campaigns launch to agency owners, first agent webinar, creator seeding begins.</p></li><li><div class="thead"><h4>Jan 2027</h4><b>BDT 237,500</b></div><p>First B2C PR push announcing the platform, agent referral commissions go live, Dhaka roadshow.</p></li><li><div class="thead"><h4>Feb 2027</h4><b>BDT 243,750</b></div><p>B2E outreach begins using early B2B case studies, Chattogram roadshow.</p></li><li><div class="thead"><h4>Mar 2027</h4><b>BDT 243,750</b></div><p>B2B holds at full pace, case study content compounds, B2E conversations progress.</p></li><li><div class="thead"><h4>Apr 2027</h4><b>BDT 256,250</b></div><p>B2E moves toward pilot agreements, B2C content cadence ramps ahead of launch.</p></li><li><div class="thead"><h4>May 2027</h4><b>BDT 287,500</b></div><p>B2C launch PR push, referral waitlist converts to active users, first B2E pilot targeted.</p></li></ul>
+</div></div></section>
+
+<section id="vision"><div class="leg"><div class="legno">08</div><div>
+<h2>Where this goes past month seven</h2>
+<div class="hzs"><div class="hz"><span>Year one</span><h4>The digital arm of a trusted name</h4><p>B2B revenue funds the operation while the B2C waitlist and word of mouth compound quietly. By launch, Avalon isn't a new name asking for trust, it's the digital front door of an agency people already trust, with a waitlist that grew itself.</p></div><div class="hz"><span>Year two</span><h4>B2C scales on referral, not reach</h4><p>The referral mechanics built in month one carry into a real growth loop. Paid acquisition supplements word of mouth instead of replacing it, keeping acquisition cost low against OTAs that built their base on ad spend alone.</p></div><div class="hz"><span>Year three</span><h4>B2E becomes a second engine</h4><p>A portfolio of signed corporate pilots turns B2E from a pilot program into its own sales motion, with the agency's reputation and Avalon's platform indistinguishable in the market.</p></div></div>
+</div></div></section>
+
+<section id="metrics"><div class="leg"><div class="legno">09</div><div>
+<div class="lead">
+  <h2>Run by someone who buys the media, not just plans it</h2>
+  <p>Nine years in performance marketing and Meta media buying, a computer science background, and mobile apps built and published independently. This plan isn't handed off to be executed by someone else.</p>
+</div>
+<h2 style="margin-top:64px">Success metrics by segment</h2>
+<div class="kpis"><div class="kpi"><h4>B2B</h4><ul><li>Agents onboarded</li><li>Cost per onboarded agent</li><li>Revenue from the B2B channel</li></ul></div><div class="kpi"><h4>B2C</h4><ul><li>Waitlist size</li><li>Referral rate, signups from existing signups</li><li>PR mentions</li></ul></div><div class="kpi"><h4>B2E</h4><ul><li>Qualified conversations booked</li><li>Pilots signed</li></ul></div><div class="kpi"><h4>Brand</h4><ul><li>Press mentions</li><li>Share of voice against GoZayaan and ShareTrip</li></ul></div></div>
+</div></div></section>
+
+</main>
+
+<footer><div class="wrap"><p>A projection, administered with a 10 percent monthly tolerance and a hard cap at the total budget in the final month. Allocations may shift between phases as early results come in, always within the approved total.</p></div></footer>
+
+</body></html>

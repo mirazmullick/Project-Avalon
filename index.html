@@ -7,7 +7,7 @@
 <meta property="og:title" content="Project Avalon">
 <meta property="og:description" content="A seven-month go-to-market and budget projection, Nov 2026 to May 2027.">
 <meta name="theme-color" content="#0A1931">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A1931'/%3E%3Cpath d='M5 25C12 23 14 11 26 8' fill='none' stroke='%23B3CFE5' stroke-width='2' stroke-dasharray='3 3' stroke-linecap='round'/%3E%3Ccircle cx='26' cy='8' r='2.8' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104 104'%3E%3Crect width='104' height='104' rx='24' fill='%230A1931'/%3E%3Cpath transform='translate%280 3%29' fill='%23fff' d='M96 44C90 40 84 40 78 42C66 30 46 18 8 14C36 26 54 38 62 48C50 54 32 58 12 60C34 64 52 64 66 60L50 84C64 76 74 66 80 56C88 54 93 50 96 44Z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300..900&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -23,8 +23,8 @@ h1,h2,h3,.dp{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;let
 /* nav */
 nav{position:sticky;top:0;z-index:50;background:rgba(246,250,253,.84);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:24px}
-nav strong{display:flex;align-items:center;gap:10px;flex:none;font:500 13px/1 "Fira Sans",system-ui,sans-serif;letter-spacing:.02em}
-nav strong::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--mid);box-shadow:0 0 0 3px var(--line)}
+nav strong{display:flex;align-items:center;gap:9px;flex:none;font:700 13px/1 "Fira Sans",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+nav strong .mk{width:26px;height:auto}
 nav div{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none;padding:6px 0}
 nav div::-webkit-scrollbar{display:none}
 nav a{position:relative;color:var(--steel);text-decoration:none;font-size:12.5px;white-space:nowrap;padding:3px 0;transition:color .25s}
@@ -44,17 +44,17 @@ html.js .arc .stop.lit{opacity:1}
 .arc .stop+.stop .ring{animation-delay:1.7s}
 .arc .lbl{font:500 11px "Fira Sans",sans-serif;letter-spacing:.16em;fill:#B3CFE5}
 #plane{opacity:0}
-.hin{position:relative;display:flex;flex-direction:column;width:100%;padding-top:clamp(84px,13vh,132px)}
-.hin h1{font-size:clamp(44px,6.6vw,92px);line-height:.96;margin:0 0 28px;color:#fff}
+.hin{position:relative;display:flex;flex-direction:column;width:100%;padding-top:clamp(52px,8vh,92px)}
+.hin h1{font-size:clamp(40px,5.8vw,80px);line-height:.96;margin:0 0 28px;color:#fff}
 .hin h1 .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
 .hin h1 .ln>span{display:block;animation:rise 1.2s var(--ease) both}
 .hin h1 .ln+.ln>span{animation-delay:.1s}
 .hin p.lede{max-width:620px;color:#C9D9E8;font-size:17px;line-height:1.7;margin:0 0 64px;animation:lift 1s .35s var(--ease) both}
 .pass{position:relative;display:flex;flex-wrap:wrap;margin-top:auto;padding:0 30px;border:1px solid rgba(179,207,229,.16);border-bottom:0;border-radius:18px 18px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.012));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:lift 1s .5s var(--ease) both}
-.pass div{flex:1 1 auto;padding:26px 26px 38px 0;position:relative}
-.pass div+div{padding-left:26px;border-left:1px dashed rgba(179,207,229,.35)}
+.pass div{flex:1 1 auto;padding:24px 22px 32px 0;position:relative}
+.pass div+div{padding-left:22px;border-left:1px dashed rgba(179,207,229,.35)}
 .pass span{display:block;font-size:11.5px;color:#7F9BB8;margin-bottom:8px;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.08em}
-.pass b{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:30px;line-height:1.1;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pass b{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:clamp(20px,1.8vw,26px);line-height:1.1;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
 @keyframes rise{from{transform:translateY(108%)}}
 @keyframes lift{from{opacity:0;transform:translateY(16px)}}
 @keyframes ping{0%{transform:scale(.55);opacity:.9}70%,100%{transform:scale(2.1);opacity:0}}
@@ -72,6 +72,18 @@ header.hero .glabels{inset:0}
 header.hero .glabels span{position:absolute;left:0;top:0;font:500 10.5px/1 "Fira Sans",system-ui,sans-serif;letter-spacing:.16em;color:#B3CFE5;white-space:nowrap;opacity:0;transition:opacity .5s;will-change:transform}
 header.hero .glabels span.hq{color:#fff}
 @media(max-width:760px){header.hero .glabels{display:none}header.hero #globe.on{opacity:.55}header.hero .glow{opacity:.6}}
+
+/* codename notice and wordmark */
+.codename{background:var(--ink);color:#fff;font-size:13px;line-height:1.5}
+.codename .wrap{display:flex;align-items:center;gap:11px;padding-top:10px;padding-bottom:10px}
+.codename svg{width:18px;height:18px;flex:none}
+.codename p{margin:0}
+.codename b{font-weight:600}
+.brandrow{display:flex;align-items:center;flex-wrap:wrap;gap:14px 18px;margin:0 0 30px;animation:lift 1s .05s var(--ease) both}
+.brandrow .bird{width:clamp(46px,5.2vw,70px);height:auto;flex:none}
+.brandrow .pname{font-family:"Commissioner",system-ui,sans-serif;font-weight:800;font-size:clamp(30px,4.4vw,58px);line-height:1;letter-spacing:.02em;text-transform:uppercase;color:#fff}
+.brandrow .chip{display:inline-flex;align-items:center;gap:7px;padding:7px 13px 7px 9px;border:1px solid rgba(255,255,255,.5);border-radius:99px;background:rgba(255,255,255,.07);font:600 11.5px/1 "Fira Sans",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.brandrow .chip svg{width:15px;height:15px}
 
 /* route gutter */
 main{padding:0 0 40px}
@@ -242,7 +254,7 @@ footer p{max-width:82ch;margin:0}
   .pass{padding:0 22px}
   .pass div+div{border-left:none;padding-left:0;border-top:1px dashed rgba(179,207,229,.35)}
   .pass div{padding:20px 0 24px;flex-basis:100%}
-  .pass b{font-size:24px}
+  .pass b{font-size:22px}
   .seq{grid-template-columns:1fr;gap:28px}
   .seq::before{left:6px;right:auto;top:6px;bottom:6px;width:1px;height:auto;background:linear-gradient(var(--ink),var(--steel) 55%,var(--mist))}
   html.js .seq.rv::before{transform:scaleY(0);transform-origin:50% 0}
@@ -262,7 +274,8 @@ footer p{max-width:82ch;margin:0}
 a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:3px}
 </style></head><body>
 
-<nav><div class="wrap"><strong>Project Avalon</strong><div><a href="#order">Order</a><a href="#market">Market</a><a href="#budget">Budget</a><a href="#channels">Channels</a><a href="#brand">Brand</a><a href="#process">Process</a><a href="#rollout">Rollout</a><a href="#vision">Vision</a><a href="#metrics">Metrics</a></div></div><i class="prog" aria-hidden="true"></i></nav>
+<div class="codename" role="note"><div class="wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r=".7" fill="currentColor" stroke="none"/></svg><p><b>Codename.</b> Project Avalon is a codename for the actual company, used until the agreement is signed.</p></div></div>
+<nav><div class="wrap"><strong><svg class="mk" viewBox="6 10 92 78" aria-hidden="true"><path fill="#0A1931" d="M96 44C90 40 84 40 78 42C66 30 46 18 8 14C36 26 54 38 62 48C50 54 32 58 12 60C34 64 52 64 66 60L50 84C64 76 74 66 80 56C88 54 93 50 96 44Z"/></svg>Project Avalon</strong><div><a href="#order">Order</a><a href="#market">Market</a><a href="#budget">Budget</a><a href="#channels">Channels</a><a href="#brand">Brand</a><a href="#process">Process</a><a href="#rollout">Rollout</a><a href="#vision">Vision</a><a href="#metrics">Metrics</a></div></div><i class="prog" aria-hidden="true"></i></nav>
 
 <header class="hero">
 <div class="grid" aria-hidden="true"></div>
@@ -282,12 +295,14 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
   <g id="plane"><path d="M9 0C9-.9 8.2-1.5 7.2-1.5H2.6L-2.6-8.6H-5L-2.2-1.5H-6.4L-8.2-3.8H-9.8L-8.8 0-9.8 3.8H-8.2L-6.4 1.5H-2.2L-5 8.6H-2.6L2.6 1.5H7.2C8.2 1.5 9 .9 9 0Z" fill="#fff"/></g>
 </svg>
 <div class="wrap hin">
+  <div class="brandrow"><svg class="bird" viewBox="6 10 92 78" aria-hidden="true"><path fill="#fff" d="M96 44C90 40 84 40 78 42C66 30 46 18 8 14C36 26 54 38 62 48C50 54 32 58 12 60C34 64 52 64 66 60L50 84C64 76 74 66 80 56C88 54 93 50 96 44Z"/></svg><span class="pname">Project Avalon</span><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r=".7" fill="currentColor" stroke="none"/></svg>Codename</span></div>
   <h1><span class="ln"><span>Turning thirty-five years</span></span><span class="ln"><span>of trust into market share</span></span></h1>
   <p class="lede">A seven-month go-to-market for Project Avalon across B2B, B2C, and B2E. B2B carries the revenue and the proof. B2C builds anticipation in parallel without paid acquisition. B2E follows once B2B has real results to show.</p>
   <div class="pass">
     <div><span>TOTAL BUDGET</span><b>BDT 1,750,000</b></div>
     <div><span>TIMELINE</span><b>Nov 2026 to May 2027</b></div>
     <div><span>SEQUENCE</span><b>B2B, B2C, B2E</b></div>
+    <div><span>PREPARED BY</span><b>Miraz Mullick</b></div>
   </div>
 </div>
 </header>

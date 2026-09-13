@@ -59,6 +59,20 @@ html.js .arc .stop.lit{opacity:1}
 @keyframes lift{from{opacity:0;transform:translateY(16px)}}
 @keyframes ping{0%{transform:scale(.55);opacity:.9}70%,100%{transform:scale(2.1);opacity:0}}
 
+/* globe (WebGL). Hidden unless globe.js starts, then the SVG route steps aside */
+header.hero .glow,header.hero #globe,header.hero .glabels{position:absolute;pointer-events:none}
+html:not(.gl) header.hero .glow,html:not(.gl) header.hero #globe,html:not(.gl) header.hero .glabels{display:none}
+html.gl header.hero svg.arc{display:none}
+html.gl header.hero .grid{opacity:.09}
+header.hero #globe{inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.8s var(--ease);-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.4) 18%,rgba(0,0,0,.4) 38%,#000 50%);mask-image:linear-gradient(180deg,rgba(0,0,0,.4) 18%,rgba(0,0,0,.4) 38%,#000 50%)}
+html.gl .hin h1{text-shadow:0 2px 28px rgba(10,25,49,.55)}
+header.hero #globe.on{opacity:1}
+header.hero .glow{left:calc(var(--gx,75%) - var(--gr,300px));top:calc(var(--gy,50%) - var(--gr,300px));width:calc(var(--gr,300px)*2);height:calc(var(--gr,300px)*2);border-radius:50%;background:radial-gradient(circle at 38% 32%,rgba(74,127,167,.2),rgba(26,61,99,.16) 48%,rgba(10,25,49,0) 72%);box-shadow:inset 0 0 0 1px rgba(179,207,229,.07),0 0 140px -20px rgba(74,127,167,.28)}
+header.hero .glabels{inset:0}
+header.hero .glabels span{position:absolute;left:0;top:0;font:500 10.5px/1 "Fira Sans",system-ui,sans-serif;letter-spacing:.16em;color:#B3CFE5;white-space:nowrap;opacity:0;transition:opacity .5s;will-change:transform}
+header.hero .glabels span.hq{color:#fff}
+@media(max-width:760px){header.hero .glabels{display:none}header.hero #globe.on{opacity:.55}header.hero .glow{opacity:.6}}
+
 /* route gutter */
 main{padding:0 0 40px}
 section{position:relative;padding:86px 0;border-top:1px solid var(--line)}
@@ -251,6 +265,9 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
 
 <header class="hero">
 <div class="grid" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+<canvas id="globe" aria-hidden="true"></canvas>
+<div class="glabels" aria-hidden="true"><span data-i="0" class="hq">DHAKA</span><span data-i="1">JEDDAH</span><span data-i="2">DUBAI</span><span data-i="4">BANGKOK</span><span data-i="5">SINGAPORE</span></div>
 <svg class="arc" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <defs>
     <linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1A3D63" stop-opacity="0"/><stop offset=".45" stop-color="#4A7FA7" stop-opacity=".9"/><stop offset="1" stop-color="#B3CFE5" stop-opacity=".35"/></linearGradient>
@@ -416,6 +433,121 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
 
 <script>
 (function(){
+/* hero globe: raw WebGL, no library. Land dots from Natural Earth 110m, arcs from Dhaka.
+   Falls back to the SVG route when WebGL is unavailable. */
+var d=document,h=d.documentElement,W=window;
+var cv=d.getElementById('globe'),hero=d.querySelector('header.hero');
+if(!cv||!hero)return;
+var gl=null;try{gl=cv.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:false})}catch(e){}
+if(!gl)return;
+var rm=W.matchMedia&&W.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+var VS='attribute vec3 p;attribute float a;uniform mat3 M;uniform vec2 C;uniform vec2 S;uniform float sz;'+
+'varying float vz;varying float va;varying float vh;'+
+'void main(){vec3 q=M*p;vz=q.z;va=a;vh=(q.z<0.0&&dot(q.xy,q.xy)<1.0)?1.0:0.0;'+
+'gl_Position=vec4(C+q.xy*S,0.0,1.0);gl_PointSize=sz*(0.7+0.3*clamp(q.z,0.0,1.0));}';
+var FS='precision mediump float;uniform float mode;uniform float T;uniform float P;varying float vz;varying float va;varying float vh;'+
+'void main(){vec2 c=gl_PointCoord-0.5;float d=length(c);if(d>0.5)discard;'+
+/* land */
+'if(mode<0.5){float al=vh>0.5?0.045:mix(0.14,0.72,smoothstep(0.0,0.85,vz));gl_FragColor=vec4(0.702,0.812,0.898,al*smoothstep(0.5,0.22,d));return;}'+
+/* arcs: dotted, drawn out from Dhaka, a bright head travels each one */
+'if(mode<1.5){if(vh>0.5)discard;float k=floor(va);float t=fract(va);'+
+'float show=step(t,clamp(P*1.7-k*0.1,0.0,1.0));float hd=fract(T*0.16+k*0.19-t);float g=exp(-hd*7.0);'+
+'vec3 col=mix(vec3(0.702,0.812,0.898),vec3(1.0),g);gl_FragColor=vec4(col,(0.5+0.5*g)*show*smoothstep(0.5,0.18,d));return;}'+
+/* city markers with a pulse ring */
+'if(vh>0.5)discard;float ps=fract(T*0.33+va*0.21);float rr=0.12+0.34*ps;'+
+'float ring=(1.0-ps)*smoothstep(0.045,0.0,abs(d-rr))*0.8;float core=smoothstep(0.13,0.09,d);'+
+'vec3 col=va<0.5?vec3(1.0):vec3(0.702,0.812,0.898);gl_FragColor=vec4(col,max(core,ring)*clamp(P*2.0,0.0,1.0));}';
+
+function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null}
+var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
+var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;
+gl.useProgram(pr);
+function U(n){return gl.getUniformLocation(pr,n)}
+var uM=U('M'),uC=U('C'),uS=U('S'),uSz=U('sz'),uMode=U('mode'),uT=U('T'),uP=U('P');
+
+var D2R=Math.PI/180;
+function ll(lat,lon){lat*=D2R;lon*=D2R;return [Math.cos(lat)*Math.sin(lon),Math.sin(lat),Math.cos(lat)*Math.cos(lon)]}
+var v=[],N=32000,bits=atob('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KCQFgKCSFBSCAkBRSAoAQQUpKAQFgKCQFBCCAlBRSQoAQQUoCAQFgKIQFACCClBRCAoAQSEoAAQFoKISFACCClBRCAoAQSUoAAQFoKIQFACCAlAQCApAQSUoAAQVoKIQFACCClABCApARSEoAAQFoCIQFICCSlAACCpARSEoAAQVoCIQFICKQlABCCpARSAoAAUVoCIQVICKQlEAKCpARSAoABUFoAIQVICKQlEACCpARSAoABUFoAJQVICKQFAACgpARSCoABUFoAAQVICKQFAACgpARSCoABWFoAAUFICKQFAAKgpAASioEBWBoAAUFICKUFABKgpAAagoEBWhoAAUFICCUFABKgJAASgoABWhoAJUFIACUFEAKgJBhSgoABWgoAJUlIACUVEgKkJBhSgoEQWiokBUhIgCUVAACkJBhagIAQWioEAUhIAKUVACCkZFgSgIAQWi4AQUjIIKURACCkRBASgIARWioAQUjIoCUBACCkRFCSgYARWgIAQUjIISUBACCkTBCSgYBQWgYAQUiIISUDACCkDBCSgYBSWgYARUiIISUDACCkBBCCgQBSWgYARUgIISUDEKCkBBCKgQBSWgYgQcgIIQUCEKSkDBCCgQBSWgYhQUgIIQUCAKSkBFCCgQFSGgQFQUgIoRUAAKSkBBCCgABSGgQBSUgIIQUAAKSkABKCgABSOgABSUgIIQUAAKQkABKCgABSGgABSUgAJQUQAKRkABKCgBBSGgABSMgAJQUAAKQkABKCgBBaGgABSEgAJQUAAKQkABKCgBBaCgABSEgAJQUCAKQkABKAgBBaKgABSEgAJQUAIKQEGBKAgBBaCgQBSEgAJQUCIKREGBKAgBBaCgQBSAggJQEAIKREGhKAgBBaCgQBSAggJQEAIKQEGhKAABBaCgRBSIggJRECIKQEGBKBAFBaAgBBSIgkJRACIKQEGBKBAFBaAgRBSAgkJRACoKQEGJKBAFBeIARBSAgkJRIAoKREGIKAAFhaIARBSAglJRIAoKRAGIKAAFhaJARBSIAlJRIAoKRQGIKBAFhaJARBSIAhBRIAoKRYGYKBAFpKJARBSIAhBRIAoKRYGIKBAFoKJABBSKAhBRIAoIRYGIKBAFIKJAFBSKAhFRIApARYGIKBAFIqJAFBCKAhFRIApARIGIKBQFIqJAFBCKAhFRIApERIGIKBQHIqJAFACKAhFRIApERIGoIBQFIqJAVIiIAhFRKA5ERIGoABQFIqJAFIiIAlFBKApERIGoEBQFIqJAFIiIAlEBKApERIGoEBEFoqJQFIiIAlEhKApERIGoEBAFogJQFIiIAlEhIApERIEoEBAFokJQFIiIAlEhIApERaEoEBAFokJQFIiIAlEhIApEhaAoEBAFokJAFIiIAlEgIApEhaAoEBAFokJAFIiIAVEgIApEhYAoEBEFokBAFIgIAVEgIApEhYAoEBEDokBAFIgKAVEgIApEhYAoEBECokBAFIgKAVEgIg5EgYAoEBECokBAFIgKAVEgIgZEgYAoEBUCokBAFIgCAVEgIgREgYAoEBUCokBEDIgCAVEgIgREgYAoEAUCokBEDIgCAVEgIgREgYAIEAUCokBECIgCAVEgKgREgYAYEAUCokBECIgCAREgCgREgYgYEAUCokBECIgCAREgCgREgYgQAAUCIkAECIgCATEACgREgYgQAAUCIgAECIACASEACgREgAgQAAUCIgAECIACACEACgREAAgQAAUCIgAECIACESEAAgRAAAgQAAUCYgAECIAAECAAAgRAAAgQAAEAQAAECIEAACAAAgRAAAgQAAEAQAAECIAAACAAAgDAAAgQAAEAQAAEAIAAECAAAgCAAAgQAAEAQAAEAIAAECAEAgCAAAgAAAEgQAAEAIAAECAAAgCAAAgAAAEgQAgEAAAAEAAAAgAAEAgAAAEAAAgEAAAAEAAAAgAAEAgAAAEAAAAEAAAAEAAAAgAAEAgAAAAAAAAEAAAAEAAAAgAAAAgAAAAgAAAEAAAAEAAAAgAAEAgAAAIAAAAEAAAAEAAABAAAEAgAAAAgAAAAAAAAEAAABAAAEAgAAAAgAAAEAAAAEAAAAAAAEAgAAAAgAAAAAAAgEAAAAEAAEAAAAAAgAAAAAAAgEAAAAEAAEAAAAAAgAAAAAAAgEAAAAEAAEAAAAAAgAAAAAAAgEAAAAEAAAAAAAAAgAAAAgAAAAAAAAEAAAAAAAAAgAAAAgAAAAAAAAEAAAAAAAQAgAAAAgAAAAAAAAEAAAAAAAQAgAAAAgAAAAAAAAEAAAAAAAQAAAAAAgAAAAAAAAEAAAAAAAQAAAAAAgAAAAAAAAAAAAAAAASAAAAAAgAAAAAACAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAQAAAAQAAAAAAAACAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAQAAAAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAgIAAAIAAAEhICIFBICAlBCQAkJCQEpISAEpISIlpKSAlJSSElJCREpISQkpKSYlpKS8lJSXktJSXEpKS3lpKS+tpaW8tJaX1tJyWlpLS3tpOS2tpeW9vJaX1/NyXl7Lz/v5KT+v5+f9/Jyf1/Pzfn7ez+v5+T2/7+f3/Lyf3/fze37f3+/7eT0/7+/1/Lyf1/fz/n7e3//7e3//7+/9/7///////////w=='),ga=Math.PI*(3-Math.sqrt(5));
+for(var i=0;i<N;i++){
+  if(!((bits.charCodeAt(i>>3)>>(i&7))&1))continue;
+  var y=1-(i+.5)*2/N,r=Math.sqrt(1-y*y),th=ga*i;
+  v.push(Math.cos(th)*r,y,Math.sin(th)*r,0);
+}
+var landN=v.length/4;
+/* lat, lon, label dx, dy, label sits left of the dot */
+var cities=[[23.81,90.41,12,-16,0],[21.54,39.17,-12,-6,1],[25.25,55.36,-12,-16,1],[2.75,101.71,0,0,0],[13.69,100.75,12,-6,0],[1.36,103.99,12,10,0],[51.47,-0.45,12,-6,0]]
+  .map(function(c){return {v:ll(c[0],c[1]),dx:c[2],dy:c[3],left:c[4]}});
+var A=cities[0].v;
+for(var k=1;k<cities.length;k++){
+  var B=cities[k].v,ang=Math.acos(Math.min(1,A[0]*B[0]+A[1]*B[1]+A[2]*B[2])),sa=Math.sin(ang),S=Math.round(36+ang*80);
+  for(var s=0;s<S;s++){
+    var t=s/(S-1),wa=Math.sin((1-t)*ang)/sa,wb=Math.sin(t*ang)/sa,lift=1+(.04+.2*ang/Math.PI)*Math.sin(Math.PI*t);
+    v.push((wa*A[0]+wb*B[0])*lift,(wa*A[1]+wb*B[1])*lift,(wa*A[2]+wb*B[2])*lift,(k-1)+Math.min(t,.999));
+  }
+}
+var arcS=landN,arcN=v.length/4-landN,markS=v.length/4;
+cities.forEach(function(c,i){v.push(c.v[0],c.v[1],c.v[2],i)});
+var markN=cities.length;
+
+var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(v),gl.STATIC_DRAW);
+var aP=gl.getAttribLocation(pr,'p'),aA=gl.getAttribLocation(pr,'a');
+gl.enableVertexAttribArray(aP);gl.vertexAttribPointer(aP,3,gl.FLOAT,false,16,0);
+gl.enableVertexAttribArray(aA);gl.vertexAttribPointer(aA,1,gl.FLOAT,false,16,12);
+gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+h.classList.add('gl');
+
+var dpr=Math.min(W.devicePixelRatio||1,2),cw=0,ch=0,gx=0,gy=0,R=0;
+var labs=[].slice.call(d.querySelectorAll('.glabels span'));
+function size(){
+  var w=cv.clientWidth,hh=cv.clientHeight;if(w===cw&&hh===ch)return;
+  cw=w;ch=hh;cv.width=Math.round(w*dpr);cv.height=Math.round(hh*dpr);gl.viewport(0,0,cv.width,cv.height);
+  var mob=w<760;gx=w*(mob?.72:.745);gy=hh*(mob?.27:.47);R=mob?w*.5:Math.min(hh*.43,w*.3);
+  hero.style.setProperty('--gx',gx.toFixed(1)+'px');hero.style.setProperty('--gy',gy.toFixed(1)+'px');hero.style.setProperty('--gr',R.toFixed(1)+'px');
+}
+function mat(lon,lat){
+  lon*=-D2R;lat*=D2R;var cy=Math.cos(lon),sy=Math.sin(lon),cx=Math.cos(lat),sx=Math.sin(lat);
+  return [[cy,0,sy],[sx*sy,cx,-sx*cy],[-cx*sy,sx,cx*cy]];
+}
+function pass(mode,sz,s,n){gl.uniform1f(uMode,mode);gl.uniform1f(uSz,sz*dpr);gl.drawArrays(gl.POINTS,s,n)}
+var px=0,pxT=0,lastT=0,lastP=1;
+function draw(T,P){
+  size();lastT=T;lastP=P;
+  var m=mat(72+14*Math.sin(T*.06)+px*7,20);
+  gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.uniformMatrix3fv(uM,false,[m[0][0],m[1][0],m[2][0],m[0][1],m[1][1],m[2][1],m[0][2],m[1][2],m[2][2]]);
+  gl.uniform2f(uC,gx/cw*2-1,1-gy/ch*2);gl.uniform2f(uS,R/cw*2,R/ch*2);gl.uniform1f(uT,T);gl.uniform1f(uP,P);
+  pass(0,2.3,0,landN);pass(1,2.8,arcS,arcN);pass(2,30,markS,markN);
+  labs.forEach(function(el){
+    var c=cities[+el.getAttribute('data-i')],p=c.v;
+    var x=m[0][0]*p[0]+m[0][1]*p[1]+m[0][2]*p[2],yy=m[1][0]*p[0]+m[1][1]*p[1]+m[1][2]*p[2],z=m[2][0]*p[0]+m[2][1]*p[1]+m[2][2]*p[2];
+    el.style.transform='translate('+(gx+x*R+c.dx).toFixed(1)+'px,'+(gy-yy*R+c.dy).toFixed(1)+'px)'+(c.left?' translateX(-100%)':'');
+    el.style.opacity=(z>.15&&P>.55)?1:0;
+  });
+}
+var running=false,start=null,t0=null,vis=true;
+function ease(x){return 1-Math.pow(1-x,3)}
+function loop(now){
+  if(!running)return;
+  if(t0===null)t0=now;if(start===null)start=now;
+  px+=(pxT-px)*.04;
+  draw((now-t0)/1000,ease(Math.min(1,Math.max(0,(now-start-400)/2600))));
+  W.requestAnimationFrame(loop);
+}
+function play(){if(running||rm)return;running=true;W.requestAnimationFrame(loop)}
+function stop(){running=false}
+
+draw(0,rm?1:0);cv.classList.add('on');
+if(rm){W.addEventListener('resize',function(){draw(lastT,1)});return}
+new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!d.hidden)play();else stop()}).observe(hero);
+d.addEventListener('visibilitychange',function(){if(d.hidden)stop();else if(vis)play()});
+hero.addEventListener('pointermove',function(e){pxT=(e.clientX/W.innerWidth-.5)*2});
+cv.addEventListener('webglcontextlost',function(){stop();h.classList.remove('gl');[].forEach.call(d.querySelectorAll('.arc .stop'),function(g){g.classList.add('lit')})});
+})();
+</script>
+<script>
+(function(){
 var d=document,h=d.documentElement,W=window;
 var rm=W.matchMedia&&W.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var anim=!rm&&('IntersectionObserver' in W);
@@ -425,7 +557,7 @@ var raf=W.requestAnimationFrame.bind(W);
 
 /* hero: the route draws itself, a plane flies Nov to May */
 var route=d.getElementById('route'),mask=d.getElementById('routeMask'),plane=d.getElementById('plane'),stops=all('.arc .stop');
-if(route&&route.getTotalLength){
+if(route&&route.getTotalLength&&!h.classList.contains('gl')){
   var L=route.getTotalLength();
   var near=function(x,y){var best=0,bd=1e12;for(var s=0;s<=L;s+=L/800){var p=route.getPointAtLength(s),dd=(p.x-x)*(p.x-x)+(p.y-y)*(p.y-y);if(dd<bd){bd=dd;best=s}}return best};
   var at=stops.map(function(g){return near(+g.getAttribute('data-x'),+g.getAttribute('data-y'))});

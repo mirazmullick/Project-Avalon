@@ -51,6 +51,9 @@ html.js .arc .stop.lit{opacity:1}
 .hin h1 .ln+.ln>span{animation-delay:.1s}
 .hin p.lede{max-width:620px;color:#C9D9E8;font-size:17px;line-height:1.7;margin:0 0 64px;animation:lift 1s .35s var(--ease) both}
 .pass{position:relative;display:flex;flex-wrap:wrap;margin-top:auto;padding:0 30px;border:1px solid rgba(179,207,229,.16);border-bottom:0;border-radius:18px 18px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.012));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:lift 1s .5s var(--ease) both}
+.pass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(179,207,229,.10) 46%,rgba(255,255,255,.22) 50%,rgba(179,207,229,.10) 54%,transparent 60%) 100% 0/250% 100% no-repeat;animation:sheen 6s 1.2s var(--ease) infinite}
+.pass::before{content:"";position:absolute;left:18px;right:18px;top:-1px;height:1px;pointer-events:none;background:linear-gradient(90deg,transparent 40%,rgba(255,255,255,.9) 50%,transparent 60%) 100% 0/250% 100% no-repeat;animation:sheen 6s 1.2s var(--ease) infinite}
+@keyframes sheen{0%{background-position:100% 0}55%,100%{background-position:0% 0}}
 .pass div{flex:1 1 auto;padding:24px 22px 32px 0;position:relative}
 .pass div+div{padding-left:22px;border-left:1px dashed rgba(179,207,229,.35)}
 .pass span{display:block;font-size:11.5px;color:#7F9BB8;margin-bottom:8px;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.08em}
@@ -81,8 +84,10 @@ header.hero .glabels span.hq{color:#fff}
 .codename b{font-weight:600}
 .brandrow{display:flex;align-items:center;flex-wrap:wrap;gap:14px 18px;margin:0 0 30px;animation:lift 1s .05s var(--ease) both}
 .brandrow .bird{width:clamp(46px,5.2vw,70px);height:auto;flex:none}
-.brandrow .pname{font-family:"Commissioner",system-ui,sans-serif;font-weight:800;font-size:clamp(30px,4.4vw,58px);line-height:1;letter-spacing:.02em;text-transform:uppercase;color:#fff}
-.brandrow .chip{display:inline-flex;align-items:center;gap:7px;padding:7px 13px 7px 9px;border:1px solid rgba(255,255,255,.5);border-radius:99px;background:rgba(255,255,255,.07);font:600 11.5px/1 "Fira Sans",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.brandrow .lock{display:inline-flex;align-items:center;gap:18px;white-space:nowrap}
+.brandrow .pname{font-family:"Commissioner",system-ui,sans-serif;font-weight:800;font-size:clamp(30px,4.4vw,58px);line-height:1.08;letter-spacing:.02em;text-transform:uppercase;color:#B3CFE5;background-image:linear-gradient(100deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%),linear-gradient(90deg,#E8F1F8 0%,#B3CFE5 55%,#8DB6D4 100%);background-size:250% 100%,100% 100%;background-repeat:no-repeat;background-position:100% 0,0 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:wordsheen 6s 1.2s var(--ease) infinite}
+@keyframes wordsheen{0%{background-position:100% 0,0 0}55%,100%{background-position:0% 0,0 0}}
+.brandrow .chip{display:inline-flex;align-items:center;gap:7px;padding:7px 13px 7px 9px;border:1px solid rgba(179,207,229,.55);border-radius:99px;background:rgba(179,207,229,.08);font:600 11.5px/1 "Fira Sans",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff}
 .brandrow .chip svg{width:15px;height:15px}
 
 /* route gutter */
@@ -260,6 +265,10 @@ footer p{max-width:82ch;margin:0}
   html.js .seq.rv::before{transform:scaleY(0);transform-origin:50% 0}
   .seq .st{padding:0 0 0 34px}
   .lead{padding:34px 26px}
+  .brandrow{gap:12px}
+  .brandrow .lock{gap:10px}
+  .brandrow .bird{width:34px}
+  .brandrow .pname{font-size:clamp(22px,6.8vw,30px)}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -295,7 +304,7 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
   <g id="plane"><path d="M9 0C9-.9 8.2-1.5 7.2-1.5H2.6L-2.6-8.6H-5L-2.2-1.5H-6.4L-8.2-3.8H-9.8L-8.8 0-9.8 3.8H-8.2L-6.4 1.5H-2.2L-5 8.6H-2.6L2.6 1.5H7.2C8.2 1.5 9 .9 9 0Z" fill="#fff"/></g>
 </svg>
 <div class="wrap hin">
-  <div class="brandrow"><svg class="bird" viewBox="6 10 92 78" aria-hidden="true"><path fill="#fff" d="M96 44C90 40 84 40 78 42C66 30 46 18 8 14C36 26 54 38 62 48C50 54 32 58 12 60C34 64 52 64 66 60L50 84C64 76 74 66 80 56C88 54 93 50 96 44Z"/></svg><span class="pname">Project Avalon</span><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r=".7" fill="currentColor" stroke="none"/></svg>Codename</span></div>
+  <div class="brandrow"><span class="lock"><svg class="bird" viewBox="6 10 92 78" aria-hidden="true"><defs><linearGradient id="birdg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8DB6D4"/><stop offset="1" stop-color="#E8F1F8"/></linearGradient></defs><path fill="url(#birdg)" d="M96 44C90 40 84 40 78 42C66 30 46 18 8 14C36 26 54 38 62 48C50 54 32 58 12 60C34 64 52 64 66 60L50 84C64 76 74 66 80 56C88 54 93 50 96 44Z"/></svg><span class="pname">Project Avalon</span></span><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r=".7" fill="currentColor" stroke="none"/></svg>Codename</span></div>
   <h1><span class="ln"><span>Turning thirty-five years</span></span><span class="ln"><span>of trust into market share</span></span></h1>
   <p class="lede">A seven-month go-to-market for Project Avalon across B2B, B2C, and B2E. B2B carries the revenue and the proof. B2C builds anticipation in parallel without paid acquisition. B2E follows once B2B has real results to show.</p>
   <div class="pass">

@@ -2,126 +2,191 @@
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Project Avalon</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A seven-month go-to-market and budget projection for Project Avalon, Nov 2026 to May 2027.">
+<meta property="og:title" content="Project Avalon">
+<meta property="og:description" content="A seven-month go-to-market and budget projection, Nov 2026 to May 2027.">
+<meta name="theme-color" content="#0A1931">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A1931'/%3E%3Cpath d='M5 25C12 23 14 11 26 8' fill='none' stroke='%23B3CFE5' stroke-width='2' stroke-dasharray='3 3' stroke-linecap='round'/%3E%3Ccircle cx='26' cy='8' r='2.8' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300..900&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0A1931;--deep:#12294A;--mid:#1A3D63;--steel:#4A7FA7;--mist:#B3CFE5;--paper:#F6FAFD;--line:#DCE7F2;--body:#33465A}
+:root{--ink:#0A1931;--deep:#12294A;--mid:#1A3D63;--steel:#4A7FA7;--mist:#B3CFE5;--paper:#F6FAFD;--line:#DCE7F2;--body:#33465A;--ease:cubic-bezier(.2,.7,.2,1)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.68 "Fira Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+::selection{background:var(--mist);color:var(--ink)}
 h1,h2,h3,.dp{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;letter-spacing:-.025em}
 .mono{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
 .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
 
 /* nav */
-nav{position:sticky;top:0;z-index:50;background:rgba(246,250,253,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:50;background:rgba(246,250,253,.84);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:24px}
-nav strong{font:500 13px/1 "Fira Sans";letter-spacing:.02em}
-nav div{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none}
+nav strong{display:flex;align-items:center;gap:10px;flex:none;font:500 13px/1 "Fira Sans",system-ui,sans-serif;letter-spacing:.02em}
+nav strong::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--mid);box-shadow:0 0 0 3px var(--line)}
+nav div{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none;padding:6px 0}
 nav div::-webkit-scrollbar{display:none}
-nav a{color:var(--steel);text-decoration:none;font-size:12.5px;white-space:nowrap}
-nav a:hover{color:var(--ink)}
+nav a{position:relative;color:var(--steel);text-decoration:none;font-size:12.5px;white-space:nowrap;padding:3px 0;transition:color .25s}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--ease)}
+nav a:hover,nav a.on{color:var(--ink)}
+nav a.on::after{transform:scaleX(1)}
+nav .prog{position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:var(--steel);transform:scaleX(var(--sp,0));transform-origin:0 50%}
 
 /* hero */
-header.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden}
-header.hero svg.arc{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
-.hin{position:relative;padding:110px 0 0}
-.hin h1{font-size:clamp(46px,7.4vw,104px);line-height:.96;margin:0 0 26px;color:#fff}
-.hin p.lede{max-width:620px;color:#C9D9E8;font-size:17px;line-height:1.7;margin:0 0 56px}
-.pass{display:flex;flex-wrap:wrap;border-top:1px dashed rgba(179,207,229,.45);margin-bottom:0}
-.pass div{flex:1 1 200px;padding:26px 26px 40px 0;position:relative}
-.pass div+div{padding-left:26px;border-left:1px dashed rgba(179,207,229,.45)}
-.pass span{display:block;font-size:11.5px;color:#7F9BB8;margin-bottom:8px;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
-.pass b{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:30px;line-height:1.1;color:#fff}
+header.hero{position:relative;display:flex;min-height:min(900px,calc(100vh - 56px));min-height:min(900px,calc(100svh - 56px));color:#fff;overflow:hidden;background:radial-gradient(1100px 620px at 86% -8%,rgba(74,127,167,.34),transparent 62%),radial-gradient(900px 520px at -8% 108%,rgba(26,61,99,.62),transparent 62%),var(--ink)}
+header.hero .grid{position:absolute;inset:0;background-image:radial-gradient(rgba(179,207,229,.55) 1px,transparent 1.3px);background-size:26px 26px;opacity:.2;-webkit-mask-image:radial-gradient(ellipse 62% 68% at 74% 30%,#000 8%,transparent 72%);mask-image:radial-gradient(ellipse 62% 68% at 74% 30%,#000 8%,transparent 72%)}
+header.hero svg.arc{position:absolute;inset:0;width:100%;height:100%}
+.arc .stop{transition:opacity .7s var(--ease)}
+html.js .arc .stop{opacity:0}
+html.js .arc .stop.lit{opacity:1}
+.arc .ring{transform-box:fill-box;transform-origin:center;animation:ping 3.4s var(--ease) infinite}
+.arc .stop+.stop .ring{animation-delay:1.7s}
+.arc .lbl{font:500 11px "Fira Sans",sans-serif;letter-spacing:.16em;fill:#B3CFE5}
+#plane{opacity:0}
+.hin{position:relative;display:flex;flex-direction:column;width:100%;padding-top:clamp(84px,13vh,132px)}
+.hin h1{font-size:clamp(44px,6.6vw,92px);line-height:.96;margin:0 0 28px;color:#fff}
+.hin h1 .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.hin h1 .ln>span{display:block;animation:rise 1.2s var(--ease) both}
+.hin h1 .ln+.ln>span{animation-delay:.1s}
+.hin p.lede{max-width:620px;color:#C9D9E8;font-size:17px;line-height:1.7;margin:0 0 64px;animation:lift 1s .35s var(--ease) both}
+.pass{position:relative;display:flex;flex-wrap:wrap;margin-top:auto;padding:0 30px;border:1px solid rgba(179,207,229,.16);border-bottom:0;border-radius:18px 18px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.012));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:lift 1s .5s var(--ease) both}
+.pass div{flex:1 1 auto;padding:26px 26px 38px 0;position:relative}
+.pass div+div{padding-left:26px;border-left:1px dashed rgba(179,207,229,.35)}
+.pass span{display:block;font-size:11.5px;color:#7F9BB8;margin-bottom:8px;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.pass b{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:30px;line-height:1.1;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+@keyframes rise{from{transform:translateY(108%)}}
+@keyframes lift{from{opacity:0;transform:translateY(16px)}}
+@keyframes ping{0%{transform:scale(.55);opacity:.9}70%,100%{transform:scale(2.1);opacity:0}}
 
 /* route gutter */
 main{padding:0 0 40px}
 section{position:relative;padding:86px 0;border-top:1px solid var(--line)}
 section:first-child{border-top:none}
 .leg{display:grid;grid-template-columns:78px 1fr;gap:0}
-.legno{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:12px;color:var(--steel);padding-top:6px;position:relative}
-.legno::after{content:"";position:absolute;left:5px;top:34px;bottom:-86px;width:1px;background:var(--line)}
+.legno{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:12px;color:var(--steel);padding-top:6px;position:relative;transition:color .4s}
+.legno::before{content:"";position:absolute;left:1px;top:30px;width:9px;height:9px;border-radius:99px;background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--mist);transition:background .4s,box-shadow .4s}
+.legno::after{content:"";position:absolute;left:5px;top:46px;bottom:-86px;width:1px;background:linear-gradient(var(--steel),var(--steel)) 0 0/100% calc(var(--p,0)*100%) no-repeat,var(--line)}
+section.on .legno{color:var(--ink)}
+section.on .legno::before{background:var(--mid);box-shadow:inset 0 0 0 1.5px var(--mid),0 0 0 4px rgba(74,127,167,.16)}
 section:last-of-type .legno::after{display:none}
 h2{font-size:clamp(28px,3.8vw,42px);line-height:1.12;margin:0 0 18px;max-width:15ch}
 .intro{max-width:64ch;color:var(--body);font-size:16.5px;margin:0 0 36px}
 .sub{color:var(--steel);font-size:14px;margin:-8px 0 30px}
 
+/* reveal */
+html.js .rv{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease) var(--d,0s),transform .9s var(--ease) var(--d,0s)}
+html.js .rv.in{opacity:1;transform:none}
+html.js .rv.done{transition:transform .45s var(--ease),box-shadow .45s var(--ease),opacity .3s}
+
 /* stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:36px 32px;margin:8px 0 32px}
-.stat b{display:block;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:clamp(36px,4.8vw,54px);line-height:1.02;color:var(--ink);margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:36px 32px;margin:8px 0 36px}
+.stat{position:relative;padding-top:22px;border-top:1px solid var(--line)}
+.stat::before{content:"";position:absolute;left:0;top:-1px;width:44px;height:1px;background:var(--ink)}
+.stat b{display:block;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:clamp(36px,4.8vw,54px);line-height:1.02;color:var(--ink);margin-bottom:10px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .stat p{margin:0;font-size:13px;line-height:1.5;color:var(--steel);max-width:24ch}
 .src{font-size:12px;color:var(--steel);font-style:italic;margin:26px 0 0;max-width:70ch}
 
-/* seq */
-.seq{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-bottom:34px}
-.seq .st{flex:1 1 190px;padding:22px 24px;background:#fff;border:1px solid var(--line)}
-.seq .st:nth-child(1){border-left:3px solid var(--ink)}
-.seq .st:nth-child(2){border-left:3px solid var(--steel)}
-.seq .st:nth-child(3){border-left:3px solid var(--mist)}
-.seq h4{margin:0 0 4px;font:600 13px/1 "Fira Sans";letter-spacing:.03em}
-.seq span{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:11px;color:var(--steel);display:block;margin-bottom:12px}
-.seq p{margin:0;font-size:13px;line-height:1.55;color:var(--body)}
+/* sequence */
+.seq{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin:42px 0 40px}
+.seq::before{content:"";position:absolute;left:0;right:0;top:6px;height:1px;background:linear-gradient(90deg,var(--ink),var(--steel) 55%,var(--mist))}
+html.js .seq.rv::before{transform:scaleX(0);transform-origin:0 50%;transition:transform 1.5s var(--ease) .2s}
+html.js .seq.in::before{transform:none}
+.seq .st{position:relative;padding-top:36px}
+.seq .st::before{content:"";position:absolute;left:0;top:0;width:13px;height:13px;border-radius:99px;background:var(--c);box-shadow:0 0 0 5px var(--paper)}
+.seq .st:nth-child(1){--c:var(--ink)}
+.seq .st:nth-child(2){--c:var(--steel)}
+.seq .st:nth-child(3){--c:var(--mist)}
+.seq h4{margin:0 0 6px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;letter-spacing:-.025em;font-size:28px;line-height:1.1}
+.seq span{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:12px;color:var(--steel);display:block;margin-bottom:12px}
+.seq p{margin:0;font-size:14px;line-height:1.6;color:var(--body);max-width:34ch}
 
 /* donut */
-.alloc{display:grid;grid-template-columns:240px 1fr;gap:52px;align-items:center;margin-bottom:44px}
+.alloc{display:grid;grid-template-columns:240px 1fr;gap:52px;align-items:center;margin-bottom:48px}
 .dwrap{position:relative;width:220px;height:220px}
-.dwrap .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.dwrap .ctr span{font-size:11px;color:var(--steel);font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.dwrap circle{transition:stroke-dasharray 1.2s var(--ease),opacity .3s}
+.alloc.dim .dwrap circle:not(.hl){opacity:.22}
+.dwrap .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
+.dwrap .ctr span{font-size:11px;color:var(--steel);font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.08em}
 .dwrap .ctr b{font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:21px;line-height:1.2;margin-top:4px}
-.key{display:grid;gap:14px}
-.key div{display:flex;align-items:baseline;gap:12px;font-size:14px}
+.key{display:grid;gap:4px}
+.key div{display:flex;align-items:baseline;gap:12px;font-size:14px;padding:10px 12px;margin:0 -12px;border-radius:10px;transition:background .25s,box-shadow .25s,opacity .25s}
+.key div.hl{background:#fff;box-shadow:0 1px 2px rgba(10,25,49,.06)}
+.alloc.dim .key div:not(.hl){opacity:.5}
 .key i{width:11px;height:11px;flex:none;border-radius:2px;transform:translateY(1px)}
 .key b{margin-left:auto;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-weight:500;font-size:13.5px}
 .key em{font-style:normal;color:var(--steel);font-size:12.5px;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
 
 /* phase cards */
-.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px}
-.phase{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 1px 2px rgba(10,25,49,.04)}
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:22px}
+.phase{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 1px 2px rgba(10,25,49,.04);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.phase:hover,html.js .phase.done:hover,.kpi:hover,html.js .kpi.done:hover{transform:translateY(-3px);box-shadow:0 24px 48px -30px rgba(10,25,49,.38)}
 .phase header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .phase header i{width:11px;height:11px;border-radius:2px;flex:none}
-.phase h3{margin:0;font-size:21px}
+.phase h3{margin:0;font-size:22px}
 .phase header em{margin-left:auto;font-style:normal;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:12px;color:var(--steel)}
-.phase>p{margin:0 0 16px;font-size:13px;line-height:1.55;color:var(--steel)}
+.phase>p{margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--steel)}
 .led{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}
 .led b{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-weight:500;white-space:nowrap}
 .led.tot{border-top:1.5px solid var(--ink);font-weight:600;margin-top:2px}
 
 /* channels */
-.ribbon{display:flex;height:9px;border-radius:99px;overflow:hidden;margin:4px 0 36px}
-.ribbon i{display:block}
-.chan{display:flex;gap:20px;padding:22px 0;border-top:1px solid var(--line);align-items:flex-start}
-.tile{flex:none;width:56px;height:56px;border-radius:14px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(10,25,49,.04)}
+.ribbon{display:flex;height:12px;border-radius:99px;overflow:hidden;margin:6px 0 38px}
+.ribbon i{display:block;cursor:pointer;transition:opacity .25s}
+.ribbon i+i{box-shadow:inset 2px 0 0 var(--paper)}
+html.js .ribbon.rv{opacity:1;transform:none}
+html.js .ribbon.rv i{transform:scaleX(0);transform-origin:0 50%;transition:transform .8s var(--ease) var(--k,0s),opacity .25s}
+html.js .ribbon.in i{transform:none}
+.cdim .ribbon i:not(.hl){opacity:.25}
+.chan{display:flex;gap:20px;padding:22px 0;border-top:1px solid var(--line);align-items:flex-start;transition:opacity .3s}
+.cdim .chan:not(.hl),html.js .cdim .chan.in:not(.hl){opacity:.4}
+.tile{flex:none;width:56px;height:56px;border-radius:14px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(10,25,49,.04);transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.chan:hover .tile,.chan.hl .tile{transform:translateY(-2px);border-color:var(--mist);box-shadow:0 10px 22px -14px rgba(10,25,49,.35)}
 .tile svg{width:24px;height:24px}
-.tile img{width:25px;height:25px;display:block}
 .cbody{flex:1;min-width:0}
 .chead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:9px}
-.chead h4{margin:0;font:600 15px/1.3 "Fira Sans"}
+.chead h4{margin:0;font:600 15px/1.3 "Fira Sans",system-ui,sans-serif}
 .chead b{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-weight:500;font-size:14px;white-space:nowrap}
 .chead small{color:var(--steel);font-size:11.5px;margin-left:8px}
 .track{height:4px;background:#E8F0F8;border-radius:99px;overflow:hidden;margin-bottom:10px}
 .track span{display:block;height:100%;border-radius:99px}
+html.js .chan.rv .track span{transform:scaleX(0);transform-origin:0 50%;transition:transform 1.3s var(--ease) .25s}
+html.js .chan.in .track span{transform:none}
 .chan p{margin:0;font-size:13px;line-height:1.6;color:var(--steel);max-width:74ch}
 .recon{margin:30px 0 0;padding-top:18px;border-top:1.5px solid var(--ink);font-size:12.5px;color:var(--steel)}
 
 /* principles */
-.prins{display:grid;gap:30px;max-width:78ch}
-.prin h4{margin:0 0 6px;font:600 15px/1.4 "Fira Sans"}
+.prins{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:36px 52px}
+.prin{padding-top:18px;border-top:1px solid var(--line)}
+.prin h4{margin:0 0 8px;font:600 15.5px/1.4 "Fira Sans",system-ui,sans-serif}
 .prin p{margin:0;font-size:13.5px;line-height:1.65;color:var(--steel)}
 
 /* funnel */
-.fseg{padding-top:26px;border-top:1px solid var(--line);margin-top:26px}
-.fseg:first-child{margin-top:0}
-.fseg>h4{margin:0 0 16px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:24px;color:var(--mid)}
-.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px}
-.fgrid h5{margin:0 0 6px;font:600 12.5px/1.4 "Fira Sans"}
+.fseg{padding-top:34px;border-top:1px solid var(--line);margin-top:34px}
+.fseg>h4{margin:0 0 20px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;letter-spacing:-.025em;font-size:26px;color:var(--mid)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:26px 30px}
+.fgrid>div{position:relative;padding-top:22px}
+.fgrid>div::before{content:"";position:absolute;left:0;right:0;top:3px;height:1px;background:var(--line)}
+.fgrid>div::after{content:"";position:absolute;left:0;top:0;width:7px;height:7px;border-radius:99px;background:var(--ink)}
+.fgrid>div:nth-child(2)::after{background:var(--mid)}
+.fgrid>div:nth-child(3)::after{background:var(--steel)}
+.fgrid h5{margin:0 0 6px;font:600 13px/1.4 "Fira Sans",system-ui,sans-serif}
 .fgrid p{margin:0;font-size:13px;line-height:1.6;color:var(--steel)}
 
-/* timeline */
+/* rollout */
+.chart{display:block;width:100%;height:auto;overflow:visible}
+.chart .m{transform-box:view-box;transform-origin:0 230px;transition:transform 1.1s var(--ease) var(--d,0s),opacity .25s;cursor:pointer}
+html.js .chart.rv .m{transform:scaleY(0)}
+html.js .chart.in .m{transform:none}
+.chart.dim .m:not(.hl){opacity:.32}
 .tl{list-style:none;margin:44px 0 0;padding:0 0 0 26px;border-left:1px solid var(--line)}
-.tl li{position:relative;padding:0 0 30px}
-.tl li::before{content:"";position:absolute;left:-31px;top:7px;width:9px;height:9px;border-radius:99px;background:var(--mid);box-shadow:0 0 0 4px var(--paper)}
+.tl li{position:relative;padding:0 0 30px;transition:opacity .3s}
+.tl li::before{content:"";position:absolute;left:-31px;top:7px;width:9px;height:9px;border-radius:99px;background:var(--mid);box-shadow:0 0 0 4px var(--paper);transition:transform .35s var(--ease)}
+.tl.dim li:not(.hl),html.js .tl.dim li.in:not(.hl){opacity:.4}
+.tl li.hl::before{transform:scale(1.4)}
+.tl li.hl h4{color:var(--mid)}
 .thead{display:flex;align-items:baseline;gap:14px;margin-bottom:5px}
-.thead h4{margin:0;font:600 14.5px/1 "Fira Sans"}
+.thead h4{margin:0;font:600 14.5px/1 "Fira Sans",system-ui,sans-serif;transition:color .25s}
 .thead b{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-weight:400;font-size:12.5px;color:var(--steel)}
 .tl p{margin:0;font-size:13px;line-height:1.6;color:var(--steel);max-width:62ch}
 .lgnd{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--steel)}
@@ -129,20 +194,23 @@ h2{font-size:clamp(28px,3.8vw,42px);line-height:1.12;margin:0 0 18px;max-width:1
 .lgnd i{width:10px;height:10px;border-radius:2px}
 
 /* vision */
-.hzs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px}
-.hz span{font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:11.5px;color:var(--steel);display:block;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.hz h4{margin:0 0 8px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:22px;line-height:1.2}
+.hzs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:34px}
+.hz span{position:relative;font-family:"Fira Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em;font-size:11.5px;color:var(--steel);display:block;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.hz span::after{content:"";position:absolute;left:0;bottom:-4px;width:7px;height:7px;border-radius:99px;background:var(--mid)}
+.hz h4{margin:0 0 8px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;letter-spacing:-.025em;font-size:23px;line-height:1.2}
 .hz p{margin:0;font-size:13px;line-height:1.65;color:var(--steel)}
 
 /* lead band */
-.lead{background:var(--ink);color:#fff;border-radius:16px;padding:44px 46px;margin:0}
+.lead{position:relative;overflow:hidden;background:radial-gradient(720px 360px at 100% 0,rgba(74,127,167,.36),transparent 62%),var(--ink);color:#fff;border-radius:18px;padding:52px 50px;margin:0}
+.lead::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(179,207,229,.55) 1px,transparent 1.3px);background-size:24px 24px;opacity:.16;-webkit-mask-image:linear-gradient(105deg,transparent 38%,#000);mask-image:linear-gradient(105deg,transparent 38%,#000)}
+.lead>*{position:relative}
 .lead h2{color:#fff;margin:0 0 14px;max-width:20ch}
 .lead p{margin:0;max-width:62ch;color:#C9D9E8;font-size:15px;line-height:1.7}
 
 /* kpis */
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
-.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
-.kpi h4{margin:0 0 12px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;font-size:20px;color:var(--mid)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.kpi h4{margin:0 0 12px;font-family:"Commissioner",system-ui,sans-serif;font-weight:650;letter-spacing:-.025em;font-size:21px;color:var(--mid)}
 .kpi ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
 .kpi li{font-size:13px;line-height:1.5;color:var(--steel);padding-left:16px;position:relative}
 .kpi li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:99px;background:var(--mist)}
@@ -153,33 +221,54 @@ footer p{max-width:82ch;margin:0}
 @media(max-width:760px){
   .leg{grid-template-columns:1fr}
   .legno{padding:0 0 10px}
-  .legno::after{display:none}
+  .legno::before,.legno::after{display:none}
   .alloc{grid-template-columns:1fr;justify-items:start;gap:32px}
   .hin{padding-top:76px}
-  .pass div+div{border-left:none;padding-left:0;border-top:1px dashed rgba(179,207,229,.45)}
-  .lead{padding:32px 26px}
+  .pass{padding:0 22px}
+  .pass div+div{border-left:none;padding-left:0;border-top:1px dashed rgba(179,207,229,.35)}
+  .pass div{padding:20px 0 24px;flex-basis:100%}
+  .pass b{font-size:24px}
+  .seq{grid-template-columns:1fr;gap:28px}
+  .seq::before{left:6px;right:auto;top:6px;bottom:6px;width:1px;height:auto;background:linear-gradient(var(--ink),var(--steel) 55%,var(--mist))}
+  html.js .seq.rv::before{transform:scaleY(0);transform-origin:50% 0}
+  .seq .st{padding:0 0 0 34px}
+  .lead{padding:34px 26px}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+@media print{
+  nav{display:none}
+  header.hero,.lead{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header.hero{min-height:0}
+  .phase,.kpi,.chan,.tl li{break-inside:avoid}
+}
 a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:3px}
 </style></head><body>
 
-<nav><div class="wrap"><strong>Project Avalon</strong><div><a href="#order">Order</a><a href="#market">Market</a><a href="#budget">Budget</a><a href="#channels">Channels</a><a href="#brand">Brand</a><a href="#process">Process</a><a href="#rollout">Rollout</a><a href="#vision">Vision</a><a href="#metrics">Metrics</a></div></div></nav>
+<nav><div class="wrap"><strong>Project Avalon</strong><div><a href="#order">Order</a><a href="#market">Market</a><a href="#budget">Budget</a><a href="#channels">Channels</a><a href="#brand">Brand</a><a href="#process">Process</a><a href="#rollout">Rollout</a><a href="#vision">Vision</a><a href="#metrics">Metrics</a></div></div><i class="prog" aria-hidden="true"></i></nav>
 
 <header class="hero">
+<div class="grid" aria-hidden="true"></div>
 <svg class="arc" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
-    <stop offset="0" stop-color="#1A3D63" stop-opacity="0"/><stop offset=".45" stop-color="#4A7FA7" stop-opacity=".85"/><stop offset="1" stop-color="#B3CFE5" stop-opacity=".25"/></linearGradient></defs>
-  <path d="M-60 520 C 240 430, 430 470, 640 330 S 1000 90, 1280 150" fill="none" stroke="url(#g)" stroke-width="1.5" stroke-dasharray="7 9"/>
-  <path d="M-60 560 C 300 500, 520 520, 760 390 S 1080 170, 1280 230" fill="none" stroke="#4A7FA7" stroke-width="1" stroke-opacity=".28"/>
-  <circle cx="640" cy="330" r="3.5" fill="#B3CFE5"/><circle cx="640" cy="330" r="11" fill="none" stroke="#B3CFE5" stroke-opacity=".35"/>
-  <circle cx="1000" cy="152" r="3.5" fill="#B3CFE5"/><circle cx="1000" cy="152" r="11" fill="none" stroke="#B3CFE5" stroke-opacity=".35"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1A3D63" stop-opacity="0"/><stop offset=".45" stop-color="#4A7FA7" stop-opacity=".9"/><stop offset="1" stop-color="#B3CFE5" stop-opacity=".35"/></linearGradient>
+    <mask id="reveal" maskUnits="userSpaceOnUse" x="-100" y="0" width="1400" height="600"><path id="routeMask" d="M-60 520 C 240 430, 430 470, 640 330 S 1000 90, 1280 150" fill="none" stroke="#fff" stroke-width="10"/></mask>
+  </defs>
+  <path d="M-60 560 C 300 500, 520 520, 760 390 S 1080 170, 1280 230" fill="none" stroke="#4A7FA7" stroke-width="1" stroke-opacity=".26"/>
+  <path d="M-60 480 C 200 380, 380 430, 560 300 S 940 40, 1280 80" fill="none" stroke="#4A7FA7" stroke-width="1" stroke-opacity=".12"/>
+  <path id="route" d="M-60 520 C 240 430, 430 470, 640 330 S 1000 90, 1280 150" fill="none" stroke="url(#g)" stroke-width="1.6" stroke-dasharray="7 9" mask="url(#reveal)"/>
+  <g class="stop" data-x="640" data-y="330"><circle class="ring" cx="640" cy="330" r="11" fill="none" stroke="#B3CFE5" stroke-opacity=".5"/><circle cx="640" cy="330" r="3.5" fill="#B3CFE5"/><text class="lbl" x="656" y="352">NOV 2026</text></g>
+  <g class="stop" data-x="1000" data-y="152"><circle class="ring" cx="1000" cy="152" r="11" fill="none" stroke="#B3CFE5" stroke-opacity=".5"/><circle cx="1000" cy="152" r="3.5" fill="#fff"/><text class="lbl" x="1000" y="118" text-anchor="middle">MAY 2027</text></g>
+  <g id="plane"><path d="M9 0C9-.9 8.2-1.5 7.2-1.5H2.6L-2.6-8.6H-5L-2.2-1.5H-6.4L-8.2-3.8H-9.8L-8.8 0-9.8 3.8H-8.2L-6.4 1.5H-2.2L-5 8.6H-2.6L2.6 1.5H7.2C8.2 1.5 9 .9 9 0Z" fill="#fff"/></g>
 </svg>
 <div class="wrap hin">
-  <h1>Turning thirty-five years<br>of trust into market share</h1>
+  <h1><span class="ln"><span>Turning thirty-five years</span></span><span class="ln"><span>of trust into market share</span></span></h1>
   <p class="lede">A seven-month go-to-market for Project Avalon across B2B, B2C, and B2E. B2B carries the revenue and the proof. B2C builds anticipation in parallel without paid acquisition. B2E follows once B2B has real results to show.</p>
   <div class="pass">
     <div><span>TOTAL BUDGET</span><b>BDT 1,750,000</b></div>
-    <div><span>TIMELINE</span><b>Nov 2026 &ndash; May 2027</b></div>
+    <div><span>TIMELINE</span><b>Nov 2026 to May 2027</b></div>
     <div><span>SEQUENCE</span><b>B2B, B2C, B2E</b></div>
   </div>
 </div>
@@ -190,7 +279,7 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
 <section id="order"><div class="leg"><div class="legno">01</div><div>
 <h2>B2B first, B2C in waiting, B2E once proven</h2>
 <div class="seq">
-  <div class="st"><h4>B2B</h4><span>Months 1&ndash;7</span><p>Fewer, larger wins, fast, using an agent network that already trusts the parent brand.</p></div>
+  <div class="st"><h4>B2B</h4><span>Months 1 to 7</span><p>Fewer, larger wins, fast, using an agent network that already trusts the parent brand.</p></div>
   <div class="st"><h4>B2C</h4><span>Builds from month 1</span><p>Waitlist and word of mouth compound before a taka of paid acquisition is spent.</p></div>
   <div class="st"><h4>B2E</h4><span>From month 4</span><p>Waits until B2B case studies exist to make the corporate pitch credible.</p></div>
 </div>
@@ -199,7 +288,7 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
 
 <section id="market"><div class="leg"><div class="legno">02</div><div>
 <h2>A market growing faster than the players in it</h2>
-<div class="stats"><div class="stat"><b>$4.90B</b><p>Bangladesh travel market by 2030, from $2.44B in 2025</p></div><div class="stat"><b>14.94%</b><p>Compound annual growth, 2025 to 2030</p></div><div class="stat"><b>63%</b><p>Of that revenue forecast to be booked online by 2030</p></div><div class="stat"><b>4&ndash;6%</b><p>OTA share of the total travel market today, the gap Avalon is built to close</p></div></div>
+<div class="stats"><div class="stat"><b>$4.90B</b><p>Bangladesh travel market by 2030, from $2.44B in 2025</p></div><div class="stat"><b>14.94%</b><p>Compound annual growth, 2025 to 2030</p></div><div class="stat"><b>63%</b><p>Of that revenue forecast to be booked online by 2030</p></div><div class="stat"><b>4 to 6%</b><p>OTA share of the total travel market today, the gap Avalon is built to close</p></div></div>
 <p class="intro">The market expands at nearly 15 percent a year and the shift online is only starting. Most travel spend in Bangladesh still isn't booked through an OTA at all. Avalon doesn't need to take share from GoZayaan or ShareTrip to grow, it needs to convert the far larger pool that hasn't gone digital, starting with the agency's own B2B relationships.</p>
 <p class="intro">The audience to reach it already exists. Bangladesh has over 82 million internet users and 64 million on social media. TikTok ads reach 47.9 percent of adults and 67.9 percent of the internet user base. LinkedIn reaches under 8 percent, so it is used narrowly rather than as the main B2B channel.</p>
 <p class="src">Sources: Statista travel and tourism forecasts via Daily Sun, Upturn Bangladesh industry analysis, DataReportal Digital 2026 Bangladesh, NapoleonCat social statistics.</p>
@@ -240,7 +329,7 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
 <h2>Where the money goes, by platform</h2>
 <p class="intro">The same budget re-cut by platform rather than segment. Paid media across Meta, TikTok, and LinkedIn is 34 percent of the total. The rest funds owned assets, in-person relationships, earned coverage, and the tracking that makes all of it measurable.</p>
 <div class="ribbon"><i style="background:#0866FF;width:18.57%" title="Meta: Facebook &amp; Instagram"></i><i style="background:#12294A;width:12.86%" title="Agent meets &amp; field sales"></i><i style="background:#1A3D63;width:11.43%" title="Content &amp; creative production"></i><i style="background:#4A7FA7;width:10.71%" title="Owned web &amp; product"></i><i style="background:#25C9C4;width:10.00%" title="TikTok"></i><i style="background:#6A9BC0;width:10.00%" title="PR &amp; earned media"></i><i style="background:#8DB6D4;width:8.57%" title="Partner incentives"></i><i style="background:#B3CFE5;width:7.86%" title="Martech &amp; tracking"></i><i style="background:#0A66C2;width:5.71%" title="LinkedIn"></i><i style="background:#3E6B93;width:4.29%" title="Agent gifting &amp; recognition"></i></div>
-<div class="chan"><span class="tile"><img src="https://cdn.simpleicons.org/meta/0467DF" alt="Meta" loading="lazy"></span>
+<div class="chan"><span class="tile"><svg viewBox="0 0 24 24" role="img" aria-label="Meta"><path fill="#0467DF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg></span>
   <div class="cbody"><div class="chead"><h4>Meta: Facebook &amp; Instagram</h4><b>BDT 325,000<small>18.6%</small></b></div>
   <div class="track"><span style="background:#0866FF;width:100.0%"></span></div>
   <p>Now the largest single channel. Facebook reaches roughly 40 percent of the population at a 95 percent daily login rate, the most efficient way to reach both agency owners and retail travellers here.</p></div></div><div class="chan"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#12294A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.4 2.7-5.5 6.5-5.5s6.5 2.1 6.5 5.5"/><path d="M16.6 6.3a3 3 0 010 5.6M18.2 14.9c2 .6 3.3 2.2 3.3 4.3"/></svg></span>
@@ -252,7 +341,7 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
   <p>Brand identity and guidelines, B2B case studies, B2E sales collateral. Produced once, reused across every channel here.</p></div></div><div class="chan"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#2C5983" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M3 9.5h18"/><circle cx="6.3" cy="7" r=".7"/><circle cx="8.8" cy="7" r=".7"/></svg></span>
   <div class="cbody"><div class="chead"><h4>Owned web &amp; product</h4><b>BDT 187,500<small>10.7%</small></b></div>
   <div class="track"><span style="background:#4A7FA7;width:57.7%"></span></div>
-  <p>Teaser landing page, referral-gated waitlist, and the agent portal. No ongoing media cost, compounding value.</p></div></div><div class="chan"><span class="tile"><img src="https://cdn.simpleicons.org/tiktok/010101" alt="TikTok" loading="lazy"></span>
+  <p>Teaser landing page, referral-gated waitlist, and the agent portal. No ongoing media cost, compounding value.</p></div></div><div class="chan"><span class="tile"><svg viewBox="0 0 24 24" role="img" aria-label="TikTok"><path fill="#010101" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></span>
   <div class="cbody"><div class="chead"><h4>TikTok</h4><b>BDT 175,000<small>10.0%</small></b></div>
   <div class="track"><span style="background:#25C9C4;width:53.8%"></span></div>
   <p>Reaches 47.9 percent of Bangladeshi adults and 67.9 percent of the internet user base, at materially lower CPMs than Meta. Strong for regional agent owners and the younger B2C audience.</p></div></div><div class="chan"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#3E6B93" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 001 1h2l6 3.8V6.2L6 10H4a1 1 0 00-1 1z"/><path d="M16.2 9.4a3.4 3.4 0 010 5.2"/><path d="M6 14.2V19"/></svg></span>
@@ -261,10 +350,10 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
   <p>A retainer plus two pushes, platform announcement and launch. Earned coverage outweighs paid reach for a new OTA asking for trust.</p></div></div><div class="chan"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#4A7FA7" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="4.8"/><path d="M8.6 13.3L7.2 20.5l4.8-2.4 4.8 2.4-1.4-7.2"/></svg></span>
   <div class="cbody"><div class="chead"><h4>Partner incentives</h4><b>BDT 150,000<small>8.6%</small></b></div>
   <div class="track"><span style="background:#8DB6D4;width:46.2%"></span></div>
-  <p>Agent-to-agent referral commissions. Not media spend, this buys word of mouth that would cost far more through ads.</p></div></div><div class="chan"><span class="tile"><img src="https://cdn.simpleicons.org/googleanalytics/E37400" alt="Analytics" loading="lazy"></span>
+  <p>Agent-to-agent referral commissions. Not media spend, this buys word of mouth that would cost far more through ads.</p></div></div><div class="chan"><span class="tile"><svg viewBox="0 0 24 24" role="img" aria-label="Analytics"><path fill="#E37400" d="M22.84 2.9982v17.9987c.0086 1.6473-1.3197 2.9897-2.967 2.9984a2.9808 2.9808 0 01-.3677-.0208c-1.528-.226-2.6477-1.5558-2.6105-3.1V3.1204c-.0369-1.5458 1.0856-2.8762 2.6157-3.1 1.6361-.1915 3.1178.9796 3.3093 2.6158.014.1201.0208.241.0202.3619zM4.1326 18.0548c-1.6417 0-2.9726 1.331-2.9726 2.9726C1.16 22.6691 2.4909 24 4.1326 24s2.9726-1.3309 2.9726-2.9726-1.331-2.9726-2.9726-2.9726zm7.8728-9.0098c-.0171 0-.0342 0-.0513.0003-1.6495.0904-2.9293 1.474-2.891 3.1256v7.9846c0 2.167.9535 3.4825 2.3505 3.763 1.6118.3266 3.1832-.7152 3.5098-2.327.04-.1974.06-.3983.0593-.5998v-8.9585c.003-1.6474-1.33-2.9852-2.9773-2.9882z"/></svg></span>
   <div class="cbody"><div class="chead"><h4>Martech &amp; tracking</h4><b>BDT 137,500<small>7.9%</small></b></div>
   <div class="track"><span style="background:#B3CFE5;width:42.3%"></span></div>
-  <p>Meta CAPI, Google Analytics 4, CRM, and email sequencing. Without this the other channels cannot be measured.</p></div></div><div class="chan"><span class="tile"><img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" loading="lazy"></span>
+  <p>Meta CAPI, Google Analytics 4, CRM, and email sequencing. Without this the other channels cannot be measured.</p></div></div><div class="chan"><span class="tile"><svg viewBox="0 0 24 24" role="img" aria-label="LinkedIn"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
   <div class="cbody"><div class="chead"><h4>LinkedIn</h4><b>BDT 100,000<small>5.7%</small></b></div>
   <div class="track"><span style="background:#0A66C2;width:30.8%"></span></div>
   <p>Held to a focused role: corporate travel managers by job title, the one thing no other platform here can do. Capped deliberately, LinkedIn reaches under 8 percent of the population at premium CPMs.</p></div></div><div class="chan"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#5E8FB5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.2" y="9.5" width="17.6" height="11.3" rx="1.6"/><path d="M3.2 14h17.6M12 9.5v11.3"/><path d="M12 9.5C10.6 6.2 8.7 5.7 7.7 6.6s-.3 2.9 4.3 2.9c4.6 0 5.3-1.9 4.3-2.9s-2.9-.5-4.3 2.9z"/></svg></span>
@@ -298,7 +387,7 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
 <section id="rollout"><div class="leg"><div class="legno">07</div><div>
 <h2>Seven months, Nov 2026 to May 2027</h2>
 <p class="sub">Planned spend by phase, month by month.</p>
-<svg viewBox="0 0 760 260" class="w-full" style="height:260px" role="img" aria-label="Planned monthly spend by phase"><g><line x1="52" y1="230.0" x2="746" y2="230.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="233.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">0k</text><line x1="52" y1="158.0" x2="746" y2="158.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="161.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">100k</text><line x1="52" y1="86.0" x2="746" y2="86.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="89.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">200k</text><line x1="52" y1="14.0" x2="746" y2="14.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="17.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">300k</text></g><g><rect x="75.8" y="135.5" width="51.6" height="94.5" fill="#0A1931"/><rect x="75.8" y="99.5" width="51.6" height="36.0" fill="#1A3D63"/><rect x="75.8" y="81.5" width="51.6" height="18.0" fill="#4A7FA7"/><text x="101.6" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Nov</text><rect x="174.9" y="135.5" width="51.6" height="94.5" fill="#0A1931"/><rect x="174.9" y="63.5" width="51.6" height="72.0" fill="#1A3D63"/><rect x="174.9" y="32.0" width="51.6" height="31.5" fill="#4A7FA7"/><text x="200.7" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Dec</text><rect x="274.1" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="274.1" y="59.0" width="51.6" height="63.0" fill="#4A7FA7"/><text x="299.9" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Jan</text><rect x="373.2" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="373.2" y="86.0" width="51.6" height="36.0" fill="#4A7FA7"/><rect x="373.2" y="54.5" width="51.6" height="31.5" fill="#B3CFE5"/><text x="399.0" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Feb</text><rect x="472.4" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="472.4" y="86.0" width="51.6" height="36.0" fill="#4A7FA7"/><rect x="472.4" y="54.5" width="51.6" height="31.5" fill="#B3CFE5"/><text x="498.1" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Mar</text><rect x="571.5" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="571.5" y="77.0" width="51.6" height="45.0" fill="#4A7FA7"/><rect x="571.5" y="45.5" width="51.6" height="31.5" fill="#B3CFE5"/><text x="597.3" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Apr</text><rect x="670.7" y="140.0" width="51.6" height="90.0" fill="#1A3D63"/><rect x="670.7" y="54.5" width="51.6" height="85.5" fill="#4A7FA7"/><rect x="670.7" y="23.0" width="51.6" height="31.5" fill="#B3CFE5"/><text x="696.4" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">May</text></g></svg>
+<svg viewBox="0 0 760 260" class="chart" role="img" aria-label="Planned monthly spend by phase"><g><line x1="52" y1="230.0" x2="746" y2="230.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="233.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">0k</text><line x1="52" y1="158.0" x2="746" y2="158.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="161.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">100k</text><line x1="52" y1="86.0" x2="746" y2="86.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="89.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">200k</text><line x1="52" y1="14.0" x2="746" y2="14.0" stroke="#DCE7F2" stroke-width="1"/><text x="42" y="17.5" font-size="10" fill="#4A7FA7" text-anchor="end" font-family="Fira Sans,sans-serif">300k</text></g><g><g class="m" style="--d:0.00s"><title>Nov 2026, BDT 206,250</title><rect x="52.0" y="14" width="99.1" height="216" fill="transparent"/><rect x="75.8" y="135.5" width="51.6" height="94.5" fill="#0A1931"/><rect x="75.8" y="99.5" width="51.6" height="36.0" fill="#1A3D63"/><rect x="75.8" y="81.5" width="51.6" height="18.0" fill="#4A7FA7"/></g><g class="m" style="--d:0.07s"><title>Dec 2026, BDT 275,000</title><rect x="151.1" y="14" width="99.1" height="216" fill="transparent"/><rect x="174.9" y="135.5" width="51.6" height="94.5" fill="#0A1931"/><rect x="174.9" y="63.5" width="51.6" height="72.0" fill="#1A3D63"/><rect x="174.9" y="32.0" width="51.6" height="31.5" fill="#4A7FA7"/></g><g class="m" style="--d:0.14s"><title>Jan 2027, BDT 237,500</title><rect x="250.3" y="14" width="99.1" height="216" fill="transparent"/><rect x="274.1" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="274.1" y="59.0" width="51.6" height="63.0" fill="#4A7FA7"/></g><g class="m" style="--d:0.21s"><title>Feb 2027, BDT 243,750</title><rect x="349.4" y="14" width="99.1" height="216" fill="transparent"/><rect x="373.2" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="373.2" y="86.0" width="51.6" height="36.0" fill="#4A7FA7"/><rect x="373.2" y="54.5" width="51.6" height="31.5" fill="#B3CFE5"/></g><g class="m" style="--d:0.28s"><title>Mar 2027, BDT 243,750</title><rect x="448.6" y="14" width="99.1" height="216" fill="transparent"/><rect x="472.4" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="472.4" y="86.0" width="51.6" height="36.0" fill="#4A7FA7"/><rect x="472.4" y="54.5" width="51.6" height="31.5" fill="#B3CFE5"/></g><g class="m" style="--d:0.35s"><title>Apr 2027, BDT 256,250</title><rect x="547.7" y="14" width="99.1" height="216" fill="transparent"/><rect x="571.5" y="122.0" width="51.6" height="108.0" fill="#1A3D63"/><rect x="571.5" y="77.0" width="51.6" height="45.0" fill="#4A7FA7"/><rect x="571.5" y="45.5" width="51.6" height="31.5" fill="#B3CFE5"/></g><g class="m" style="--d:0.42s"><title>May 2027, BDT 287,500</title><rect x="646.9" y="14" width="99.1" height="216" fill="transparent"/><rect x="670.7" y="140.0" width="51.6" height="90.0" fill="#1A3D63"/><rect x="670.7" y="54.5" width="51.6" height="85.5" fill="#4A7FA7"/><rect x="670.7" y="23.0" width="51.6" height="31.5" fill="#B3CFE5"/></g></g><g><text x="101.6" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Nov</text><text x="200.7" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Dec</text><text x="299.9" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Jan</text><text x="399.0" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Feb</text><text x="498.1" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Mar</text><text x="597.3" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">Apr</text><text x="696.4" y="250" font-size="11" fill="#4A7FA7" text-anchor="middle" font-family="Fira Sans,sans-serif">May</text></g></svg>
 <div class="lgnd">
   <span><i style="background:#0A1931"></i>Foundation</span><span><i style="background:#1A3D63"></i>B2B growth</span>
   <span><i style="background:#4A7FA7"></i>B2C hype</span><span><i style="background:#B3CFE5"></i>B2E pilot</span>
@@ -325,4 +414,121 @@ a:focus-visible,nav a:focus-visible{outline:2px solid var(--mid);outline-offset:
 <footer><div class="wrap"><p><b>This budget covers marketing and brand spend only.</b> It does not include in-house operational cost: salaries and team compensation, software subscriptions and licences, office equipment, hardware, rent, utilities, or any other overhead. Those sit outside this allocation and should be budgeted separately.</p>
 <p style="margin-top:14px">A projection, administered with a 10 percent monthly tolerance and a hard cap at the total budget in the final month. Allocations may shift between phases as early results come in, always within the approved total.</p></div></footer>
 
+<script>
+(function(){
+var d=document,h=d.documentElement,W=window;
+var rm=W.matchMedia&&W.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var anim=!rm&&('IntersectionObserver' in W);
+if(anim)h.classList.add('js');
+function all(s,r){return [].slice.call((r||d).querySelectorAll(s))}
+var raf=W.requestAnimationFrame.bind(W);
+
+/* hero: the route draws itself, a plane flies Nov to May */
+var route=d.getElementById('route'),mask=d.getElementById('routeMask'),plane=d.getElementById('plane'),stops=all('.arc .stop');
+if(route&&route.getTotalLength){
+  var L=route.getTotalLength();
+  var near=function(x,y){var best=0,bd=1e12;for(var s=0;s<=L;s+=L/800){var p=route.getPointAtLength(s),dd=(p.x-x)*(p.x-x)+(p.y-y)*(p.y-y);if(dd<bd){bd=dd;best=s}}return best};
+  var at=stops.map(function(g){return near(+g.getAttribute('data-x'),+g.getAttribute('data-y'))});
+  var end=at[at.length-1]-18;
+  var place=function(s){var p=route.getPointAtLength(s),q=route.getPointAtLength(Math.min(L,s+2));plane.setAttribute('transform','translate('+p.x.toFixed(1)+' '+p.y.toFixed(1)+') rotate('+(Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI).toFixed(1)+')')};
+  if(anim){
+    mask.style.strokeDasharray=L;mask.style.strokeDashoffset=L;
+    var t0=null,D=3800,ease=function(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
+    var step=function(ts){
+      if(t0===null)t0=ts;
+      var t=Math.min(1,(ts-t0)/D),s=ease(t)*end;
+      place(s);plane.style.opacity=Math.min(1,t*8);
+      mask.style.strokeDashoffset=L-s;
+      stops.forEach(function(g,i){if(s>=at[i]-30)g.classList.add('lit')});
+      if(t<1)raf(step);
+      else{stops.forEach(function(g){g.classList.add('lit')});mask.style.transition='stroke-dashoffset 1.8s cubic-bezier(.2,.7,.2,1)';mask.style.strokeDashoffset=0}
+    };
+    setTimeout(function(){raf(step)},500);
+  }else{place(end);plane.style.opacity=1}
+}
+
+/* reveal on scroll */
+if(anim){
+  var sel='main h2,main .intro,main .sub,main .src,.stat,.seq,.alloc,.phase,.ribbon,.chan,.recon,.prin,.fseg>h4,.fgrid>div,.chart,.lgnd,.tl li,.hz,.lead,.kpi';
+  var els=all(sel);
+  els.forEach(function(el){
+    var p=el.parentNode,i=p.__rvi||0;p.__rvi=i+1;
+    el.classList.add('rv');
+    if(i)el.style.setProperty('--d',(Math.min(i,8)*.06)+'s');
+  });
+  all('.ribbon i').forEach(function(x,k){x.style.setProperty('--k',(.1+k*.07)+'s')});
+  var nums=all('.stat b').filter(function(b){
+    var m=b.textContent.match(/^(\D*)(\d+(?:\.\d+)?)(\D*)$/);if(!m)return false;
+    b.__m=m;b.__dec=(m[2].split('.')[1]||'').length;b.textContent=m[1]+(0).toFixed(b.__dec)+m[3];return true;
+  });
+  var count=function(b){
+    var m=b.__m,v=parseFloat(m[2]),t0=null;
+    var f=function(ts){if(t0===null)t0=ts;var t=Math.min(1,(ts-t0)/1500),e=1-Math.pow(1-t,3);b.textContent=m[1]+(v*e).toFixed(b.__dec)+m[3];if(t<1)raf(f);else b.textContent=m[1]+m[2]+m[3]};
+    raf(f);
+  };
+  var circles=all('.dwrap circle');
+  circles.forEach(function(c){c.__da=c.getAttribute('stroke-dasharray');c.style.strokeDasharray='0 527.79'});
+  var onIn=function(el){
+    var delay=parseFloat(el.style.getPropertyValue('--d'))||0;
+    if(el.classList.contains('stat')){var b=el.querySelector('b');if(nums.indexOf(b)>-1)setTimeout(function(){count(b)},delay*1000+150)}
+    if(el.classList.contains('alloc')){
+      circles.forEach(function(c,i){c.style.transitionDelay=(.25+i*.22)+'s';raf(function(){c.style.strokeDasharray=c.__da})});
+      setTimeout(function(){circles.forEach(function(c){c.style.transitionDelay=''})},2600);
+    }
+  };
+  var ob=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;var el=e.target;ob.unobserve(el);
+    el.classList.add('in');onIn(el);
+    setTimeout(function(){el.classList.add('done');el.style.removeProperty('--d')},1700);
+  })},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(el){ob.observe(el)});
+}
+
+/* linked hover: donut and key, ribbon and channels, bars and months */
+function link(a,b,boxes,cls){
+  a.forEach(function(_,i){[a[i],b[i]].forEach(function(el){if(!el)return;
+    el.addEventListener('mouseenter',function(){boxes.forEach(function(x){x.classList.add(cls)});a[i].classList.add('hl');b[i]&&b[i].classList.add('hl')});
+    el.addEventListener('mouseleave',function(){boxes.forEach(function(x){x.classList.remove(cls)});a[i].classList.remove('hl');b[i]&&b[i].classList.remove('hl')});
+  })});
+}
+var alloc=d.querySelector('.alloc');
+if(alloc)link(all('.dwrap circle'),all('.key div'),[alloc],'dim');
+var ribbon=d.querySelector('.ribbon');
+if(ribbon)link(all('i',ribbon),all('.chan'),[ribbon.parentNode],'cdim');
+var chart=d.querySelector('.chart'),tl=d.querySelector('.tl');
+if(chart&&tl)link(all('.m',chart),all('li',tl),[chart,tl],'dim');
+
+/* route gutter fill, active nav, reading progress */
+var secs=all('main section'),links=all('nav div a'),navd=d.querySelector('nav div'),nav=d.querySelector('nav'),cur=-1,tick=false;
+function upd(){
+  tick=false;var vh=W.innerHeight,act=-1;
+  secs.forEach(function(s,i){
+    var r=s.getBoundingClientRect(),no=s.querySelector('.legno');
+    if(no)no.style.setProperty('--p',Math.max(0,Math.min(1,(vh*.55-r.top-46)/(r.height-46))).toFixed(3));
+    s.classList.toggle('on',r.top<vh*.55);
+    if(r.top<vh*.4)act=i;
+  });
+  var H=h.scrollHeight-vh;nav.style.setProperty('--sp',H>0?(W.scrollY/H).toFixed(4):0);
+  if(act!==cur){
+    cur=act;var id=act>-1?'#'+secs[act].id:'';
+    links.forEach(function(a){var on=a.hash===id;a.classList.toggle('on',on);
+      if(on&&navd.scrollWidth>navd.clientWidth)navd.scrollTo({left:a.offsetLeft-navd.offsetLeft-24,behavior:'smooth'})});
+  }
+}
+function req(){if(!tick){tick=true;raf(upd)}}
+W.addEventListener('scroll',req,{passive:true});W.addEventListener('resize',req);upd();
+
+/* presenting: left and right arrows move one leg */
+d.addEventListener('keydown',function(e){
+  if(e.altKey||e.ctrlKey||e.metaKey||e.shiftKey||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+  var dir=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!dir)return;
+  e.preventDefault();
+  var i=-1;secs.forEach(function(s,k){if(s.getBoundingClientRect().top<=58)i=k});
+  var n=i+dir,beh=rm?'auto':'smooth';
+  if(n<0){W.scrollTo({top:0,behavior:beh});return}
+  if(n>=secs.length)return;
+  W.scrollTo({top:secs[n].getBoundingClientRect().top+W.scrollY-56,behavior:beh});
+});
+})();
+</script>
 </body></html>
